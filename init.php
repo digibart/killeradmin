@@ -10,7 +10,7 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
       ));
       
       
-      Route::set('admin/media', 'admin/media(/<file>)', array('file' => '.+'))
+Route::set('admin/media', 'admin/media(/<file>)', array('file' => '.+'))
 	->defaults(array(
 		'directory'  => 'admin', 
 		'controller' => 'media',

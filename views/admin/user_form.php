@@ -24,7 +24,7 @@
 	
    	<div class="span-24">
    		<p><br>
-       		<button class="button positive"><?= html::image('media/admin/images/icons/save.png');?><?= __('save'); ?></button>
+       		<button class="button positive"><?= html::image('admin/media/images/icons/save.png');?><?= __('save'); ?></button>
        		<?= html::anchor($referrer, __('go back')); ?>
    		</p>
    	</div>

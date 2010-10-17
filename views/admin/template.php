@@ -5,22 +5,22 @@
 <head>
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <?php echo HTML::style('media/admin/css/screen.css', array('media' => 'screen')); ?>
-    <?php echo HTML::style('media/admin/css/style.css', array('media' => 'screen')); ?>
-    <?php echo HTML::style('media/admin/css/print.css', array('media' => 'print')); ?>
-    <?php echo HTML::style('media/admin/css/datePicker.css', array('media' => 'screen')); ?>
-    <?php echo HTML::style('media/css/jquery.tooltip.css', array('media' => 'screen')); ?>
+    <?php echo HTML::style('admin/media/css/screen.css', array('media' => 'screen')); ?>
+    <?php echo HTML::style('admin/media/css/style.css', array('media' => 'screen')); ?>
+    <?php echo HTML::style('admin/media/css/print.css', array('media' => 'print')); ?>
+    <?php echo HTML::style('admin/media/css/datePicker.css', array('media' => 'screen')); ?>
+    <?php echo HTML::style('admin/media/css/jquery.tooltip.css', array('media' => 'screen')); ?>
     <!--[if IE]><![if gte IE 6]><![endif]-->
     <?php
-    echo HTML::script('media/admin/js/jquery-1.4.2.min.js');
-    echo HTML::script('media/admin/js/jquery.validate.min.js');
-    echo HTML::script('media/admin/js/jquery.confirm-1.3.js');
-    echo HTML::script('media/admin/js/jquery.tooltip.min.js');
-    echo HTML::script('media/admin/js/localization/messages_nl.js');
-    echo HTML::script('media/admin/js/localization/methods_nl.js');
-    echo HTML::script('media/admin/js/date.js');
-    echo HTML::script('media/admin/js/jquery.datePicker.js');
-    echo HTML::script('media/admin/js/jquery.tooltip.min.js');
+    echo HTML::script('admin/media/js/jquery-1.4.2.min.js');
+    echo HTML::script('admin/media/js/jquery.validate.min.js');
+    echo HTML::script('admin/media/js/jquery.confirm-1.3.js');
+    echo HTML::script('admin/media/js/jquery.tooltip.min.js');
+    echo HTML::script('admin/media/js/localization/messages_nl.js');
+    echo HTML::script('admin/media/js/localization/methods_nl.js');
+    echo HTML::script('admin/media/js/date.js');
+    echo HTML::script('admin/media/js/jquery.datePicker.js');
+    echo HTML::script('admin/media/js/jquery.tooltip.min.js');
     ?>
     <script type="text/javascript">
 //<![CDATA[

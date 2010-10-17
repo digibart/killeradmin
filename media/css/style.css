@@ -1,0 +1,191 @@
+/*************************************
+   WELCOME TO THE CUSTOM STYLESHEET
+--------------------------------------
+              style.css
+        BlueTrip CSS Framework
+    Put your custom styles in here.
+***************************************/
+
+/**************************************/
+/*           COLOR SCHEME             */
+/**************************************
+#0b0b0b - zwart
+#5e5e5e - donker grijs
+#a8ca14 - donker groen
+#d3e766 - lichter groen
+#c0c27c - light groen
+***************************************/
+
+
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
+body {
+	background: url(../images/background.jpg);
+	margin-top: 0px;
+}
+
+.curved {
+ 	cursor: inherit;
+}
+
+
+.container  {
+	background-color: #fff;
+	padding-bottom: 50px;
+}
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+
+#head {
+	background: #242524;	
+}
+
+#head h1 {
+	color: #d3d3d3;
+	padding-left: 10px;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+h4.rounded {
+
+}
+
+
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
+
+#menubar {
+	background: #5f5f5f;
+	padding-top: 0.5em;
+	padding-bottom: 0em;
+}
+
+#menubar .button {
+	background-color: #323937;
+}
+#menubar .button:hover {
+	color: #fff;
+}
+
+#menubar .button.positive, #menubar .button.positive:hover {
+	color: #000;
+	border: solid 1px #a7c913;
+	background-color: #a7c913;
+}
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+
+h1, h2, h3, h4 {
+	color: #323937 ;
+}
+
+table, td, th {
+	border: none;
+	outline: 0px;
+}
+
+th {
+	font-size: 1em;
+	background: #323937;
+	color: #fff;
+	text-align: left;
+	font-weight: bold;
+}
+
+h4 {
+	padding: 0.5em;
+	
+	font-size: 1em;
+	background: #323937;
+	color: #fff;
+	text-align: left;
+	font-weight: bold;
+	
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 7px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 0px;  
+}
+
+td.odd {
+	background:#f3f3f3 ;
+}
+
+a.add {
+	background-image:url(../images/icons/add.png);
+	background-repeat: no-repeat;
+	background-position: 0.3em center;
+	padding-left: 25px;
+}
+
+
+.pagination {
+	text-align: right;
+}
+
+.box h4:first-child {
+	margin-top: inherit;
+}
+.box div:first-child {
+	
+	padding: 10px;
+}
+
+.confirm_wrapper {
+	position: absolute;
+	background: white;
+	border: solid 1px #a8ca14;
+	padding: 10px;
+	z-index: 1000;
+	
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 7px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 0px;  
+}
+
+span.invalid {
+	display: inline;
+	position: relative;
+}
+input.invalid {
+	padding: 0;
+	border: solid 1px #FBC2C4;
+} 
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+
+.footer {
+	background: none;
+	padding-top: 25px;
+	text-align: center;
+	color: #5e5e5e;
+}
+
+.footer a {
+	color: #5e5e5e;
+}
