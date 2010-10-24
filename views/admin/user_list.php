@@ -2,17 +2,15 @@
 <form method="get">
 	<table>
 		<tr>
-			<td><input type="text" name="filter[username]" style="width: 100%" value="<?= (isset($filter['username']) ? htmlentities($filter['username']) : '');?>"></td>
-			<td><input type="text" name="filter[email]" style="width: 100%" value="<?= (isset($filter['email']) ? htmlentities($filter['email']) : '');?>"></td>
-			<td><button><?= html::image('admin/media/images/icons/funnel.png');?><?= __('filter'); ?></button>
+			<td><input type="text" name="filter[username]" class="span-5 last" value="<?= (isset($filter['username']) ? htmlentities($filter['username']) : '');?>"></td>
+			<td><input type="text" name="filter[email]" class="span-3 last" value="<?= (isset($filter['email']) ? htmlentities($filter['email']) : '');?>"></td>
+			<td colspan="3"><button type="submit"><?= html::image('admin/media/images/icons/funnel.png');?><?= __('filter'); ?></button>
 				<?= (isset($_GET['filter']) ? html::anchor('admin/' . Request::instance()->controller, __('clear filter')) : "");?>
 			</td>
-			<td></td>
-			<td></td>
 		</tr>
 		<tr>
-			<th>Naam</th>
-			<th>Email</th>
+			<th class="span-5">Naam</th>
+			<th class="span-3">Email</th>
 			<th>Rollen</th>
 			<th>Laatste login</th>
 			<th>&nbsp;</th>

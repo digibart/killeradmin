@@ -5,5 +5,5 @@
 	<dt><?=  ucfirst(__('email'));?></dt>
 	<dd><input type="text" name="email" class="required email"></dd>
 </dl>
-<button><?= __('new password'); ?></button>
+<button type="submit"><?= __('new password'); ?></button>
 </form>

@@ -37,9 +37,10 @@
                     separator:' ',
                     cls: 'positive',
                     ok: '<?php echo __('confirm.ok'); ?>',
-                    cancel: '<?php echo __('confirm.cancel'); ?>',
+                    cancel: '<?php echo __('confirm.cancel'); ?>'
                 }
             });
+            
             $('.tooltip,img').tooltip({
             	track: false, 
 			    delay: 500, 

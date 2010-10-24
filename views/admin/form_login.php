@@ -8,4 +8,5 @@
 	<dd><input type="checkbox" name="remember" id="checkbox_1" class="checkbox" /></dd>
 
 </dl>
-<button><?= __('login'); ?></button>
+<button type="submit"><?= __('login'); ?></button>
+</form>
