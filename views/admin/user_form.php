@@ -1,10 +1,10 @@
-<form method="post" action="<?= url::site('admin/users/save/' . $user->id);?>">
+<form method="post" action="<?php echo url::site('admin/users/save/' . $user->id);?>">
     <div class="span-6 suffix-1">
-        <label><?= ucfirst(__('username'));?> <small>(<?= __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label>
-        	<input type="text" name="username" value="<?= $user->username;?>"><br>
-        <label><?= ucfirst(__('email'));?></label>
-        	<input type="text" name="email" value="<?= $user->email; ?>"><br>
-        <label><?= ucfirst(__('roles'));?></label>
+        <label><?php echo ucfirst(__('username'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label>
+        	<input type="text" name="username" value="<?php echo $user->username;?>"><br>
+        <label><?php echo ucfirst(__('email'));?></label>
+        	<input type="text" name="email" value="<?php echo $user->email; ?>"><br>
+        <label><?php echo ucfirst(__('roles'));?></label>
         <?php 
             foreach (ORM::factory('role')->find_all() as $role) {
             	$checked = $user->has('roles',$role ) ? "checked=checked" : "";
@@ -18,14 +18,14 @@
     </div>
 
     <div class="span-5 last">
-        <label><?= ucfirst(__('password'));?> <small>(<?= __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label> <input type="password" name="password" value="">
-        <label><?= ucfirst(__('confirm password'));?>:</label> <input type="password" name="password_confirm" value="">
+        <label><?php echo ucfirst(__('password'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label> <input type="password" name="password" value="">
+        <label><?php echo ucfirst(__('confirm password'));?>:</label> <input type="password" name="password_confirm" value="">
     </div>
 	
    	<div class="span-24">
    		<p><br>
-       		<button type="submit" class="button positive"><?= html::image('admin/media/images/icons/save.png');?><?= __('save'); ?></button>
-       		<?= html::anchor($referrer, __('go back')); ?>
+       		<button type="submit" class="button positive"><?php echo html::image('admin/media/images/icons/save.png');?><?php echo __('save'); ?></button>
+       		<?php echo html::anchor($referrer, __('go back')); ?>
    		</p>
    	</div>
 </form>

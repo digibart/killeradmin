@@ -1,9 +1,9 @@
-<form method="post" action="<?= url::site('admin/main/forgot'); ?>" class="validate">
+<form method="post" action="<?php echo url::site('admin/main/forgot'); ?>" class="validate">
 <dl>
-	<dt><?= ucfirst(__('username'));?></dt>
+	<dt><?php echo ucfirst(__('username'));?></dt>
 	<dd><input type="text" name="username" class="required"></dd>
-	<dt><?=  ucfirst(__('email'));?></dt>
+	<dt><?php echo  ucfirst(__('email'));?></dt>
 	<dd><input type="text" name="email" class="required email"></dd>
 </dl>
-<button type="submit"><?= __('new password'); ?></button>
+<button type="submit"><?php echo __('new password'); ?></button>
 </form>

@@ -1,5 +1,5 @@
 <div class="span-7 box">
-		<H4><?= ucfirst(__('userinfo')); ?></H4>
-		<strong><?= ucfirst(__('last login')); ?></strong>: <?= strftime("%a %d %b %R", $user->last_login); ?>
-		<strong><?= ucfirst(__('username')); ?></strong>: <?= $user->username; ?>
+		<H4><?php echo ucfirst(__('userinfo')); ?></H4>
+		<strong><?php echo ucfirst(__('last login')); ?></strong>: <?php echo strftime("%a %d %b %R", $user->last_login); ?>
+		<strong><?php echo ucfirst(__('username')); ?></strong>: <?php echo $user->username; ?>
 </div>

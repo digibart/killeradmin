@@ -1,7 +1,7 @@
 <div class="span-7 box">
-		<H4><?= ucfirst(__('systeminfo')); ?></H4>
-		<strong>Kohana versie</strong>: <?= Kohana::VERSION; ?><br />
-		<strong>PHP versie</strong>: <?= phpversion(); ?><br />
-		<strong>Aantal gebruikers</strong>: <?= ORM::factory('user')->count_all(); ?><br>
-		<strong>Environment</strong>: <?= KOHANA::$environment ?>
+		<H4><?php echo ucfirst(__('systeminfo')); ?></H4>
+		<strong>Kohana versie</strong>: <?php echo Kohana::VERSION; ?><br />
+		<strong>PHP versie</strong>: <?php echo phpversion(); ?><br />
+		<strong>Aantal gebruikers</strong>: <?php echo ORM::factory('user')->count_all(); ?><br>
+		<strong>Environment</strong>: <?php echo KOHANA::$environment ?>
 </div>
