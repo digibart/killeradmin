@@ -32,7 +32,7 @@
 	</table>
 </form>
 <div class="span-8">
-	<a href="<?php echo url::site('admin/users/add');?>" class="button positive"><?php echohtml::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
+	<a href="<?php echo url::site('admin/users/add');?>" class="button positive"><?php echo html::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
 </div>
 
 <div class="span-26 last pagination">
