@@ -88,7 +88,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->session->delete('post_data_' . $this->orm_name);
 
 		//count total objects
-		$count = ORM::factory($this->orm_name);
+		$count = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name)->find((int) $id);
 		foreach ($filter as $field => $value) {
 			$count->and_where($field, 'like', '%' . $value . '%');
 		}
@@ -121,7 +121,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		
 		
 		//collect the orm objects
-		$objects = ORM::factory($this->orm_name)
+		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name)->find((int) $id);
+		$objects
 			->offset($offset)
 			->limit(20);
 		foreach ($filter as $field => $value) {
@@ -176,8 +177,9 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	public function action_edit($id = null)
 	{
 		$this->template->title = ucfirst(__('edit :object', array(':object' => __($this->orm_name))));
-
-		$object = ORM::factory($this->orm_name)->find((int) $id);
+		
+		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
+		$object->find((int) $id);
 
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')		
 		->set('referrer', $this->session->get('requested_url'))
@@ -205,7 +207,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$post = $_POST;
 
-		$object = ORM::factory($this->orm_name)->find((int) $id);
+		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
+		$object->find((int) $id);
 		$object->values($post);		
 
 		if ($object->check()) {
@@ -237,7 +240,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	{
 		$this->auto_render = false;
 
-		$object = ORM::factory($this->orm_name)->find((int) $id);
+		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
+		$object->find((int) $id);
 
 		if ($object->loaded()) {
 			$object->delete();
