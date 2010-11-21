@@ -55,7 +55,14 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->controller_url = Request::instance()->directory . "/" . Request::instance()->controller;
 		
 		if ( Auth::instance()->logged_in()) {
-			$this->template->menu = View::factory('admin/menubar')->set("items", Kohana::config('admin.menu'));
+			$menu = Kohana::config('admin.menu');
+			
+			if (count($menu) == 0) {
+				Message::instance()->info(Kohana::message('admin','menu not found'));
+				$menu = array();
+			} 
+			
+			$this->template->menu = View::factory('admin/menubar')->set("items", $menu);
 		} else {
 		 	$this->template->menu = "";
 		 }
