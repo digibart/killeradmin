@@ -88,7 +88,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->session->delete('post_data_' . $this->orm_name);
 
 		//count total objects
-		$count = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name)->find((int) $id);
+		$count = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
 		foreach ($filter as $field => $value) {
 			$count->and_where($field, 'like', '%' . $value . '%');
 		}
@@ -121,7 +121,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		
 		
 		//collect the orm objects
-		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name)->find((int) $id);
+		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
 		$objects
 			->offset($offset)
 			->limit(20);
