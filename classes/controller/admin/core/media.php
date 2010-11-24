@@ -31,6 +31,7 @@ class Controller_Admin_Core_Media extends Controller {
 
 		// Set the content type for this extension
 		$this->request->headers['Content-Type'] = File::mime_by_ext($ext);
+		$this->request->headers['Expires'] = gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7));
 
 	}
 }
