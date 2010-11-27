@@ -261,21 +261,5 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 	}
 
-
-	/**
-	 * shows profilerstats if enviroment is development
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function after()
-	{
-		parent::after();
-		
-		if (Request::$is_ajax == false && Kohana::$environment == "development") {
-			$this->request->response .= "<div style='display:block;padding-top:300px'>" . View::factory('profiler/stats') . "</div>";
-		}
-	}
-
 }
 ?>
