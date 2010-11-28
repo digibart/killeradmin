@@ -9,14 +9,17 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="span-5">Naam</th>
-			<th class="span-3">Email</th>
+			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?>				
+			</th>
+			<th class="span-3">Email&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></th>
 			<th>Rollen</th>
-			<th>Laatste login</th>
+			<th>Laatste login <?php echo Killeradmin::sortAnchor('last_login');?></th>
 			<th>&nbsp;</th>
 		</tr>
-		<?php foreach ($objects as $object) : ?>
-		<tr>
+		<?php
+		$i = 0;
+		 foreach ($objects as $object) :?>
+		<tr id="<?php echo $i++; ?>">
 			<td><?php echo $object->username; ?></td>	
 			<td><?php echo $object->email; ?></td>	
 			<td><?php foreach ($object->roles->find_all() as $role) :?>

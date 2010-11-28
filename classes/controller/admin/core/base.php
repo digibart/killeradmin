@@ -108,7 +108,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			
 			//display link 'clear filter'
 			if (isset($get['filter'])) {			
-				$msg .= "&nbsp;" . html::anchor(Request::instance()->directory .'/' . Request::instance()->controller, __('clear filter'));
+				$query = Url::query(array('filter' => null));
+				$msg .= "&nbsp;" . html::anchor(Request::instance()->directory .'/' . Request::instance()->controller . $query, __('clear filter'));
 			}
 			Message::instance()->info($msg);
 		}
@@ -132,8 +133,14 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$objects
 			->offset($offset)
 			->limit(20);
+		//apply filters
 		foreach ($filter as $field => $value) {
 			$objects->and_where($field, 'like', '%' . $value . '%');
+		}
+		//apply sorting
+		if (Arr::get($_GET, 'sort') && array_key_exists($_GET['sort'], $objects->list_columns())) {		
+			$order = (Arr::get($_GET,'order', 'asc') == 'asc') ? 'asc' : 'desc';
+			$objects->order_by(Arr::get($_GET,'sort'),$order);
 		}
 		$objects = $objects->find_all();
 

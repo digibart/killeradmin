@@ -132,6 +132,18 @@ a.add {
 	padding-left: 25px;
 }
 
+a.sort {
+	color:#7c7c7c ;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 0 0.1em;
+}
+
+a.sort.active { 
+	color: #ffffff;
+}
+
 
 .pagination {
 	text-align: right;
