@@ -34,9 +34,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		//Check user auth and role
 		$action_name = $this->request->action;
 
-		if (($this->auth_required == true && Auth::instance()->logged_in() === false)
+		if ((($this->auth_required == true && Auth::instance()->logged_in() === false)
 			|| (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) &&
-				Auth::instance()->logged_in($this->secure_actions[$action_name]) == false)) {
+				Auth::instance()->logged_in($this->secure_actions[$action_name]) == false))
+			&& ($this->secure_actions[$action_name] != false)) {
 			if (Auth::instance()->logged_in()) {
 				Message::instance()->error(ucfirst(__('access denied')));
 				Request::instance()->redirect('admin/main/');
@@ -52,6 +53,9 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->template->title = "Admin";
 		$this->template->content = "";
 		$this->template->scripts = array();
+		
+		$this->controller_url = $this->request->directory . "/" . $this->request->controller;
+
 				
 		//show the menu
 		if ( Auth::instance()->logged_in()) {
@@ -108,7 +112,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			//display link 'clear filter'
 			if (isset($get['filter'])) {			
 				$query = Url::query(array('filter' => null));
-				$msg .= "&nbsp;" . html::anchor($this->request->uri . $query, __('clear filter'));
+				$msg .= "&nbsp;" . html::anchor($this->controller_url . $query, __('clear filter'));
 			}
 			Message::instance()->info($msg);
 		}
@@ -123,7 +127,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		//pagination, check if a page exists
 		if (!$pagination->valid_page($page) && $pagination->__get('total_pages') > 0) {
 			$query = Url::query(array('page' =>  $pagination->__get('total_pages')));
-			$this->request->redirect($this->request->uri . $query);
+			$this->request->redirect($this->controller_url . $query);
 		}
 		
 		
@@ -151,7 +155,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			->bind('auth_user', $this->user)		
 			->bind('filter', $filter)
 			->bind('count', $count)
-			->bind('controller_url', $this->request->uri)
+			->bind('controller_url', $this->controller_url)
 			->bind('pagination', $pagination);
 
 
@@ -176,7 +180,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')
 			->set('referrer', $this->session->get('requested_url'))
-			->set('controller_url', $this->request->uri)
+			->set('controller_url', $this->controller_url)
 			->set('auth_user', $this->user)
 			->bind($this->orm_name, $object);
 
@@ -198,7 +202,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')		
 			->set('referrer', $this->session->get('requested_url'))
-			->set('controller_url', $this->request->uri)		
+			->set('controller_url', $this->controller_url)		
 			->set('auth_user', $this->user)
 			->bind($this->orm_name, $object);
 
@@ -268,6 +272,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->request->redirect($this->session->get_once('requested_url'));
 
 	}
+	
+
 
 }
 ?>
