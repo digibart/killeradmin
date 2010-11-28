@@ -12,7 +12,8 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 	public $secure_actions = array(
 		'index' => 'admin',
 		'add'  => 'admin',
-		'delete' => 'admin'
+		'delete' => 'admin',
+		'setup' => false
 
 	);
 
@@ -97,6 +98,37 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
 		}
 
+	}
+
+	/**
+	 * create's a default user when the user-table is empty
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function action_setup()
+	{
+		$count = ORM::factory('user')->count_all();
+		
+		if ($count == 0) {		
+			$user = ORM::factory('user');
+			$user->username = 'admin';
+			$user->password = 'admin';
+			$user->email = 'user@example.com';
+			$user->save();
+			$user->add('roles', new Model_Role(array('name' =>'admin')));
+			$user->add('roles', new Model_Role(array('name' =>'login')));
+			$user->save();
+			
+			Message::instance()->info(__('new user created:<br><strong>username</strong>: admin<br><strong>password</strong>: admin'));
+			
+		
+		} else {			
+			Message::instance()->error(__('access denied'));			
+		}
+		
+		$this->request->redirect('/admin/main/login');
+		
 	}
 }
 
