@@ -30,14 +30,15 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	public function before()
 	{
 		parent::before();
+		
 
 		//Check user auth and role
-		$action_name = $this->request->action;
-
-		if ((($this->auth_required == true && Auth::instance()->logged_in() === false)
-			|| (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) &&
-				Auth::instance()->logged_in($this->secure_actions[$action_name]) == false))
-			&& ($this->secure_actions[$action_name] != false)) {
+		$action_name = Request::instance()->action;		
+		        
+        if (($this->auth_required !== FALSE && Auth::instance()->logged_in($this->auth_required) === FALSE)
+                || (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) && 
+                Auth::instance()->logged_in($this->secure_actions[$action_name]) === FALSE))
+			{
 			if (Auth::instance()->logged_in()) {
 				Message::instance()->error(ucfirst(__('access denied')));
 				Request::instance()->redirect('admin/main/');
