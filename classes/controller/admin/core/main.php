@@ -4,7 +4,7 @@
  * Controller_Admin_Main class.
  *
  * @extends Controller_Admin_Base
- * @package pbadmin
+ * @package Killer-admin
  * @category Controller
  */
 class Controller_Admin_Core_Main extends Controller_Admin_Base {
@@ -14,12 +14,12 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		'index' => 'login'
 	);
 
-	public function before()
-	{
-		parent::before();
-	
-	}
-
+	/**
+	 * user login
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_login()
 	{
 		$this->template->title = ucfirst(__('login'));
@@ -36,12 +36,6 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				Message::instance()->succeed(ucfirst(__('access granted')));
 				Request::instance()->redirect('admin/main');
 			} else {
-				/*
-				$errorstring = "";
-				foreach ($_POST->errors('signin') as $key => $error) {
-					$errorstring .= $error . "<br>";
-				}
-				*/
 				Message::instance()->error(__('username or password incorrect'));
 			}
 
@@ -49,6 +43,12 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 
 	}
 
+	/**
+	 * reset password and email it to user
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_forgot()
 	{
 		$this->template->title = ucfirst(__('forgot password'));
@@ -87,6 +87,12 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		}
 	}
 
+	/**
+	 * logout user
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_logout()
 	{
 		Auth::instance()->logout();
@@ -94,6 +100,12 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		Request::instance()->redirect('admin/main/login');
 	}
 
+	/**
+	 * if no page is loaded, show the dashboard
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_index()
 	{
 

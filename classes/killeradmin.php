@@ -3,7 +3,7 @@
 /**
  * Killeradmin helper
  * 
- * @package Pbadmin
+ * @package Killer-admin
  * @category Helper
  */
 class Killeradmin

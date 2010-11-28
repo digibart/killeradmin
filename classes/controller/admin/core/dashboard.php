@@ -5,7 +5,7 @@
  * Controller_Admin_Core_Dashboard class.
  * 
  * @extends Controller_Admin_Base
- * @package pbadmin
+ * @package Killer-admin
  * @category Controller
  */
 class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
@@ -17,6 +17,12 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 		'right' => 'login'
 	);
 	
+	/**
+	 * left column
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_left() {
 		$this->auto_render = false;
 		
@@ -24,6 +30,12 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 			->set('user', $this->user);
 	}
 	
+	/**
+	 * center column
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_center() {
 		$this->auto_render = false;
 		
@@ -32,16 +44,19 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 	}
 	
 
+	/**
+	 * right column
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function action_right() {
 		$this->auto_render = false;
 		
 		echo View::factory('admin/dashboard_right')
 			->set('user', $this->user);
 	}
-	
-	public function after() {
-	
-	}
+
 }
 
 ?>

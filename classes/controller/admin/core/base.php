@@ -4,7 +4,7 @@
  * Controller_Admin_Core_Base class.
  * 
  * @extends Controller_Template
- * @package Pbadmin
+ * @package Killer-admin
  * @category Controller
  */
 class Controller_Admin_Core_Base extends Controller_Template {
@@ -32,7 +32,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		parent::before();
 
 		//Check user auth and role
-		$action_name = Request::instance()->action;
+		$action_name = $this->request->action;
 
 		if (($this->auth_required == true && Auth::instance()->logged_in() === false)
 			|| (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) &&
@@ -48,12 +48,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			$this->user = Auth::instance()->get_user();
 		}
 
+		//set the template values
 		$this->template->title = "Admin";
 		$this->template->content = "";
 		$this->template->scripts = array();
-		
-		$this->controller_url = Request::instance()->directory . "/" . Request::instance()->controller;
-		
+				
+		//show the menu
 		if ( Auth::instance()->logged_in()) {
 			$menu = Kohana::config('admin.menu');
 			
@@ -90,8 +90,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				}
 			}
 		}
-
-		$this->session->set('requested_url', $this->request->uri.'?'.http_build_query($get, '&'));
+		$this->session->set('requested_url', $this->request->uri . Url::query());
 		$this->session->delete('post_data_' . $this->orm_name);
 
 		//count total objects
@@ -109,7 +108,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			//display link 'clear filter'
 			if (isset($get['filter'])) {			
 				$query = Url::query(array('filter' => null));
-				$msg .= "&nbsp;" . html::anchor(Request::instance()->directory .'/' . Request::instance()->controller . $query, __('clear filter'));
+				$msg .= "&nbsp;" . html::anchor($this->request->uri . $query, __('clear filter'));
 			}
 			Message::instance()->info($msg);
 		}
@@ -123,8 +122,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		//pagination, check if a page exists
 		if (!$pagination->valid_page($page) && $pagination->__get('total_pages') > 0) {
-			$get['page'] = $pagination->__get('total_pages');
-			Request::instance()->redirect($this->request->uri.'?'.http_build_query($get, '&'));
+			$query = Url::query(array('page' =>  $pagination->__get('total_pages')));
+			$this->request->redirect($this->request->uri . $query);
 		}
 		
 		
@@ -133,11 +132,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$objects
 			->offset($offset)
 			->limit(20);
-		//apply filters
+
+		// and apply filters
 		foreach ($filter as $field => $value) {
 			$objects->and_where($field, 'like', '%' . $value . '%');
 		}
-		//apply sorting
+		
+		// and apply sorting
 		if (Arr::get($_GET, 'sort') && array_key_exists($_GET['sort'], $objects->list_columns())) {		
 			$order = (Arr::get($_GET,'order', 'asc') == 'asc') ? 'asc' : 'desc';
 			$objects->order_by(Arr::get($_GET,'sort'),$order);
@@ -146,12 +147,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 
 		$view = View::factory('admin/'.$this->orm_name.'_list')
-		->bind('objects', $objects)
-		->bind('auth_user', $this->user)		
-		->bind('filter', $filter)
-		->bind('count', $count)
-		->bind('controller_url', $this->controller_url)
-		->bind('pagination', $pagination);
+			->bind('objects', $objects)
+			->bind('auth_user', $this->user)		
+			->bind('filter', $filter)
+			->bind('count', $count)
+			->bind('controller_url', $this->request->uri)
+			->bind('pagination', $pagination);
 
 
 		$this->template->content = $view;
@@ -174,10 +175,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$object->values($this->session->get_once('post_data_' . $this->orm_name, array()));
 		
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')
-		->set('referrer', $this->session->get('requested_url'))
-		->set('controller_url', $this->controller_url)
-		->set('auth_user', $this->user)
-		->bind($this->orm_name, $object);
+			->set('referrer', $this->session->get('requested_url'))
+			->set('controller_url', $this->request->uri)
+			->set('auth_user', $this->user)
+			->bind($this->orm_name, $object);
 
 	}
 	
@@ -196,10 +197,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$object->find((int) $id);
 
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')		
-		->set('referrer', $this->session->get('requested_url'))
-		->set('controller_url', $this->controller_url)		
-		->set('auth_user', $this->user)
-		->bind($this->orm_name, $object);
+			->set('referrer', $this->session->get('requested_url'))
+			->set('controller_url', $this->request->uri)		
+			->set('auth_user', $this->user)
+			->bind($this->orm_name, $object);
 
 		if (!$object->loaded()) {
 			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));

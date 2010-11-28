@@ -11,14 +11,12 @@
 		<tr>
 			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?>				
 			</th>
-			<th class="span-3">Email&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></th>
-			<th>Rollen</th>
-			<th>Laatste login <?php echo Killeradmin::sortAnchor('last_login');?></th>
+			<th class="span-3"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></th>
+			<th><?php echo ucfirst(__('rols')); ?>&nbsp;</th>
+			<th><?php echo ucfirst(__('last login')); ?><?php echo Killeradmin::sortAnchor('last_login');?></th>
 			<th>&nbsp;</th>
 		</tr>
-		<?php
-		$i = 0;
-		 foreach ($objects as $object) :?>
+		<?php $i = 0; foreach ($objects as $object) :?>
 		<tr id="<?php echo $i++; ?>">
 			<td><?php echo $object->username; ?></td>	
 			<td><?php echo $object->email; ?></td>	
@@ -35,7 +33,7 @@
 	</table>
 </form>
 <div class="span-8">
-	<a href="<?php echo url::site('admin/users/add');?>" class="button positive"><?php echo html::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
+	<a href="<?php echo url::site($controller_url . '/add');?>" class="button positive"><?php echo html::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
 </div>
 
 <div class="span-26 last pagination">

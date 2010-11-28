@@ -2,7 +2,7 @@
 /**
  * Model_User class.
  *
- * @package pbadmin
+ * @package Killer-admin
  * @category Model
  * @extends Model_Auth_User
  */
@@ -12,6 +12,13 @@ class Model_User extends Model_Auth_User {
 		true       => array('Security::xss_clean' => array()),
 	);
 
+	/**
+	 * validate_edit function.
+	 * 
+	 * @access public
+	 * @param mixed & $array
+	 * @return void
+	 */
 	public function validate_edit(& $array)
 	{
 		// Initialise the validation library and setup some rules
@@ -36,6 +43,12 @@ class Model_User extends Model_Auth_User {
 	}
 
 
+	/**
+	 * resetPassword and send email
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function resetPassword()
 	{
 		$password = Text::random('distinct', rand(8, 10));
@@ -47,8 +60,8 @@ class Model_User extends Model_Auth_User {
 		$from = $this->email;
 		$subject = __('password new');
 		$message = View::factory('admin/email_password')
-		->set('password', $password)
-		->set('user', $this);
+			->set('password', $password)
+			->set('user', $this);
 
 		Email::send($to, $from, $subject, strip_tags($message), $message);
 

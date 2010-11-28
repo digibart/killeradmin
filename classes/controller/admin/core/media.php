@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Controller_Admin_Core_Media class.
+ * 
+ * @extends Controller
+ * @package Killer-admin
+ * @category Controller
+ */
 class Controller_Admin_Core_Media extends Controller {
 
 

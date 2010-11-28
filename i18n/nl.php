@@ -26,6 +26,7 @@ return array(
 	'systeminfo'			=> 'Systeem informatie',
 	'updateinfo'			=> 'Update informatie',
 	'last login'			=> 'Laaste login',
+	'rols'					=> 'Rollen',
 	
 	'edit'					=> 'bewerk',
 	'delete'				=> 'verwijder',

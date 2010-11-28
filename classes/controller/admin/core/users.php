@@ -3,7 +3,7 @@
  * Controller_Admin_Users class.
  *
  * @extends Controller_Admin_Base
- * @package pbadmin
+ * @package Killer-admin
  * @category Controller
  */
 class Controller_Admin_Core_Users extends Controller_Admin_Base {
@@ -26,6 +26,13 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 	}
 
 
+	/**
+	 * save the user
+	 * 
+	 * @access public
+	 * @param int $id. (default: null)
+	 * @return void
+	 */
 	public function action_save($id = null)
 	{
 		$user = ORM::factory('user')->find((int) $id);
@@ -37,7 +44,8 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 		}
 
 		$user->values($post);
-
+		
+		//validate
 		if (!$user->id) {
 			$valid = $user->check();
 			if (!$valid) {
@@ -54,12 +62,15 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 		if ($valid) {
 
 			$user->save();
-
-			if (isset($_POST['role'])) {
+			
+			//save selected user roles
+			if (Arr::get($_POST, 'role')) {
+				//first, remove all roles
 				foreach ($user->roles->find_all() as $role) {
 					$user->remove('roles', $role);
 				}
-
+				
+				//then add the new roles
 				foreach ($_POST['role'] as $role_name => $checked) {
 					if (!$user->has('roles', ORM::factory('role')->where('name', '=', $role_name)->find())) {
 						$login_role = new Model_Role(array('name' =>$role_name));
@@ -74,6 +85,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 			$this->request->redirect('admin/users');
 		}
 		else {
+			//if user is not validated, show the errors
 			$errorstring = "";
 			foreach ($errors as $key => $msg) {
 				$errorstring .= $msg . "<br />";
