@@ -2,11 +2,9 @@
 <form method="get">
 	<table>
 		<tr>
-			<td><input type="text" name="filter[username]" class="span-5 last" value="<?php echo (isset($filter['username']) ? htmlentities($filter['username']) : '');?>"></td>
-			<td><input type="text" name="filter[email]" class="span-3 last" value="<?php echo (isset($filter['email']) ? htmlentities($filter['email']) : '');?>"></td>
-			<td colspan="3"><button type="submit"><?php echo html::image('admin/media/images/icons/funnel.png');?><?php echo __('filter'); ?></button>
-				<?php echo (isset($_GET['filter']) ? html::anchor('admin/' . Request::instance()->controller, __('clear filter')) : "");?>
-			</td>
+			<td><?php echo Killeradmin::filterField("username", $filter); ?></td>
+			<td><?php echo Killeradmin::filterField("email", $filter); ?></td>
+			<td colspan="3"><?php echo Killeradmin::filterButton(); ?></td>
 		</tr>
 		<tr>
 			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?>				
@@ -26,14 +24,14 @@
 			<td><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></td>	
 			<td nowrap="nowrap">
 				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, html::image('admin/media/images/icons/pencil.png', array('title' => __('edit')))); ?> 
-				<?php echo ($object->id != $auth_user->id) ? html::anchor('admin/users/delete/' . $object->id, html::image('admin/media/images/icons/bin.png', array('title' => __('delete'))), array('class' => 'delete')) : ""; ?>
+				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, html::image('admin/media/images/icons/bin.png', array('title' => __('delete'))), array('class' => 'delete')) : ""; ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
 	</table>
 </form>
 <div class="span-8">
-	<a href="<?php echo url::site($controller_url . '/add');?>" class="button positive"><?php echo html::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
+	<?php echo Killeradmin::newButton('user'); ?>
 </div>
 
 <div class="span-26 last pagination">
