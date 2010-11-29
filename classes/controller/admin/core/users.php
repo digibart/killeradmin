@@ -8,15 +8,9 @@
  */
 class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
-	public $auth_required = true;
-	public $secure_actions = array(
-		'index' => 'admin',
-		'add'  => 'admin',
-		'delete' => 'admin',
-		'setup' => false
-
-	);
-
+	protected $auth_required = 'admin';
+	protected $secure_actions = false;
+	
 	protected $orm_name = 'user';
 
 	public function before()
