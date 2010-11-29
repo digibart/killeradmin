@@ -2,11 +2,9 @@
 <form method="get">
 	<table>
 		<tr>
-			<td><input type="text" name="filter[username]" class="span-5 last" value="<?php echo (isset($filter['username']) ? htmlentities($filter['username']) : '');?>"></td>
-			<td><input type="text" name="filter[email]" class="span-3 last" value="<?php echo (isset($filter['email']) ? htmlentities($filter['email']) : '');?>"></td>
-			<td colspan="3"><button type="submit"><?php echo html::image('admin/media/images/icons/funnel.png');?><?php echo __('filter'); ?></button>
-				<?php echo (isset($_GET['filter']) ? html::anchor($controller_url , __('clear filter')) : "");?>
-			</td>
+			<td><?php echo Killeradmin::filterField("username", $filter); ?></td>
+			<td><?php echo Killeradmin::filterField("email", $filter); ?></td>
+			<td colspan="3"><?php echo Killeradmin::filterButton(); ?></td>
 		</tr>
 		<tr>
 			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?>				
@@ -33,7 +31,7 @@
 	</table>
 </form>
 <div class="span-8">
-	<a href="<?php echo url::site($controller_url . '/add');?>" class="button positive"><?php echo html::image('admin/media/images/icons/add.png');?><?php echo __('add :object', array(':object' => __('user'))); ?></a>
+	<?php echo Killeradmin::newButton('user'); ?>
 </div>
 
 <div class="span-26 last pagination">
