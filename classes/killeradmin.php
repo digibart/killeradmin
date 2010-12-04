@@ -8,6 +8,10 @@
  */
 class Killeradmin
 {
+	// version and codename
+	const VERSION = "1.0.0";
+	const CODENAME = "Mustard Seed";
+	
 	/**
 	 * create links to sort a column. Set $reverse to true to set asc as desc and vice versa.
 	 * 
