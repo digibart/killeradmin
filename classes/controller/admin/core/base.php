@@ -236,8 +236,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
 		$object->find((int) $id);
-		$object->values($post);		
-
+		$object->values($post);
+		
+		// add current user if object does not belongs to a user
+		if (array_key_exists('user_id', $object->list_columns()) && $object->user_id == null) {
+			$object->user_id = $this->user->id;
+		}
+		
 		if ($object->check()) {
 			if ($object->save()) {
 				Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
