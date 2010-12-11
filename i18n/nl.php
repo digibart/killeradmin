@@ -7,6 +7,8 @@ return array(
 	'username or password incorrect' => 'gebruikersnaam of wachtwoord niet juist',
 	'login'					=> 'inloggen',
 	
+	'The requested page could not be found.' =>	'De opgevraagde pagina kan niet worden gevonden.',
+	
 	'username'				=> 'gebruikersnaam',
 	'password'				=> 'wachtwoord',
 	'confirm password'		=> 'wachtwoord nogmaals',
