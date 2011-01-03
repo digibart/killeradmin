@@ -43,7 +43,6 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				Message::instance()->error(ucfirst(__('access denied')));
 				Request::instance()->redirect('admin/main/');
 			} else {
-				Message::instance()->error(ucfirst(__('access denied')));
 				Request::instance()->redirect('admin/main/login');
 			}
 		} else {
