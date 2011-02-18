@@ -33,21 +33,28 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		
 
 		//Check user auth and role
-		$action_name = Request::instance()->action;		
-		        
-        if (($this->auth_required !== FALSE && Auth::instance()->logged_in($this->auth_required) === FALSE)
-                || (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) && 
-                Auth::instance()->logged_in($this->secure_actions[$action_name]) === FALSE))
-			{
-			if (Auth::instance()->logged_in()) {
-				Message::instance()->error(ucfirst(__('access denied')));
-				Request::instance()->redirect('admin/main/');
+		$action_name = Request::instance()->action;	
+		
+		//denie access if uri does not exist in config admin.menu
+		if (!in_array($this->request->directory . "/" . $this->request->controller, (array) Kohana::config('admin.menu'))) {
+			Message::instance()->error(ucfirst(__(Kohana::message('admin','page not found'))));
+			Request::instance()->redirect('admin/main/');
+		} else {		        
+	        if (($this->auth_required !== FALSE && Auth::instance()->logged_in($this->auth_required) === FALSE)
+	                || (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) && 
+	                Auth::instance()->logged_in($this->secure_actions[$action_name]) === FALSE))
+				{
+				if (Auth::instance()->logged_in()) {
+					Message::instance()->error(ucfirst(__('access denied')));
+					Request::instance()->redirect('admin/main/');
+				} else {
+					Request::instance()->redirect('admin/main/login');
+				}
 			} else {
-				Request::instance()->redirect('admin/main/login');
+				$this->user = Auth::instance()->get_user();
 			}
-		} else {
-			$this->user = Auth::instance()->get_user();
 		}
+		
 
 		//set the template values
 		$this->template->title = "Admin";
@@ -228,8 +235,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
 		$object->find((int) $id);
-		$object->values($post);		
-
+		$object->values($post);
+		
+		// add current user if object does not belongs to a user
+		if (array_key_exists('user_id', $object->list_columns()) && $object->user_id == null) {
+			$object->user_id = $this->user->id;
+		}
+		
 		if ($object->check()) {
 			if ($object->save()) {
 				Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
