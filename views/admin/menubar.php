@@ -6,8 +6,7 @@ foreach ($items as $title => $url) {
 	$class .= " button";
 /* 	echo "<li>" . html::anchor($url, $title, array('class' => $class)) . "</li>"; */
 	echo html::anchor($url, $title, array('class' => $class));
-	
 }
 
 ?>
-<?php echo html::anchor('admin/main/logout', __('logout'), array('class' => 'button')); ?>
+<?php echo html::anchor('admin/main/logout', ucfirst(__('logout')), array('class' => 'button')); ?>

@@ -5,6 +5,7 @@ return array(
 	'menu' =>
 	array(
 		__('dashboard') => 'admin/main',
-		__('users') => 'admin/users'
+		__('users') => 'admin/users',
+		__('settings') => 'admin/settings'
 	)
 );

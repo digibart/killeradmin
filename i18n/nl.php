@@ -23,6 +23,8 @@ return array(
 	
 	'users'					=> 'Gebruikers',
 	'user'					=> 'gebruiker',
+	'settings'				=> 'Instellingen',
+	'Leave the password fields blank if you don\'t want to change password' => 'Laat de wachtwoord velden leeg als u het wachtwoord niet wilt wijzigen',
 	
 	'userinfo'				=> 'Gebruikers informatie',
 	'systeminfo'			=> 'Systeem informatie',
