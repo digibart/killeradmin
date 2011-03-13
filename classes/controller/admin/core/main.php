@@ -29,12 +29,12 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			//Instantiate a new user
 			$user = ORM::factory('user');
 			//Check Auth
-			$status = $user->login($_POST);
+			$status = Auth::instance()->login(Arr::get($_POST,'username'), Arr::get($_POST, 'password'), Arr::get($_POST,'remember'));
 
 			//If the post data validates using the rules setup in the user model
 			if ($status) {
 				Message::instance()->succeed(ucfirst(__('access granted')));
-				Request::instance()->redirect('admin/main');
+				Request::current()->redirect('admin/main');
 			} else {
 				Message::instance()->error(__('username or password incorrect'));
 			}
@@ -56,11 +56,11 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 
 
 		if ($_POST) {
-			$post = new Validate($_POST);
+			$post = new Validation($_POST);
 			$post->rule('username', 'not_empty')
-				->rule('username', 'min_length', array(5))
-				->rule('username', 'max_length', array(42))
-				->rule('email', 'email', array());
+				->rule('username', 'min_length', array('username',5))
+				->rule('username', 'max_length', array('username',42))
+				->rule('email', 'email', array(Arr::get($_POST, 'email')));
 
 			if ($post->check()) {
 				$user = ORM::factory('user')
@@ -70,7 +70,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 
 				if ($user->loaded()) {
 					$user->resetPassword();
-					Request::instance()->redirect('admin/main/login');
+					Request::current()->redirect('admin/main/login');
 				} else {
 					Message::instance()->error(__(':object not found', array(':object' => __('user'))));
 				}
@@ -97,7 +97,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 	{
 		Auth::instance()->logout();
 		Message::instance()->info(ucfirst(__('access terminated')));
-		Request::instance()->redirect('admin/main/login');
+		Request::current()->redirect('admin/main/login');
 	}
 
 	/**

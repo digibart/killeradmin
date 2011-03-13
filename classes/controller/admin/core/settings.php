@@ -36,46 +36,48 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 	 */
 	public function action_save($id = null)
 	{
-		$user = $this->user;
+		$user = ORM::factory('user', $this->user->id);
 
-		$post = $_POST;
-		if (!Arr::get($post, 'password')) {
-			unset($post['password']);
-			unset($post['password_confirm']);
+		if (!Arr::get($_POST, 'password')) {
+			unset($_POST['password']);
+			unset($_POST['password_confirm']);
 		}
+
+		$_POST['username'] = $user->username;
+
+		$user->values($_POST);
 		
-		$post['username'] = $user->username;
-		
-		$user->values($post);
+		try
+		{
+			$extra_rules = $user->get_password_validation($_POST);
 
-		$post = $user->validate_edit($post);
-		$valid = $post->check();
-		if (!$valid) {
-			$errors = $post->errors('register');
-		}
-	
+			if (Arr::get($_POST, 'password')) {
+				$extra_rules->rule('password_confirm', 'matches', array(':validation', ':field', 'password'));
+			}
 
-		if ($valid) {
-
-			$user->save();	
-
+			$user->save($extra_rules);
+			
 			Message::instance()->succeed(__(':object saved'),  array(':object' => __('settings')));
 
 			$this->request->redirect('admin/settings');
 		}
-		else {
-			//if user is not validated, show the errors
+		catch (ORM_Validation_Exception $e) {
 			$errorstring = "";
+			$errors = $e->errors('admin');
 			foreach ($errors as $key => $msg) {
-				$errorstring .= $msg . "<br />";
+				if (is_string($msg)) {
+					$errorstring .= $msg . "<br />";
+				} elseif (is_array($msg)) {
+					foreach ($msg as $key2 => $msg2) {
+						$errorstring .= $msg2 . "<br />";
+					}
+				}
 			}
 
 			Session::instance()->set('post_data_user', $_POST);
 			Message::instance()->error($errorstring);
-			$this->request->redirect(Request::$referrer);
-
+			$this->request->redirect($this->request->referrer());
 		}
-
 	}
 }
 

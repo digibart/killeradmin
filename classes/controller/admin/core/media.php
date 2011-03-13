@@ -29,17 +29,21 @@ class Controller_Admin_Core_Media extends Controller {
 
 		if ($file = Kohana::find_file('media', $file, $ext)) {
 			// Send the file content as the response
-			$this->request->response = file_get_contents($file);
+			$this->request->body(file_get_contents($file));
+			
+			// Set the content type for this extension
+			$this->request->headers('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
+			$this->request->headers('Content-type', File::mime_by_ext($ext));
 		}
 		else {
 			// Return a 404 status
 			$this->request->status = 404;
 		}
-
-		// Set the content type for this extension
-		$this->request->headers['Content-Type'] = File::mime_by_ext($ext);
-		$this->request->headers['Expires'] = gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7));
-
+		
+		// workaround some some weird kohana content-type bug
+		Kohana::$content_type = File::mime_by_ext($ext);
+		
+		echo $this->request->body();
 	}
 }
 

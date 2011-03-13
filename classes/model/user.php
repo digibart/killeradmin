@@ -7,41 +7,9 @@
  * @extends Model_Auth_User
  */
 class Model_User extends Model_Auth_User {
-
-	protected $_filters = array (
-		true       => array('Security::xss_clean' => array()),
-	);
-
-	/**
-	 * validate_edit function.
-	 * 
-	 * @access public
-	 * @param mixed & $array
-	 * @return void
-	 */
-	public function validate_edit(& $array)
-	{
-		// Initialise the validation library and setup some rules
-		$array = Validate::factory($array)
-		->rules('password',  array('min_length' => array(5),'max_length' => array(42)))
-		->rules('username', $this->_rules['username'])
-		->rules('email', $this->_rules['email'])
-		->rules('password_confirm', $this->_rules['password_confirm'])
-		->filter('username', 'trim')
-		->filter('email', 'trim')
-		->filter('password', 'trim')
-		->filter('password_confirm', 'trim');
-
-		//Add Model_Auth_User callbacks
-		foreach ($this->_callbacks as $field => $callbacks) {
-			foreach ($callbacks as $callback) {
-				$array->callback($field, array($this, $callback));
-			}
-		}
-
-		return $array;
-	}
-
+	
+	protected $_sorting = array('username' => 'asc');
+	
 
 	/**
 	 * resetPassword and send email

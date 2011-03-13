@@ -12,12 +12,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	private $controller_url;
 	private $session;
 	public $request;
+	public $user;
 
-	public function __construct($id = null)
+	public function __construct($request, $response)
 	{
-		parent::__construct($id);
+		parent::__construct($request, $response);
 		
-		$this->request = Request::instance();		
+		$this->request = Request::current();		
 		$this->session= Session::instance();
 	}
 
@@ -33,12 +34,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		
 
 		//Check user auth and role
-		$action_name = Request::instance()->action;	
+		$action_name = $this->request->action();	
 		
 		//denie access if uri does not exist in config admin.menu
-		if (!in_array($this->request->directory . "/" . $this->request->controller, (array) Kohana::config('admin.menu'))) {
+		if (!in_array($this->request->directory() . "/" . $this->request->controller(), array_merge((array) Kohana::config('admin.menu'), array("admin/dashboard")))) {
 			Message::instance()->error(ucfirst(__(Kohana::message('admin','page not found'))));
-			Request::instance()->redirect('admin/main/');
+			$this->request->redirect('admin/main/');
 		} else {		        
 	        if (($this->auth_required !== FALSE && Auth::instance()->logged_in($this->auth_required) === FALSE)
 	                || (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) && 
@@ -46,22 +47,22 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				{
 				if (Auth::instance()->logged_in()) {
 					Message::instance()->error(ucfirst(__('access denied')));
-					Request::instance()->redirect('admin/main/');
+					$this->request->redirect('admin/main/');
 				} else {
-					Request::instance()->redirect('admin/main/login');
+					$this->request->redirect('admin/main/login');
 				}
 			} else {
 				$this->user = Auth::instance()->get_user();
 			}
 		}
-		
+			
 
 		//set the template values
 		$this->template->title = "Admin";
 		$this->template->content = "";
 		$this->template->scripts = array();
 		
-		$this->controller_url = $this->request->directory . "/" . $this->request->controller;
+		$this->controller_url = $this->request->directory() . "/" . $this->request->controller();
 
 				
 		//show the menu
@@ -101,7 +102,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				}
 			}
 		}
-		$this->session->set('requested_url', $this->request->uri . Url::query());
+		$this->session->set('requested_url', $this->request->uri() . Url::query());
 		$this->session->delete('post_data_' . $this->orm_name);
 
 		//count total objects
@@ -205,7 +206,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->template->title = ucfirst(__('edit :object', array(':object' => __($this->orm_name))));
 		
 		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
-		$object->find((int) $id);
+		$object->where('id', '=', (int) $id)->find();
 
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')		
 			->set('referrer', $this->session->get('requested_url'))
@@ -234,7 +235,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$post = $_POST;
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->find((int) $id);
+		$object->where('id', '=', (int) $id)->find();
 		$object->values($post);
 		
 		// add current user if object does not belongs to a user
@@ -272,7 +273,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->auto_render = false;
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->find((int) $id);
+		$object->where('id', '=', (int) $id)->find();
 
 		if ($object->loaded()) {
 			$object->delete();

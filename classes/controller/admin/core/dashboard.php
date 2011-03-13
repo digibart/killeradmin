@@ -27,7 +27,7 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 		$this->auto_render = false;
 		
 		echo View::factory('admin/dashboard_left')
-			->set('user', $this->user);
+			->set('user', Auth::instance()->get_user());
 	}
 	
 	/**
@@ -40,7 +40,7 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 		$this->auto_render = false;
 		
 		echo View::factory('admin/dashboard_center')
-			->set('user', $this->user);
+			->set('user', Auth::instance()->get_user());
 	}
 	
 
@@ -54,7 +54,7 @@ class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
 		$this->auto_render = false;
 		
 		echo View::factory('admin/dashboard_right')
-			->set('user', $this->user);
+			->set('user', Auth::instance()->get_user());
 	}
 
 }
