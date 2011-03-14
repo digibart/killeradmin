@@ -38,13 +38,27 @@ To add menu items, add keys to the menu array, for example:
 
 	'menu' =>
 		array(
-			'site homepage' => '/',
-			'cars' => 'admin/cars'
+			'admin/cars' => array(				// the url to controller
+				'name' => ucfirst(__('users')),	// the name shown in menu
+				'secure_actions' => array(		// This array controls access to specified actions
+					'default' => 'login',		// default role required to access the actions in this controller
+					'index' => 'login',			// required role to list cars 
+					'add' => 'admin',			// required role to add new cars
+					'edit' => 'login',			// required role to edit cars
+					'delete' => 'admin'			// required role to delete cars
+				),
+			),
 		)
+		
 
 All the classes and views for managing users are included in the module. To enable user-manager, simply add the following to menu array:
 
-	__('users') => 'admin/users'
+	'admin/users' => array(
+		'name' => ucfirst(__('users')),
+		'secure_actions' => array(
+			'default' => 'admin'
+		),
+	),
 
 		
 ## Creating the controller
@@ -53,20 +67,6 @@ Now you have a menu-button 'cars', you'll need a controller. All the magic to li
 Below is an example of `classes/admin/cars.php`:
 
 	class Controller_Admin_Cars extends Controller_Admin_Core_Base {
-	
-		// default role required to access the actions in this controller
-		protected $auth_required = 'login';
-	
-		// Controls access to specified actions
-        // 'index' => 'admin' only users with a admin-role will have access
-        // 'edit'  => 'login' only login users will have access
-		protected $secure_actions = array(
-			'index' => 'login',
-			'edit' => 'login',
-			'add'  => 'login',
-			'delete' => 'admin'
-	
-		);
 	
 		// The name of the orm we are managing with this controller
 		protected $orm_name = 'car';

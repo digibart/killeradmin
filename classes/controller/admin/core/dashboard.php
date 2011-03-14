@@ -9,13 +9,6 @@
  * @category Controller
  */
 class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
-
-	public $auth_required = false;
-	public $secure_actions = array(	
-		'left' => 'login',
-		'center' => 'login',
-		'right' => 'login'
-	);
 	
 	/**
 	 * left column

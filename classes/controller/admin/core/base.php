@@ -13,6 +13,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	private $session;
 	public $request;
 	public $user;
+	public $menu;
 
 	public function __construct($request, $response)
 	{
@@ -20,6 +21,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$this->request = Request::current();
 		$this->session= Session::instance();
+		$this->menu = Kohana::config('admin.menu');
 	}
 
 	/**
@@ -32,21 +34,32 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	{
 		parent::before();
 
+		//gather roles required to perform actions
+		if (isset($this->menu[$this->request->directory() . "/" . $this->request->controller()]['secure_actions'])) {
+			$this->secure_actions = $this->menu[$this->request->directory() . "/" . $this->request->controller()]['secure_actions'];
 
-		//Check user auth and role
-		$action_name = $this->request->action();
-
-		//denie access if uri does not exist in config admin.menu
-		if (!in_array($this->request->directory() . "/" . $this->request->controller(), array_merge((array) Kohana::config('admin.menu'), array("admin/dashboard")))) {
-			Message::instance()->error(ucfirst(__(Kohana::message('admin', 'page not found'))));
-			$this->request->redirect('admin/main/');
+			if (!isset($this->secure_actions['index'])) {
+				$this->secure_actions['index'] = null;
+			}
 		} else {
-			if (($this->auth_required !== FALSE && Auth::instance()->logged_in($this->auth_required) === FALSE)
-				|| (is_array($this->secure_actions) && array_key_exists($action_name, $this->secure_actions) &&
-					Auth::instance()->logged_in($this->secure_actions[$action_name]) === FALSE)) {
+			$this->secure_actions = null;
+		}
+
+		$action_name = $this->request->action();
+		if (isset($this->secure_actions[$action_name])) {
+			$required_role = $this->secure_actions[$action_name];
+		} elseif (isset($this->secure_actions['default'])) {
+			$required_role = $this->secure_actions['default'];
+		} else {
+			$required_role = false;
+		}
+
+		if ($this->request->uri() != "admin/main/login" && $this->request->uri() != "admin/main/forgot") {
+			if (!is_array($this->secure_actions) || (Auth::instance()->logged_in($required_role) === false)) {
 				if (Auth::instance()->logged_in()) {
 					Message::instance()->error(ucfirst(__('access denied')));
-					$this->request->redirect('admin/main/');
+					$referrer = ($this->request->referrer()) ? $this->request->referrer() : "admin";
+					$this->request->redirect($referrer);
 				} else {
 					$this->request->redirect('admin/main/login');
 				}
@@ -65,15 +78,27 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 
 		//show the menu
-		if ( Auth::instance()->logged_in()) {
-			$menu = Kohana::config('admin.menu');
-
-			if (count($menu) == 0) {
+		if (Auth::instance()->logged_in()) {
+			if (count($this->menu) == 0) {
 				Message::instance()->info(Kohana::message('admin', 'menu not found'));
-				$menu = array();
+				$this->menu = array();
 			}
 
-			$this->template->menu = View::factory('admin/menubar')->set("items", $menu);
+			$roles = array();
+			foreach ($this->user->roles->find_all() as $role) {
+				$roles[] = $role->name;
+			}
+
+			$menuitems = array();
+			foreach ($this->menu as $url => $menuitem) {
+				$required_role = (isset($menuitem['secure_actions']['index'])) ? $menuitem['secure_actions']['index'] : $menuitem['secure_actions']['default'];
+				if (in_array($required_role, $roles)) {
+					$menuitems[$menuitem['name']] = $url;
+				}
+			}
+
+			$this->template->menu = View::factory('admin/menubar')
+			->set("items", $menuitems);
 		} else {
 			$this->template->menu = "";
 		}

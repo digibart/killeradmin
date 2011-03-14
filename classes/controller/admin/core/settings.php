@@ -8,9 +8,6 @@
  */
 class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 
-	protected $auth_required = 'login';
-	protected $secure_actions = false;
-
 	protected $orm_name = 'user';
 
 	public function before()

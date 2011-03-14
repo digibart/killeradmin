@@ -8,9 +8,6 @@
  */
 class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
-	protected $auth_required = 'admin';
-	protected $secure_actions = false;
-
 	protected $orm_name = 'user';
 
 	public function before()
