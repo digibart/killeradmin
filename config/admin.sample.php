@@ -2,6 +2,7 @@
 
 return array(
 	'company_name' => 'myKillerAdmin',
+	'base_url' => 'admin',				// http://localhost/ko3-url/{admin}
 	'menu' =>
 	array(
 		'admin/main' => array(

@@ -1,3 +1,3 @@
-<?php echo Request::factory('admin/dashboard/left')->execute()->body() ?>
-<?php echo Request::factory('admin/dashboard/center')->execute()->body() ?>
-<?php echo Request::factory('admin/dashboard/right')->execute()->body() ?>
+<?php echo Request::factory(Route::get('admin/base_url')->uri(array('controller' => 'dashboard', 'action' => 'left')))->execute()->body() ?>
+<?php echo Request::factory(Route::get('admin/base_url')->uri(array('controller' => 'dashboard', 'action' => 'center')))->execute()->body() ?>
+<?php echo Request::factory(Route::get('admin/base_url')->uri(array('controller' => 'dashboard', 'action' => 'right')))->execute()->body() ?>

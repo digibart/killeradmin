@@ -56,7 +56,7 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 			
 			Message::instance()->succeed(__(':object saved'),  array(':object' => __('settings')));
 
-			$this->request->redirect('admin/settings');
+			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'settings')));
 		}
 		catch (ORM_Validation_Exception $e) {
 			$errorstring = "";

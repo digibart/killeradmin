@@ -9,8 +9,8 @@
 class Killeradmin
 {
 	// version and codename
-	const VERSION = "1.1.0";
-	const CODENAME = "Captain EO";
+	const VERSION = "1.1.1";
+	const CODENAME = "Stinky Bonetracer";
 	
 	/**
 	 * create links to sort a column. Set $reverse to true to set asc as desc and vice versa.
@@ -72,7 +72,7 @@ class Killeradmin
 	public static function filterButton($title = null)
 	{
 		$title = ($title) ? $title : __('clear filter');
-		$button = Form::button('submitfilter', html::image('admin/media/images/icons/funnel.png') . "&nbsp;" . __('filter') , array('type' => 'submit'));
+		$button = Form::button('submitfilter', html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/funnel.png'))) . "&nbsp;" . __('filter') , array('type' => 'submit'));
 		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , __('clear filter')) : "";
 
 		return $button . $link;
@@ -91,7 +91,7 @@ class Killeradmin
 	public static function newButton($name, $title = null, $url = null)
 	{
 		$url = ($url) ? $url : Request::current()->uri(array('action' => 'add'));
-		$title = ($title) ? $title : html::image('admin/media/images/icons/add.png') . __('add :object', array(':object' => __($name)));
+		$title = ($title) ? $title : html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/add.png'))) . __('add :object', array(':object' => __($name)));
 
 		return Html::anchor($url, $title, array('class' => 'button positive'));
 

@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo url::site('admin/main/forgot'); ?>" class="validate">
+<form method="post" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'forgot'))); ?>" class="validate">
 <dl>
 	<dt><?php echo ucfirst(__('username'));?></dt>
 	<dd><input type="text" name="username" class="required"></dd>

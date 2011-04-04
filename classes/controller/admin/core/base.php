@@ -35,16 +35,15 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		parent::before();
 
 		//gather roles required to perform actions
-		if (isset($this->menu[$this->request->directory() . "/" . $this->request->controller()]['secure_actions'])) {
-			$this->secure_actions = $this->menu[$this->request->directory() . "/" . $this->request->controller()]['secure_actions'];
-
+		if (isset($this->menu[Kohana::config('admin.base_url') . "/" . $this->request->controller()]['secure_actions'])) {
+			$this->secure_actions = $this->menu[Kohana::config('admin.base_url') . "/" . $this->request->controller()]['secure_actions'];
 			if (!isset($this->secure_actions['index'])) {
 				$this->secure_actions['index'] = null;
 			}
-		} else {
+		} elseif (!isset($this->secure_actions) || !is_array($this->secure_actions)) {		
 			$this->secure_actions = null;
 		}
-
+		
 		$action_name = $this->request->action();
 		if (isset($this->secure_actions[$action_name])) {
 			$required_role = $this->secure_actions[$action_name];
@@ -54,14 +53,21 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			$required_role = false;
 		}
 
-		if ($this->request->uri() != "admin/main/login" && $this->request->uri() != "admin/main/forgot") {
+		// these page don't require a login
+		$no_login = array(
+			Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')),
+			Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'forgot'))
+			);		
+
+		//check if a user is authorized to view the requested page
+		if (!in_array($this->request->uri(), $no_login)) {
 			if (!is_array($this->secure_actions) || (Auth::instance()->logged_in($required_role) === false)) {
 				if (Auth::instance()->logged_in()) {
 					Message::instance()->error(ucfirst(__('access denied')));
-					$referrer = ($this->request->referrer()) ? $this->request->referrer() : "admin";
-					$this->request->redirect($referrer);
+					$referrer = ($this->request->referrer()) ? $this->request->referrer() : Route::get('admin/base_url')->uri();
+					$this->request->redirect($referrer);					
 				} else {
-					$this->request->redirect('admin/main/login');
+					$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 				}
 			} else {
 				$this->user = Auth::instance()->get_user();
@@ -74,7 +80,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->template->content = "";
 		$this->template->scripts = array();
 
-		$this->controller_url = $this->request->directory() . "/" . $this->request->controller();
+		$this->controller_url = Route::get('admin/base_url')->uri(array('controller'=> $this->request->controller()));
 
 
 		//show the menu

@@ -9,6 +9,13 @@
  * @category Controller
  */
 class Controller_Admin_Core_Dashboard extends Controller_Admin_Base {
+
+	// whom has acces to the columns?
+	public $secure_actions = array(
+		'left' => 'login',
+		'center' => 'login',
+		'right' => 'login'		
+		);
 	
 	/**
 	 * left column

@@ -29,7 +29,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			//If the post data validates using the rules setup in the user model
 			if ($status) {
 				Message::instance()->succeed(ucfirst(__('access granted')));
-				Request::current()->redirect('admin/main');
+				Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main')));
 			} else {
 				Message::instance()->error(__('username or password incorrect'));
 			}
@@ -65,7 +65,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 
 				if ($user->loaded()) {
 					$user->resetPassword();
-					Request::current()->redirect('admin/main/login');
+					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 				} else {
 					Message::instance()->error(__(':object not found', array(':object' => __('user'))));
 				}
@@ -92,7 +92,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 	{
 		Auth::instance()->logout();
 		Message::instance()->info(ucfirst(__('access terminated')));
-		Request::current()->redirect('admin/main/login');
+		Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 	}
 
 	/**

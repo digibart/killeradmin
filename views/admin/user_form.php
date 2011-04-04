@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo url::site('admin/users/save/' . $user->id);?>">
+<form method="post" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'users', 'action' => 'save', 'id' =>  $user->id)));?>">
     <div class="span-6 suffix-1">
         <label><?php echo ucfirst(__('username'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label>
         	<input type="text" name="username" value="<?php echo $user->username;?>"><br>

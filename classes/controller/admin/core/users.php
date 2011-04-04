@@ -65,7 +65,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
 			Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
 
-			$this->request->redirect('admin/users');
+			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'users')));
 
 		}
 		catch (ORM_Validation_Exception $e) {

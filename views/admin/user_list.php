@@ -23,8 +23,8 @@
 			<?php endforeach; ?></td>
 			<td><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></td>	
 			<td nowrap="nowrap">
-				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, html::image('admin/media/images/icons/pencil.png', array('title' => __('edit')))); ?> 
-				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, html::image('admin/media/images/icons/bin.png', array('title' => __('delete'))), array('class' => 'delete')) : ""; ?>
+				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, html::image(Route::get('admin/media')->uri(array('file' => '/images/icons/pencil.png')), array('title' => __('edit')))); ?> 
+				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, html::image(Route::get('admin/media')->uri(array('file' => '/images/icons/bin.png')), array('title' => __('delete'))), array('class' => 'delete')) : ""; ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
