@@ -96,6 +96,26 @@ class Killeradmin
 		return Html::anchor($url, $title, array('class' => 'button positive'));
 
 	}
+	
+	/**
+	 * unset keys from $input when not in $editable
+	 * very usefull to prevent unwanted changes on a object
+	 * 
+	 * @access public
+	 * @static
+	 * @param array $input
+	 * @param array $editable
+	 * @return array
+	 */
+	public static function editableVals($input, $editable)
+	{
+		foreach ($input as $key => $value) {
+			if (!in_array($key, $editable)) {
+				unset($input[$key]);
+			}		
+		}
+		return $input;
+	}
 }
 
 ?>
