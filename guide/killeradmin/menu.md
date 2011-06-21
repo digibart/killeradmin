@@ -2,3 +2,4 @@
  - [Home]()
  - [Tutorial](tutorial)
  - [Dashboard](dashboard)
+ - [JS & CSS Minifier](killerjs)
