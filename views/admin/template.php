@@ -9,19 +9,19 @@
 	
 	$media = Route::get('admin/media');
     
-    echo KillerJS::instance('css','screen')->add_files(array(
+    echo KillerFile::instance('css','screen')->add_files(array(
 	    	$media->uri(array('file' => '/css/screen.css')),
 	    	$media->uri(array('file' => '/css/style.css')),
 	    	$media->uri(array('file' => '/css/datePicker.css')),
 	    	$media->uri(array('file' => '/css/jquery.tooltip.css')),
     	))->get_tag(array('media' => 'screen'));
     	
-    echo KillerJS::instance('css','print')->add_files(array(
+    echo KillerFile::instance('css','print')->add_files(array(
 	    	$media->uri(array('file' => '/css/print.css')),
     	))->get_tag(array('media' => 'print'));
 
      
-    echo KillerJS::instance('js')->add_files(array(
+    echo KillerFile::instance('js')->add_files(array(
 	    	$media->uri(array('file' => '/js/jquery-1.6.1.min.js')),
 	    	$media->uri(array('file' => '/js/jquery.validate.min.js')),
 	    	$media->uri(array('file' => '/js/jquery.confirm-1.3.js')),
@@ -44,7 +44,7 @@
     
     <?php
     if (isset($scripts) && count($scripts) > 0) {
-    	echo KillerJS::instance('js','js-cust')->add_files($scripts)->get_tag();
+    	echo KillerFile::instance('js','js-cust')->add_files($scripts)->get_tag();
     }
     
     ?>

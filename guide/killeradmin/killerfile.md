@@ -1,9 +1,9 @@
-KillerJS
+KillerFile
 =========
 
 While creating webapps, the number of js and css files grows like mushrooms in a moist basement. And the more JS and CSS files you have, the slower your page will load. 
 
-Hence I created: KillerJS, it combines and minifies:
+Hence I created: KillerFile, it's a file killer, combines and minifies:
 
 * Javasccript
 * Stylesheets

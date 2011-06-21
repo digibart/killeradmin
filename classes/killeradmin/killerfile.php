@@ -12,7 +12,7 @@ require_once Kohana::find_file('vendor', 'jsmin', 'php');
 require_once Kohana::find_file('vendor', 'cssmin', 'php');
 require_once Kohana::find_file('vendor', 'lessc', 'php');
 
-class Killeradmin_KillerJS
+class Killeradmin_KillerFile
 {
 	static $instance;
 
@@ -56,14 +56,14 @@ class Killeradmin_KillerJS
 			$group = $type;
 		}
 
-		if (isset(KillerJS::$instance[$group]))
+		if (isset(KillerFile::$instance[$group]))
 		{
-			return KillerJS::$instance[$group];
+			return KillerFile::$instance[$group];
 		}
 		else
 		{
-			KillerJS::$instance[$group] = new KillerJS($type);
-			return KillerJS::$instance[$group];
+			KillerFile::$instance[$group] = new KillerFile($type);
+			return KillerFile::$instance[$group];
 		}
 	}
 
@@ -119,7 +119,7 @@ class Killeradmin_KillerJS
 				$id = str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
 
 				//save cache so the browser can link to it
-				Cache::instance('killerjs')->set($id, array('data' => $content, 'time' => time()), 5);
+				Cache::instance('KillerFile')->set($id, array('data' => $content, 'time' => time()), 5);
 
 				// generate the html tags
 				if ($this->_type == "js")
@@ -160,7 +160,7 @@ class Killeradmin_KillerJS
 	{
 		$this->_filename = $this->_generate_filename();
 
-		$output = Cache::instance('killerjs')->get($this->_filename);
+		$output = Cache::instance('KillerFile')->get($this->_filename);
 
 		// if parsed file does not exist in cache, lets create it now!
 		if (!$output)
@@ -187,7 +187,7 @@ class Killeradmin_KillerJS
 					$output .= ltrim(CSSMin::minify($compiled)). "\n";
 				}
 			}
-			Cache::instance('killerjs')->set($this->_filename, array('data' => trim($output), 'time' => time()));
+			Cache::instance('KillerFile')->set($this->_filename, array('data' => trim($output), 'time' => time()));
 		}
 		return $output;
 	}

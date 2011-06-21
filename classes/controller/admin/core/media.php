@@ -51,7 +51,7 @@ class Controller_Admin_Core_Media extends Controller {
 		$file = $this->request->param('file');
 		$ext = pathinfo($file, PATHINFO_EXTENSION);
 		
-		$content = Cache::instance('killerjs')->get($file);
+		$content = Cache::instance('KillerFile')->get($file);
 		
 		header("Cache-Control: max-age"); 
 		header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));		
