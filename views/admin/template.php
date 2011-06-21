@@ -22,7 +22,7 @@
 
      
     echo KillerJS::instance('js')->add_files(array(
-	    	'https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js',
+	    	$media->uri(array('file' => '/js/jquery-1.6.1.min.js')),
 	    	$media->uri(array('file' => '/js/jquery.validate.min.js')),
 	    	$media->uri(array('file' => '/js/jquery.confirm-1.3.js')),
 	    	$media->uri(array('file' => '/js/jquery.tooltip.min.js')),
