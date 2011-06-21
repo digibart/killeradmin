@@ -32,18 +32,38 @@ class Controller_Admin_Core_Media extends Controller {
 			$this->request->body(file_get_contents($file));
 			
 			// Set the content type for this extension
-			$this->request->headers('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
-			$this->request->headers('Content-type', File::mime_by_ext($ext));
+			header("Cache-Control: max-age"); 
+			header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
+			header("Last-Modified: ". gmdate('D, d M Y H:i:s \G\M\T', filemtime($file)));
+			header("Content-type: " . File::mime_by_ext($ext));
 		}
 		else {
 			// Return a 404 status
 			$this->request->status = 404;
 		}
 		
-		// workaround some some weird kohana content-type bug
-		Kohana::$content_type = File::mime_by_ext($ext);
-		
 		echo $this->request->body();
+		exit;
+	}
+	
+	public function action_minify() {
+		
+		$file = $this->request->param('file');
+		$ext = pathinfo($file, PATHINFO_EXTENSION);
+		
+		$content = Cache::instance('killerjs')->get($file);
+		
+		header("Cache-Control: max-age"); 
+		header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));		
+		header("Last-Modified: ". gmdate('D, d M Y H:i:s \G\M\T', $content['time']));
+		header("Content-type: " . File::mime_by_ext($ext));
+		
+		//enable compression
+		if(!ob_start("ob_gzhandler")) ob_start();
+		
+		echo $content['data'];
+		
+		die();
 	}
 }
 

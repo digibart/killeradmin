@@ -21,7 +21,7 @@
 /*              GLOBALS               */
 /**************************************/
 body {
-	background: url(../images/background.jpg);
+	background: url(%admin/media%/images/background.jpg);
 	margin-top: 0px;
 }
 
@@ -126,7 +126,7 @@ td.odd {
 }
 
 a.add {
-	background-image:url(../images/icons/add.png);
+	background-image:url(%admin/media%/images/icons/add.png);
 	background-repeat: no-repeat;
 	background-position: 0.3em center;
 	padding-left: 25px;

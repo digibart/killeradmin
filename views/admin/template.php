@@ -5,62 +5,46 @@
 <head>
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <?php echo HTML::style(Route::get('admin/media')->uri(array('file' => '/css/screen.css')), array('media' => 'screen')); ?>
-    <?php echo HTML::style(Route::get('admin/media')->uri(array('file' => '/css/style.css')), array('media' => 'screen')); ?>
-    <?php echo HTML::style(Route::get('admin/media')->uri(array('file' => '/css/print.css')), array('media' => 'print')); ?>
-    <?php echo HTML::style(Route::get('admin/media')->uri(array('file' => '/css/datePicker.css')), array('media' => 'screen')); ?>
-    <?php echo HTML::style(Route::get('admin/media')->uri(array('file' => '/css/jquery.tooltip.css')), array('media' => 'screen')); ?>
-    <!--[if IE]><![if gte IE 6]><![endif]-->
-    <?php
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery-1.4.2.min.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery.validate.min.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery.confirm-1.3.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery.tooltip.min.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/localization/messages_nl.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/localization/methods_nl.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/date.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery.datePicker.js')));
-    echo HTML::script(Route::get('admin/media')->uri(array('file' => '/js/jquery.tooltip.min.js')));
+	<?php
+	
+	$media = Route::get('admin/media');
+    
+    echo KillerJS::instance('css','screen')->add_files(array(
+	    	$media->uri(array('file' => '/css/screen.css')),
+	    	$media->uri(array('file' => '/css/style.css')),
+	    	$media->uri(array('file' => '/css/datePicker.css')),
+	    	$media->uri(array('file' => '/css/jquery.tooltip.css')),
+    	))->get_tag(array('media' => 'screen'));
+    	
+    echo KillerJS::instance('css','print')->add_files(array(
+	    	$media->uri(array('file' => '/css/print.css')),
+    	))->get_tag(array('media' => 'print'));
+
+     
+    echo KillerJS::instance('js')->add_files(array(
+	    	'https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js',
+	    	$media->uri(array('file' => '/js/jquery.validate.min.js')),
+	    	$media->uri(array('file' => '/js/jquery.confirm-1.3.js')),
+	    	$media->uri(array('file' => '/js/jquery.tooltip.min.js')),
+	    	$media->uri(array('file' => '/js/localization/messages_nl.js')),
+	    	$media->uri(array('file' => '/js/localization/methods_nl.js')),
+	    	$media->uri(array('file' => '/js/date.js',)),
+	    	$media->uri(array('file' => '/js/jquery.datePicker.js')),
+	    	$media->uri(array('file' => '/js/jquery.tooltip.min.js')),
+	    	$media->uri(array('file' => '/js/functions.js')),  	
+    	))->get_tag();
+
     ?>
-    <script type="text/javascript">
-//<![CDATA[
-        $(document).ready(function() {
-            $("form.validate").validate({errorClass: 'invalid', errorElement: 'span'});
 
-             $('a.delete').confirm({
-                timeout:4000,
-                msg: '<?php echo __('confirm.msg'); ?> ',
-                dialogShow:'fadeIn',
-                wrapper: '<div class="confirm_wrapper"><\/div>',
-                buttons: {
-                    wrapper:'<button><\/button>',
-                    separator:' ',
-                    cls: 'positive',
-                    ok: '<?php echo __('confirm.ok'); ?>',
-                    cancel: '<?php echo __('confirm.cancel'); ?>'
-                }
-            });
-            
-            $('.tooltip,img').tooltip({
-            	track: false, 
-			    delay: 500, 
-			    showURL: false, 
-			    showBody: " - ", 
-			    fade: 250 
-			    });
-            
-			Date.format = 'dd-mm-yyyy';
-			$('.date-pick').datePicker({clickInput:true})
-
-        });
-    //]]>
-    </script>
+	<script type="text/javascript">
+		var del_confirm = '<?php echo __('confirm.msg'); ?>';
+		var del_ok = '<?php echo __('confirm.ok'); ?>';
+		var del_cancel = '<?php echo __('confirm.cancel'); ?>';
+	</script>
     
     <?php
-    if (isset($scripts)) {
-    	foreach ($scripts as $script) {
-    		echo HTML::script($script);
-    	}
+    if (isset($scripts) && count($scripts) > 0) {
+    	echo KillerJS::instance('js','js-cust')->add_files($scripts)->get_tag();
     }
     
     ?>
