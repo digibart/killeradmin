@@ -9,14 +9,14 @@
 
     <div class="span-15 last">
         <label><?php echo ucfirst(__('password'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label> <input type="password" name="password" value="">
-        <small><?php echo html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/information.png')), array('style' => 'padding:0 5px;')); ?><?php echo __(Kohana::message('admin','leave password empty'));?></small>
+        <small><?php echo KillerAdmin::spriteImg('info'); ?><?php echo __(Kohana::message('admin','leave password empty'));?></small>
 
         <label><?php echo ucfirst(__('confirm password'));?>:</label> <input type="password" name="password_confirm" value="">
     </div>
 	
    	<div class="span-24">
    		<p><br>
-       		<button type="submit" class="button positive"><?php echo html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/save.png')));?><?php echo __('save'); ?></button>
+       		<button type="submit" class="button positive"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
        		<?php echo html::anchor($referrer, __('go back')); ?>
    		</p>
    	</div>

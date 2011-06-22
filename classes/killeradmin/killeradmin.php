@@ -72,7 +72,7 @@ class Killeradmin_Killeradmin
 	public static function filterButton($title = null)
 	{
 		$title = ($title) ? $title : __('clear filter');
-		$button = Form::button('submitfilter', html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/funnel.png'))) . "&nbsp;" . __('filter') , array('type' => 'submit'));
+		$button = Form::button('submitfilter', self::spriteImg('funnel') . "&nbsp;" . __('filter') , array('type' => 'submit'));
 		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , __('clear filter')) : "";
 
 		return $button . $link;
@@ -91,7 +91,7 @@ class Killeradmin_Killeradmin
 	public static function newButton($name, $title = null, $url = null)
 	{
 		$url = ($url) ? $url : Request::current()->uri(array('action' => 'add'));
-		$title = ($title) ? $title : html::image(Route::get('admin/media')->uri(array('file'=>'/images/icons/add.png'))) . __('add :object', array(':object' => __($name)));
+		$title = ($title) ? $title : self::spriteImg('add') . __('add :object', array(':object' => __($name)));
 
 		return Html::anchor($url, $title, array('class' => 'button positive'));
 
@@ -116,6 +116,31 @@ class Killeradmin_Killeradmin
 		}
 		return $input;
 	}
-}
+
+	/**
+	 * create a image tag for sprite images
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $name
+	 * @param mixed $title. (default: null)
+	 * @param mixed $extra_class. (default: null)
+	 * @return void
+	 */
+	public static function spriteImg($class, $title = null)
+	{
+		$attr = array();
+		$attr['width'] = 16;
+		$attr['height'] = 16;
+		$attr['class'] = 'icon ' . $class;
+		
+		if ($title)
+		{
+			$attr['title'] = $title;
+		}
+		
+		return html::image(Route::get('admin/media')->uri(array('file' => 'images/spacer.gif')), $attr);
+		}
+	}
 
 ?>

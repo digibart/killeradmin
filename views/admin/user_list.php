@@ -7,11 +7,10 @@
 			<td colspan="3"><?php echo Killeradmin::filterButton(); ?></td>
 		</tr>
 		<tr>
-			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?>				
-			</th>
+			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?></th>
 			<th class="span-3"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></th>
 			<th><?php echo ucfirst(__('rols')); ?>&nbsp;</th>
-			<th><?php echo ucfirst(__('last login')); ?><?php echo Killeradmin::sortAnchor('last_login');?></th>
+			<th><?php echo ucfirst(__('last login')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('last_login');?></th>
 			<th>&nbsp;</th>
 		</tr>
 		<?php $i = 0; foreach ($objects as $object) :?>
@@ -23,8 +22,8 @@
 			<?php endforeach; ?></td>
 			<td><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></td>	
 			<td nowrap="nowrap">
-				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, html::image(Route::get('admin/media')->uri(array('file' => '/images/icons/pencil.png')), array('title' => __('edit')))); ?> 
-				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, html::image(Route::get('admin/media')->uri(array('file' => '/images/icons/bin.png')), array('title' => __('delete'))), array('class' => 'delete')) : ""; ?>
+				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('edit', __('edit') )); ?> 
+				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('delete', __('delete')), array('class' => 'delete')) : ""; ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>

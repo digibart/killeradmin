@@ -24,7 +24,7 @@
 	
    	<div class="span-24">
    		<p><br>
-       		<button type="submit" class="button positive"><?php echo html::image('admin/media/images/icons/save.png');?><?php echo __('save'); ?></button>
+       		<button type="submit" class="button positive"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
        		<?php echo html::anchor($referrer, __('go back')); ?>
    		</p>
    	</div>

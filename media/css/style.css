@@ -21,7 +21,7 @@
 /*              GLOBALS               */
 /**************************************/
 body {
-	background: url(%admin/media%/images/background.jpg);
+	background: url(../media/images/background.jpg);
 	margin-top: 0px;
 }
 
@@ -125,13 +125,6 @@ td.odd {
 	background:#f3f3f3 ;
 }
 
-a.add {
-	background-image:url(%admin/media%/images/icons/add.png);
-	background-repeat: no-repeat;
-	background-position: 0.3em center;
-	padding-left: 25px;
-}
-
 a.sort {
 	color:#7c7c7c ;
 	text-decoration: none;
@@ -195,9 +188,36 @@ input.invalid {
 	background: none;
 	padding-top: 25px;
 	text-align: center;
-	color: #5e5e5e;
+	color: #ffffff;
 }
 
 .footer a {
-	color: #5e5e5e;
+	color: #ffffff;
 }
+
+/**************************************/
+/* sprite
+/**************************************/
+
+img.icon {
+	width: 16px;
+	height: 16px;
+	border: none;
+	background: url(../media/images/sprite.png) no-repeat bottom right;
+	margin: 3px;
+}
+img.icon.edit {	background-position: -38px -74px;}
+img.icon.delete {background-position: -37px -55px;}
+img.icon.funnel {background-position: -39px -37px;}
+img.icon.add {background-position: -38px -2px;}
+img.icon.save {background-position: -19px -37px;}
+img.icon.info {background-position: -56px -2px;}
+
+
+
+
+
+
+
+
+
