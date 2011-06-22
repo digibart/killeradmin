@@ -95,7 +95,7 @@ code, pre { color: #c33; } /*** very optional, but still useful. W3C uses about 
 
 /*** 24 COLUMN GRID ***/
 .container {width:950px;margin:0 auto;}
-.showgrid {background:url(../images/grid.png);}
+.showgrid {background:url(../media/images/grid.png);}
 body {margin:1.5em 0;}
 div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span-7, div.span-8, div.span-9, div.span-10, div.span-11, div.span-12, div.span-13, div.span-14, div.span-15, div.span-16, div.span-17, div.span-18, div.span-19, div.span-20, div.span-21, div.span-22, div.span-23 {float:left;margin-right:10px;}
 div.span-24 {float:left;}
@@ -236,38 +236,6 @@ hr.space {background:#fff;color:#fff;}
 /*** SMALL CAPS ***/
 .caps { font-variant: small-caps; letter-spacing: 1px; text-transform: lowercase; font-size:1.2em; font-weight:bold; padding:0 2px; }
 
-/*** NO LINK ICON (use class="noicon" to remove the link icon from a specific link) ***/
-body a.noicon { background:none !important; padding:0 !important; margin:0 !important; }
-
-/*** LINK PADDING FOR ICONS ***/
-a[href^="http:"],
-a[href^="mailto:"],
-a[href$=".pdf"],
-a[href$=".doc"],
-a[href$=".xls"],
-a[href$=".rss"],
-a[href$=".rdf"],
-a[href^="aim:"] { padding:2px 22px 2px 0; margin:-2px 0; background-repeat: no-repeat; background-position: right center; }
-
-/*** EXTERNAL LINK ICONS ***/
-a.external         { background-image: url(../images/icons/external.png); padding-right: 14px; }
-a[href^="mailto:"]        { background-image: url(../images/icons/email.png); }
-a[href^="http:"]:visited  { background-image: url(../images/icons/visited.png); }
-
-/*** FILE LINK ICONS ***/
-a[href$=".pdf"]   { background-image: url(../images/icons/pdf.png); }
-a[href$=".doc"]   { background-image: url(../images/icons/doc.png); }
-a[href$=".xls"]   { background-image: url(../images/icons/xls.png); }
-a[href$=".flv"]   { background-image: url(../images/icons/flv.png); }
-a[href$=".jpg"],
-a[href$=".JPG"],
-a[href$=".png"]   { background-image: url(../images/icons/jpg.png); }
-
-/*** MISCELLANEOUS LINK ICONS ***/
-a[href$=".rss"],
-a[href$=".rdf"]   { background-image: url(../images/icons/feed.png); }
-a[href^="aim:"]   { background-image: url(../images/icons/im.png); }
-a[href^="http://yourwebsite.com"] { background:none; padding:0; margin:0; }
 
 /*** TEXT CLASSES ***/
 .small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
