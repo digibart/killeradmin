@@ -165,7 +165,7 @@ class Killeradmin_KillerFile
 		// if parsed file does not exist in cache, lets create it now!
 		if (!$output)
 		{
-			$output = "/* Combined and minified using Killer Admin (https://github.com/digibart/killeradmin) */ \n";
+			$output = "";
 			foreach ($this->_files as $file)
 			{
 				$pathinfo = pathinfo($file);
