@@ -9,8 +9,8 @@
 class Killeradmin_Killeradmin
 {
 	// version and codename
-	const VERSION = "1.1.1";
-	const CODENAME = "Stinky Bonetracer";
+	const VERSION = "1.2";
+	const CODENAME = "Troljegeren";
 	
 	/**
 	 * create links to sort a column. Set $reverse to true to set asc as desc and vice versa.
