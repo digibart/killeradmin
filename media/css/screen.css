@@ -257,7 +257,7 @@ hr.space {background:#fff;color:#fff;}
 .center {text-align: center;}
 
 /*** STYLES FOR BUTTONS ***/
-a.button, button, .curved {
+a.button, button, .curved, input[type='submit'] {
   display: inline-block;
   margin:0 0.538em 0.667em 0.538em;
   padding:5px 7px 5px 7px;   /*** Links ***/
@@ -291,8 +291,8 @@ button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 button img, a.button img{ margin:0 3px -3px 0 !important; padding:0; border:none; width:16px; height:16px; float:none; }
 
 /*** STANDARD BUTTONS ***/
-button:hover, a.button:hover{ background-color:#d3d3d3; border:1px solid #a8a8a8 ; color:#0b0b0b; }
-a.button:active, button:active{ background-color:#a7c913; border:1px solid #323937; color:#000; }
+button:hover, a.button:hover, input[type='submit']:hover{ background-color:#d3d3d3; border:1px solid #a8a8a8 ; color:#0b0b0b; }
+a.button:active, button:active, input[type='submit']:active { background-color:#a7c913; border:1px solid #323937; color:#000; }
 
 /*** POSITIVE (LIGHT BACKGROUND) ***/
 body .positive { color: #000; background-color:#a7c913;}

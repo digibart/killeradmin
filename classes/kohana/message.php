@@ -22,7 +22,6 @@ abstract class Kohana_Message {
 
 	public function __construct() {
 		$this->_config = Kohana::config('message');
-		Kohana::$log->add(Kohana::TESTING, 'Message class instantiated.');
 	}
 
 	public static function instance() {
