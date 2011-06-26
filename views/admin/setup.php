@@ -13,7 +13,7 @@
 
 <hr>
 <h3>Step 3: Create user</h3>
-<form method="post" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'install', 'action' => 'create_user'))); ?>">
+<form method="post" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'setup', 'action' => 'create_user'))); ?>">
 	<table>
 		<tr>
 			<td>Username:</td>

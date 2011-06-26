@@ -148,7 +148,7 @@ class Controller_Admin_Setup extends Controller_Template {
 			}
 			Session::instance()->set('post_data', $_POST);
 			Message::instance()->error($errorstring);
-			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'install')));
+			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'setup')));
 
 		}
 
