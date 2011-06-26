@@ -1,8 +1,8 @@
-# Installation
+# 1. Installation
 
-## Enable module
+### 1.1 Enable the modules
 
-Enable the module in your `bootstrap.php`:
+Enable the modules in your `bootstrap.php`:
 
 	$modules = array(
 		'killeradmin'=> MODPATH.'killeradmin',// Admin for end-users
@@ -10,29 +10,30 @@ Enable the module in your `bootstrap.php`:
 		'database'   => MODPATH.'database',   // Database access
 		'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 		'pagination' => MODPATH.'pagination', // Paging of results
+		'cache'      => MODPATH.'cache',      // Caching with multiple backends
 	);
 	
 Config the auth and database module as needed.	
 	
 [!!] It is important to load the `killeradmin` before the `auth` module, because `killeradmin` overwrites some files of `auth`.
 
-### Create the database
 
-Next step is to create the database. You can find the mysql or postgresql in `modules/auth/mysql.sql` or `modules/auth/postgresql.sql`
+### 1.2 Setup the database
 
-### Create initial user
+Next step is to create the database tables if not done already. You can find the mysql or postgresql in `modules/auth/mysql.sql` or `modules/auth/postgresql.sql`
 
-To create a initial user with admin rights, go to `http://localhost/admin/users/setup`. 
-This will create a user with username `admin` and password `admin`
+### 1.3 Setup Killer Admin
 
-[!!] Don't forget to change the password before you go live!
+Go to [/admin/setup](http://localhost/admin/setup). You will get an `acces denied` error if already users exists, or `Kohana::$enviroment` is not `KOHANA::DEVELOPMENT`.
+This page checks if all the modules are enabled, and Auth and KillerAdmin modules are configured.
+If all goes well, you can create a new user at the bottom of the page. Jump to the next chapter [Configuration](tutorial#2-configuration) on how to config KillerAdmin.
 
-### Done
-That's it, if you go to `http://localhost/admin/` you should be redirected to the login page.
+### 1.4 Done
+That's it, if you go to [/admin/](http://localhost/admin/) you should be redirected to the login page.
 
-# Configuration
+# 2 Configuration
 
-## Creating a menu button
+### 2.1 Creating a menu button
 All the menu buttons are defined in `config/admin.php`. Copy `config/admin.sample.php` to your `application/config` folder. 
 To add menu items, add keys to the menu array, for example:
 
@@ -60,13 +61,14 @@ All the classes and views for managing users are included in the module. To enab
 		),
 	),
 
+# 3 Adding a page
 		
-## Creating the controller
-Now you have a menu-button 'cars', you'll need a controller. All the magic to list, filter, sort, add, edit and delete objects is in `Controller_Admin_Core_Base`, so extend we'll that class.
+### 3.1 Creating the controller
+Now you have a menu-button 'cars', you'll need a controller. All the magic to list, filter, sort, add, edit and delete objects is in [Controller_Admin_Base], so extend we'll that class.
 
 Below is an example of `classes/admin/cars.php`:
 
-	class Controller_Admin_Cars extends Controller_Admin_Core_Base {
+	class Controller_Admin_Cars extends Controller_Admin_Base {
 	
 		// The name of the orm we are managing with this controller
 		protected $orm_name = 'car';
@@ -76,15 +78,16 @@ Below is an example of `classes/admin/cars.php`:
 		
 			// the base object is used for loading, editing, viewing a object
 			// not neccesary when objects don't need to be filtered
+			// in this example, user can only edit cars they own
 			$this->base_object = ORM::factory('car')->where('user_id', '=', $this->user->id);
 		}
 	}
 
-## Creating the model
+### 3.2 Creating the model
 
-Next thing you'll need is a model. Below is an example of `classes/model/car.php`. As you can see, it's pretty basic. 
+Next thing you'll need is a model. Below is an example of `classes/model/car.php`. As you can see, it's pretty basic, just extend the [orm] and do as you would regulary do.
 
-[!!]You need to set the `public function rules()` for validating the orm while saving.
+[!!]You should to set the `public function rules()` for validating the orm while saving.
 
 	class Model_Car extends ORM {
 		
@@ -109,12 +112,14 @@ Next thing you'll need is a model. Below is an example of `classes/model/car.php
 		}
 	}
 	
-## Creating the views
+### 3.3 Creating the views
 
 The last thing you'll need are two views: 
 
 1. `views/admin/{orm_name}_list.php`: view for listing the objects
 2. `views/admin/{orm_name}_form.php`: view for adding/ editing objects.
+
+[!!] Where `{orm_name}` is the `$orm_name` you set in the Controller.
 
 #### List
 The `{orm_name}_list` has the following values:
@@ -154,8 +159,8 @@ Example of `views/admin/car_list.php`
 				<td><?php echo $object->color; ?></td>	
 				<td><?php echo number_format($object->miles); ?></td>	
 				<td nowrap="nowrap">
-					<?php echo html::anchor($controller_url . '/edit/' . $object->id, html::image('admin/media/images/icons/pencil.png', array('title' => __('edit')))); ?> 
-					<?php echo html::anchor($controller_url . '/delete/' . $object->id, html::image('admin/media/images/icons/bin.png', array('title' => __('delete'))), array('class' => 'delete')); ?>
+					<?php echo html::anchor($controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('edit'), __('edit')); ?> 
+					<?php echo html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('delete'), __('delete') , array('class' => 'delete')); ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
@@ -194,7 +199,7 @@ Example of `views/admin/car_form.php`
                     <input type="text" name="color" value="<?php echo $car->miles; ?>"><br>
             <div class="span-24">
                     <p><br>
-                         <button type="submit" class="button positive"><?php echo html::image('admin/media/images/icons/save.png');?><?php echo __('save'); ?></button>
+                         <button type="submit" class="button positive"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
                          <?php echo html::anchor($referrer, __('go back')); ?>
                     </p>
             </div>

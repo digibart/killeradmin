@@ -143,6 +143,18 @@ class Killeradmin_Killeradmin
 		}
 
 
+	/**
+	 * sending emails
+	 * 
+	 * @access public
+	 * @static
+	 * @param array|string $from
+	 * @param array|string $to
+	 * @param string $subject
+	 * @param strubg $body
+	 * @param string $textbody. (default: null)
+	 * @return boolean
+	 */
 	public static function email($from, $to, $subject, $body, $textbody = null)
 	{	
 		require_once Kohana::find_file('vendor/swift', 'swift_required', 'php');
