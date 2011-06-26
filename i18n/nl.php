@@ -63,7 +63,7 @@ return array(
 	'kohana_env_3' 			=> 'Testing',
 	'kohana_env_4' 			=> 'Development',
 
-	
+	'new password for :company_name' => 'Nieuw wachtwoord voor :company_name',
 		
 	':field must not be empty'=> ':field mag niet leeg zijn',
 	':field must be the same as :param3'=> ':field moet hetzelfde zijn als :param3',

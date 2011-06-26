@@ -7,13 +7,13 @@
  * @extends Model_Auth_User
  */
 class Model_User extends Model_Auth_User {
-	
+
 	protected $_sorting = array('username' => 'asc');
-	
+
 
 	/**
 	 * resetPassword and send email
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -23,17 +23,27 @@ class Model_User extends Model_Auth_User {
 
 		$this->password = $password;
 		$this->save();
+		
+		$company_name =  Kohana::config('admin.company_name');
 
-		$to = $this->email;
-		$from = $this->email;
-		$subject = __('password new');
+		$to = array($this->email => $this->username);
+		$from = array($this->email => $company_name);
+		
+		$subject = __('new password for :company_name', array(':company_name' =>$company_name));
+		
 		$message = View::factory('admin/email_password')
-			->set('password', $password)
-			->set('user', $this);
+		->set('password', $password)
+		->set('user', $this)
+		->set('company_name', $company_name);
 
-		Email::send($to, $from, $subject, strip_tags($message), $message);
-
-		Message::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
+		if (Killeradmin::email($to, $from, $subject, $message))
+		{
+			Message::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
+		}
+		else
+		{
+			Message::instance()->error(__('could not send email to :email', array(':email' => $this->email)));
+		}
 	}
 }
 

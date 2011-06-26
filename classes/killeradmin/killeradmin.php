@@ -141,6 +141,52 @@ class Killeradmin_Killeradmin
 		
 		return html::image(Route::get('admin/media')->uri(array('file' => 'images/spacer.gif')), $attr);
 		}
-	}
 
+
+	public static function email($from, $to, $subject, $body, $textbody = null)
+	{	
+		require_once Kohana::find_file('vendor/swift', 'swift_required', 'php');
+		
+		if (!$textbody) 
+		{
+			$textbody = strip_tags($body);
+		}
+
+		$message = Swift_Message::newInstance();
+		$message->setSubject($subject);
+		$message->setFrom($from);
+		$message->setTo($to);
+
+		$message->setBody($textbody);
+		$message->addPart($body, 'text/html');
+
+		// create transporter
+		$options = Kohana::config('email.options');
+
+		if (Kohana::config('email.driver') == 'native')
+		{
+			$transport = Swift_MailTransport::newInstance();
+		}
+		else
+		{
+			$transport = Swift_SmtpTransport::newInstance(Arr::get($options, 'hostname'), Arr::get($options, 'port'), Arr::get($options, 'security'))
+			->setUsername(Arr::get($options, 'username'))
+			->setPassword(Arr::get($options, 'password'));
+		}
+		
+		// create mailer
+		$mailer = Swift_Mailer::newInstance($transport);
+
+		try {
+			$mailer->send($message);
+			Kohana::$log->add(Log::DEBUG, "Email send to " . Debug::vars($to));
+			return true;
+		}
+		catch (Exception $e)
+		{
+			Kohana::$log->add(Log::ERROR, "Error sending mail to " . $to . ": " . $e->getMessage());
+			return false;
+		}
+	}
+}
 ?>

@@ -21,7 +21,7 @@
 /*              GLOBALS               */
 /**************************************/
 body {
-	background: url(../media/images/background.jpg);
+	background: url(%admin/media%/images/background.jpg);
 	margin-top: 0px;
 }
 
@@ -203,7 +203,7 @@ img.icon {
 	width: 16px;
 	height: 16px;
 	border: none;
-	background: url(../media/images/sprite.png) no-repeat bottom right;
+	background: url(%admin/media%/images/sprite.png) no-repeat bottom right;
 	margin: 3px;
 }
 img.icon.edit {	background-position: -38px -74px;}
