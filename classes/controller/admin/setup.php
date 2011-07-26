@@ -9,7 +9,7 @@
  */
 class Controller_Admin_Setup extends Controller_Template {
 
-	public $template = 'admin/template.php';
+	public $template = 'admin/template';
 
 	/**
 	 * check if you're allowd to see this page
@@ -27,9 +27,10 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user_count = (int) ORM::factory('user')->count_all();
 
 		if (Kohana::$environment != KOHANA::DEVELOPMENT || $user_count !== 0)
-		{
+		{			
+			Kohana::$log->add(Log::ERROR, 'Access to setup denied; :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
 			Message::instance()->error(ucfirst(__('access denied')));
-			$this->request->redirect(Route::url('admin/base_url'));
+			$this->request->redirect(Route::get('admin/base_url')->uri());
 		}
 	}
 
