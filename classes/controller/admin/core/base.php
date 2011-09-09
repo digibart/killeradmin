@@ -57,8 +57,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$no_login = array(
 			Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')),
 			Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'forgot'))
-			);		
-
+			);
+			
 		//check if a user is authorized to view the requested page
 		if (!in_array($this->request->uri(), $no_login)) {
 			if (!is_array($this->secure_actions) || (Auth::instance()->logged_in($required_role) === false)) {
@@ -72,8 +72,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			} else {
 				$this->user = Auth::instance()->get_user();
 			}
+		} elseif (Auth::instance()->logged_in()) {
+			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main')));
 		}
-
+		
 
 		//set the template values
 		$this->template->title = "Admin";
