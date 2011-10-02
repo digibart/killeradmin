@@ -213,11 +213,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	 * creates the objects-form edit page
 	 *
 	 * @access public
-	 * @param mixed   $id. (default: null)
 	 * @return void
 	 */
-	public function action_edit($id = null)
+	public function action_edit()
 	{
+		$id = $this->request->param('id');
+		
 		$this->template->title = ucfirst(__('edit :object', array(':object' => __($this->orm_name))));
 
 		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
@@ -239,13 +240,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	 * validate and save the input
 	 *
 	 * @access public
-	 * @param mixed   $id. (default: null)
 	 * @return void
 	 */
-	public function action_save($id = null)
+	public function action_save()
 	{
-
 		$this->auto_render = false;
+		$id = $this->request->param('id');
+		
 
 		$post = $_POST;
 
@@ -284,12 +285,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	 * delete a object
 	 *
 	 * @access public
-	 * @param mixed   $id
 	 * @return void
 	 */
-	public function action_delete($id)
+	public function action_delete()
 	{
 		$this->auto_render = false;
+		$id = $this->request->param('id');	
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
 		$object->where('id', '=', (int) $id)->find();

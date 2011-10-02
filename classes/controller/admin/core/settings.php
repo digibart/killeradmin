@@ -28,10 +28,9 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 	 * save the user
 	 *
 	 * @access public
-	 * @param int     $id. (default: null)
 	 * @return void
 	 */
-	public function action_save($id = null)
+	public function action_save()
 	{
 		$user = ORM::factory('user', $this->user->id);
 
