@@ -191,7 +191,7 @@ class Killeradmin_Killeradmin
 
 		try {
 			$mailer->send($message);
-			Kohana::$log->add(Log::DEBUG, "Email send to " . Debug::vars($to));
+			Kohana::$log->add(Log::DEBUG, "Email send to " . $to);
 			return true;
 		}
 		catch (Exception $e)
