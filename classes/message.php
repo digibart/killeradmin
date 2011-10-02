@@ -4,7 +4,7 @@ class Message extends Kohana_Message {
 
 	function __construct() {
 		parent::__construct();
-		$this->_config = Kohana::config('message');
+		$this->_config = Kohana::$config->load('message');
 	}
 
 	public function succeed($msg, array $values=NULL, $lang='en-us')

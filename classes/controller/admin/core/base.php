@@ -21,7 +21,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$this->request = Request::current();
 		$this->session= Session::instance();
-		$this->menu = Kohana::config('admin.menu');
+		$this->menu = Kohana::$config->load('admin.menu');
 	}
 
 	/**
@@ -35,8 +35,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		parent::before();
 
 		//gather roles required to perform actions
-		if (isset($this->menu[Kohana::config('admin.base_url') . "/" . $this->request->controller()]['secure_actions'])) {
-			$this->secure_actions = $this->menu[Kohana::config('admin.base_url') . "/" . $this->request->controller()]['secure_actions'];
+		if (isset($this->menu[Kohana::$config->load('admin.base_url') . "/" . $this->request->controller()]['secure_actions'])) {
+			$this->secure_actions = $this->menu[Kohana::$config->load('admin.base_url') . "/" . $this->request->controller()]['secure_actions'];
 			if (!isset($this->secure_actions['index'])) {
 				$this->secure_actions['index'] = null;
 			}

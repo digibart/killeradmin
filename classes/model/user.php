@@ -24,7 +24,7 @@ class Model_User extends Model_Auth_User {
 		$this->password = $password;
 		$this->save();
 		
-		$company_name =  Kohana::config('admin.company_name');
+		$company_name =  Kohana::$config->load('admin.company_name');
 
 		$to = array($this->email => $this->username);
 		$from = array($this->email => $company_name);

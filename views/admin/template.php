@@ -54,7 +54,7 @@
 <body>
 	<div class="container">
 	    <div id="head" class="span-23 prefix-1 last">
-	    	<h1 id="head" class="fancy"><?php echo Kohana::config('admin.company_name'); ?></h1>
+	    	<h1 id="head" class="fancy"><?php echo Kohana::$config->load('admin.company_name'); ?></h1>
 	    </div>
 		<div id="menubar" class="span-23  prefix-1">			   
 	        <?php echo $menu; ?>

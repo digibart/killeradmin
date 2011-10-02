@@ -173,9 +173,9 @@ class Killeradmin_Killeradmin
 		$message->addPart($body, 'text/html');
 
 		// create transporter
-		$options = Kohana::config('email.options');
+		$options = Kohana::$config->load('email.options');
 
-		if (Kohana::config('email.driver') == 'native')
+		if (Kohana::$config->load('email.driver') == 'native')
 		{
 			$transport = Swift_MailTransport::newInstance();
 		}

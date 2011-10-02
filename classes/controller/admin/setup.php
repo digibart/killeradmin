@@ -74,7 +74,7 @@ class Controller_Admin_Setup extends Controller_Template {
 		$config = array();
 	
 		// check if auth hash_key is set	
-		if (strlen(Kohana::config('auth.hash_key')) < 30)
+		if (strlen(Kohana::$config->load('auth.hash_key')) < 30)
 		{
 			$config['auth'] = KillerAdmin::spriteImg('cross') . Kohana::message('admin', 'no hash_key');
 			$errors++;
