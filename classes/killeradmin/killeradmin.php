@@ -90,7 +90,8 @@ class Killeradmin_Killeradmin
 	 */
 	public static function newButton($name, $title = null, $url = null)
 	{
-		$url = ($url) ? $url : Request::current()->uri(array('action' => 'add'));
+		$request = Request::current();
+		$url = ($url) ? $url : $request->route()->uri(array('controller' => $request->controller(), 'action' => 'add'));
 		$title = ($title) ? $title : self::spriteImg('add') . __('add :object', array(':object' => __($name)));
 
 		return Html::anchor($url, $title, array('class' => 'button positive'));
