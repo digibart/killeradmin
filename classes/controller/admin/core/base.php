@@ -156,9 +156,25 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			}
 			Message::instance()->info($msg);
 		}
+		
+		
+		//pagination
+		$pagination = new Pagination;
+		$page_config = $pagination->config_group('admin');
+		$page_config['total_items'] = $count;
+		$pagination->setup($page_config);
+
+		//pagination, check if a page exists
+		if (!$pagination->valid_page($page) && $pagination->__get('total_pages') > 0) {
+			$query = Url::query(array('page' =>  $pagination->__get('total_pages')));
+			$this->request->redirect($this->controller_url . $query);
+		}
 
 		//collect the orm objects
 		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
+		$objects
+		->offset($offset)
+		->limit(20);
 
 		// and apply filters
 		foreach ($filter as $field => $value) {
