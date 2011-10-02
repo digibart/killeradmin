@@ -25,8 +25,9 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 	 * @param int     $id. (default: null)
 	 * @return void
 	 */
-	public function action_save($id = null)
+	public function action_save()
 	{
+		$id = $this->request->param('id');
 		$user = ORM::factory('user', (int) $id);
 
 		$post = $_POST;

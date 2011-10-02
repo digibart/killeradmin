@@ -21,7 +21,7 @@ abstract class Kohana_Message {
 	private $error;
 
 	public function __construct() {
-		$this->_config = Kohana::config('message');
+		$this->_config = Kohana::$config->load('message');
 	}
 
 	public static function instance() {

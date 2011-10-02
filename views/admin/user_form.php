@@ -18,7 +18,7 @@
     </div>
 
     <div class="span-5 last">
-        <label><?php echo ucfirst(__('password'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?>)</small></label> <input type="password" name="password" value="">
+        <label><?php echo ucfirst(__('password'));?> <small>(<?php echo __(':min-:max characters', array(':min' => 8, ':max' => 100)); ?>)</small></label> <input type="password" name="password" value="">
         <label><?php echo ucfirst(__('confirm password'));?>:</label> <input type="password" name="password_confirm" value="">
     </div>
 	
