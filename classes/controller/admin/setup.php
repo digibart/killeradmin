@@ -127,26 +127,36 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user->username = Arr::get($_POST, 'username');
 		$user->email = Arr::get($_POST, 'email');
 		$user->password = $password;
-
+		
+		$extra_rules = Validation::factory($_POST)
+			->rule('username', 'min_length', array(':value', 4));
 
 		try
 		{
-			$user->save();
+			$user->save($extra_rules);
 			$user->add('roles', ORM::factory('role', array('name' => 'login')));
 			$user->add('roles', ORM::factory('role', array('name' => 'admin')));
 
-			Message::instance()->succeed('user created. Password: <b>' . $password . '</b>');
+			Message::instance()->succeed(__(Kohana::message('admin', 'user created'), array(':password' => $password)));
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 		}
 		catch (ORM_Validation_Exception $e)
 		{
-			$errorstring = "";
 			$errors = $e->errors('register');
+			$errorarray = array();
 
 			foreach ($errors as $key => $msg)
 			{
-				$errorstring .= $msg . "<br />";
+				if (is_array($msg)) {
+					$errorarray = array_merge($errorarray, $msg);
+				}
+				else {
+					$errorarray[] = $msg;
+				}
 			}
+			
+			$errorstring = implode("<br>", $errorarray);
+			
 			Session::instance()->set('post_data', $_POST);
 			Message::instance()->error($errorstring);
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'setup')));

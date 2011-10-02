@@ -7,6 +7,8 @@ return array(
 	
 	'no hash_key'		=> 'You need to set the hash_key in APPPATH/config/auth.php',
 	'no config' 		=> 'You need to copy ' . MODPATH . 'killeradmin/config/admin.sample.php to ' . APPPATH . 'config/admin.php',
+ 
+ 	'user created' 		=> 'User created. Password: <strong>:password</strong>',
 	)
 
 ?>
