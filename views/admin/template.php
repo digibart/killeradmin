@@ -11,7 +11,7 @@
     
     echo KillerFile::instance('css','screen')->add_files(array(
 	    	$media->uri(array('file' => '/css/screen.css')),
-	    	$media->uri(array('file' => '/css/style.css')),
+	    	$media->uri(array('file' => '/css/style_sm.css')),
 	    	$media->uri(array('file' => '/css/datePicker.css')),
 	    	$media->uri(array('file' => '/css/jquery.tooltip.css')),
     	))->get_tag(array('media' => 'screen'));
