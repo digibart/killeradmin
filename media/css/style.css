@@ -21,7 +21,7 @@
 /*              GLOBALS               */
 /**************************************/
 body {
-	background: url(%admin/media%/images/background.jpg);
+	background-image: url(../images/background.jpg);
 	margin-top: 0px;
 }
 
@@ -203,21 +203,16 @@ img.icon {
 	width: 16px;
 	height: 16px;
 	border: none;
-	background: url(%admin/media%/images/sprite.png) no-repeat bottom right;
+	background: no-repeat;
 	margin: 3px;
 }
-img.icon.edit {	background-position: -38px -74px;}
-img.icon.delete {background-position: -37px -55px;}
-img.icon.funnel {background-position: -39px -37px;}
-img.icon.add {background-position: -38px -2px;}
-img.icon.save {background-position: -19px -37px;}
-img.icon.info {background-position: -56px -2px;}
-img.icon.tick {background-position: -19px -17px;}
-img.icon.cross {background-position: -38px -19px;}
 
-
-
-
-
-
-
+img.icon.add {background: url(../images/icons/add.png);}
+img.icon.bin {background: url(../images/icons/bin.png);}
+img.icon.cross {background: url(../images/icons/cross.png);}
+img.icon.delete {background: url(../images/icons/delete.png);}
+img.icon.edit {background: url(../images/icons/pencil.png);}
+img.icon.funnel {background: url(../images/icons/funnel.png);}
+img.icon.info {background: url(../images/icons/information.png);}
+img.icon.save {background: url(../images/icons/disk.png);}
+img.icon.tick {background: url(../images/icons/tick.png);}
