@@ -11,7 +11,8 @@ class Killeradmin_Killeradmin
 	// version and codename
 	const VERSION = "1.2.1";
 	const CODENAME = "Troljegeren";
-	
+
+
 	/**
 	 * create links to sort a column. Set $reverse to true to set asc as desc and vice versa.
 	 *
@@ -26,15 +27,18 @@ class Killeradmin_Killeradmin
 		$string = "";
 		$orders = array('asc', 'desc');
 
-		foreach ($orders as $order) {
+		foreach ($orders as $order)
+		{
 			$class = "";
 			$anchor_string = ($order == 'asc') ? "&and;" : "&or;";
 
-			if ($reverse) {
+			if ($reverse)
+			{
 				$order = ($order == 'asc') ? 'desc' : 'asc';
 			}
 
-			if (Arr::get($_GET, 'sort') == $col && Arr::get($_GET, 'order') == $order) {
+			if (Arr::get($_GET, 'sort') == $col && Arr::get($_GET, 'order') == $order)
+			{
 				$class = "active";
 			}
 
@@ -53,7 +57,7 @@ class Killeradmin_Killeradmin
 	 * @access public
 	 * @static
 	 * @param string  $column
-	 * @param array  $filtervals
+	 * @param array   $filtervals
 	 * @return string
 	 */
 	public static function filterField($column, $filtervals)
@@ -97,35 +101,37 @@ class Killeradmin_Killeradmin
 		return Html::anchor($url, $title, array('class' => 'button positive'));
 
 	}
-	
+
 	/**
 	 * unset keys from $input when not in $editable
 	 * very usefull to prevent unwanted changes on a object
-	 * 
+	 *
 	 * @access public
 	 * @static
-	 * @param array $input
-	 * @param array $editable
+	 * @param array   $input
+	 * @param array   $editable
 	 * @return array
 	 */
 	public static function editableVals($input, $editable)
 	{
-		foreach ($input as $key => $value) {
-			if (!in_array($key, $editable)) {
+		foreach ($input as $key => $value)
+		{
+			if (!in_array($key, $editable))
+			{
 				unset($input[$key]);
-			}		
+			}
 		}
 		return $input;
 	}
 
 	/**
 	 * create a image tag for sprite images
-	 * 
+	 *
 	 * @access public
 	 * @static
-	 * @param mixed $name
-	 * @param mixed $title. (default: null)
-	 * @param mixed $extra_class. (default: null)
+	 * @param mixed   $name
+	 * @param mixed   $title.       (default: null)
+	 * @param mixed   $extra_class. (default: null)
 	 * @return void
 	 */
 	public static function spriteImg($class, $title = null)
@@ -134,33 +140,33 @@ class Killeradmin_Killeradmin
 		$attr['width'] = 16;
 		$attr['height'] = 16;
 		$attr['class'] = 'icon ' . $class;
-		
+
 		if ($title)
 		{
 			$attr['title'] = $title;
 		}
-		
+
 		return html::image(Route::get('admin/media')->uri(array('file' => 'images/spacer.gif')), $attr);
-		}
+	}
 
 
 	/**
 	 * sending emails
-	 * 
+	 *
 	 * @access public
 	 * @static
 	 * @param array|string $from
 	 * @param array|string $to
-	 * @param string $subject
-	 * @param strubg $body
-	 * @param string $textbody. (default: null)
+	 * @param string  $subject
+	 * @param strubg  $body
+	 * @param string  $textbody. (default: null)
 	 * @return boolean
 	 */
 	public static function email($from, $to, $subject, $body, $textbody = null)
-	{	
+	{
 		require_once Kohana::find_file('vendor/swift', 'swift_required', 'php');
-		
-		if (!$textbody) 
+
+		if (!$textbody)
 		{
 			$textbody = strip_tags($body);
 		}
@@ -186,7 +192,7 @@ class Killeradmin_Killeradmin
 			->setUsername(Arr::get($options, 'username'))
 			->setPassword(Arr::get($options, 'password'));
 		}
-		
+
 		// create mailer
 		$mailer = Swift_Mailer::newInstance($transport);
 
@@ -200,6 +206,22 @@ class Killeradmin_Killeradmin
 			Kohana::$log->add(Log::ERROR, "Error sending mail to " . $to . ": " . $e->getMessage());
 			return false;
 		}
+	}
+
+	/**
+	 * get the file path of this module
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 */
+	public static function getModulePath()
+	{
+		$dirs = explode("/" , dirname(__FILE__));
+		array_splice($dirs, -2);
+
+
+		return implode("/", $dirs);
 	}
 }
 ?>
