@@ -1,11 +1,3 @@
-/*************************************
-   WELCOME TO THE CUSTOM STYLESHEET
---------------------------------------
-              style.css
-        BlueTrip CSS Framework
-    Put your custom styles in here.
-***************************************/
-
 /**************************************/
 /*           COLOR SCHEME             */
 /**************************************
@@ -15,6 +7,7 @@
 #d3e766 - lichter groen
 #c0c27c - light groen
 ***************************************/
+
 
 
 /**************************************/
@@ -206,13 +199,16 @@ img.icon {
 	background: no-repeat;
 	margin: 3px;
 }
+img.icon.edit {background: url('../images/icons.png') no-repeat -68px 0;}
+img.icon.delete {background: url('../images/icons.png') no-repeat -102px 0;}
+img.icon.funnel {background: url('../images/icons.png') no-repeat -51px 0;}
+img.icon.add {background: url('../images/icons.png') no-repeat 0 0;}
+img.icon.save {background: url('../images/icons.png') no-repeat -17px 0;}
+img.icon.info {background: url('../images/icons.png') no-repeat -119px 0;}
+img.icon.tick {background: url('../images/icons.png') no-repeat -34px 0;}
+img.icon.cross {background: url('../images/icons.png') no-repeat -85px 0;}
 
-img.icon.add {background: url(../images/icons/add.png);}
-img.icon.bin {background: url(../images/icons/bin.png);}
-img.icon.cross {background: url(../images/icons/cross.png);}
-img.icon.delete {background: url(../images/icons/delete.png);}
-img.icon.edit {background: url(../images/icons/pencil.png);}
-img.icon.funnel {background: url(../images/icons/funnel.png);}
-img.icon.info {background: url(../images/icons/information.png);}
-img.icon.save {background: url(../images/icons/disk.png);}
-img.icon.tick {background: url(../images/icons/tick.png);}
+
+
+
+

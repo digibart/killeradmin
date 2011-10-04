@@ -24,7 +24,7 @@ Route::set('admin/media', $config->base_url .'/media(/<file>)', array('file' => 
 		'file'       => NULL,
 	));
 	
-Route::set('admin/mini', $config->base_url .'/mini(/<file>)', 
+Route::set('admin/mini', $config->base_url .'/mini(/<dir>(/<file>))', 
 	array(
 		'file' => '.+'
 	))

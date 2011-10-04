@@ -124,11 +124,11 @@ class Killeradmin_KillerFile
 				// generate the html tags
 				if ($this->_type == "js")
 				{
-					$html .= html::script(Route::get('admin/mini')->uri(array('action' => 'script', 'file' => $id)), $attr);
+					$html .= html::script(Route::get('admin/mini')->uri(array('dir' => 'js', 'file' => $id)), $attr);
 				}
 				elseif ($this->_type == "css")
 				{
-					$html .= html::style(Route::get('admin/mini')->uri(array('action' => 'style', 'file' => $id)), $attr);
+					$html .= html::style(Route::get('admin/mini')->uri(array('dir' => 'css', 'file' => $id)), $attr);
 				}
 			}
 			return $html;
@@ -140,11 +140,11 @@ class Killeradmin_KillerFile
 
 			if ($this->_type == 'js')
 			{
-				return html::script(Route::get('admin/mini')->uri(array('file' => $this->_filename)), $attr);
+				return html::script(Route::get('admin/mini')->uri(array('dir' => 'js', 'file' => $this->_filename)), $attr);
 			}
 			elseif ($this->_type == 'css')
 			{
-				return html::style(Route::get('admin/mini')->uri(array('file' => $this->_filename)), $attr);
+				return html::style(Route::get('admin/mini')->uri(array('dir' => 'css', 'file' => $this->_filename)), $attr);
 			}
 		}
 	}
