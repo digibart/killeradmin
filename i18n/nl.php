@@ -15,8 +15,10 @@ return array(
 	'password confirm'		=> 'wachtwoord bevestiging',
 	'forgot password'		=> 'wachtwoord vergeten',
 	'new password'			=> 'nieuw wachtwoord',
+	'verification'			=> 'verificatie',
 	'email address'			=> 'email',
 	'password send to :email' => 'Nieuw wachtwoord is verzonden naar :email',
+	'enter the code above'	=> 'type de bovenstaande code',
 	'remember me'			=> 'blijf ingelogd',	
 	'logout'				=> 'uitloggen',
 	
@@ -83,6 +85,7 @@ return array(
 	'register.email.email_available' => 'Emailadres is niet uniek',
 	'signin.username.invalid' => 'Gebruikersnaam is niet gevonden',
 	'admin/user.email.email_available' => 'Email adres is al in gebruik',
+	'validate.captcha.Captcha::valid' => 'Verificatiecode is niet juist',
 	
 	'save' => 'Opslaan',
 	

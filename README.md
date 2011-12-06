@@ -13,6 +13,7 @@ Requirements
 Killer Admin requires the following Kohana modules:
 
 * [Auth](http://github.com/kohana/auth)
+* [Captcha](https://github.com/tolnaiz/kohana-captcha)
 * [Database](http://github.com/kohana/database)
 * [Orm](http://github.com/kohana/orm)
 * [Pagination](http://github.com/digibart/pagination)

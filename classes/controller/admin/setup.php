@@ -52,7 +52,7 @@ class Controller_Admin_Setup extends Controller_Template {
 		/* check the modules
 		/**************************************/
 
-		$modules = array('ORM' => false, 'AUTH' => false, 'CACHE' => false, 'DATABASE' => false, 'PAGINATION' => false);
+		$modules = array('ORM' => false, 'AUTH' => false, 'CACHE' => false, 'DATABASE' => false, 'PAGINATION' => false, 'CAPTCHA' => false);
 
 		foreach ($modules as $module => $exists)
 		{
