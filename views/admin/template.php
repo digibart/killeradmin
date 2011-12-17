@@ -1,18 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <title></title>
+    <title><?php echo Kohana::$config->load('admin.company_name'); ?> | <?php echo $title; ?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<?php
 	
 	$media = Route::get('admin/media');
     
     echo KillerFile::instance('css','screen')->add_files(array(
-	    	$media->uri(array('file' => '/css/screen.css')),
-	    	$media->uri(array('file' => '/css/style_sm.css')),
-	    	$media->uri(array('file' => '/css/datePicker.css')),
+	    	$media->uri(array('file' => '/css/bakplaat.css')),
 	    	$media->uri(array('file' => '/css/jquery.tooltip.css')),
     	))->get_tag(array('media' => 'screen'));
     	
@@ -52,29 +48,42 @@
 </head>
 
 <body>
-	<div class="container">
-	    <div id="head" class="span-23 prefix-1 last">
-	    	<h1 id="head" class="fancy"><?php echo Kohana::$config->load('admin.company_name'); ?></h1>
-	    </div>
-		<div id="menubar" class="span-23  prefix-1">			   
-	        <?php echo $menu; ?>
-	    </div>
-	
-	    <div id="content" class="span-22 prefix-1 suffix-1 last">
-	    	<H2><?php echo $title; ?></H2>
-	        <?php
-	        
-	        $msg = Message::instance()->get();
-	
-	        if (!empty($msg)) {
-	            echo "<br>" . $msg;
-	        }
-	        ?><?php echo $content; ?>
-	    </div>
-    </div>
-    <div class="container footer">
-    	Designed, Developed and Created by <?php echo html::anchor('http://www.digibart.nl', 'Digibart'); ?>
-    </div>
-    
+	<div id="wrap">
+		<header>
+			<div class="row">
+				<h1 class="fancy"><?php echo Kohana::$config->load('admin.company_name'); ?></h1>			
+			</div>
+		</header>
+		<div class="container">
+
+
+			<div class="row">
+				<div id="menubar" class="twelve columns">			   
+					<?php echo $menu; ?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="twelve columns">
+			
+					<h1><?php echo $title; ?></h1>
+					<?php
+				
+					$msg = Message::instance()->get();
+				
+					if (!empty($msg)) {
+						echo "<br>" . $msg;
+					}
+					?><?php echo $content; ?>			
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="container">
+		<div class="row footer">
+			<div class="twelve columns last">
+		    	Designed, Developed and Created by <?php echo html::anchor('http://www.digibart.nl', 'Digibart'); ?>
+			</div>
+		</div>
+	</footer>		
 </body>
 </html>
