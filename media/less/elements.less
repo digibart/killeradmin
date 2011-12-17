@@ -1,0 +1,112 @@
+/**************************************/
+/* elements
+/**************************************/
+
+@canvascolor: #ccc;
+
+html, body {
+	height: 100%;
+}
+
+/* sticky footerand header stuff */
+#wrap {
+	min-height: 100%;
+	.container:last-child {
+		padding-bottom: @footerheight;
+	}
+}
+
+
+header {
+	height: 75px;
+	
+	margin: 0 auto; 
+	padding: 0 20px;
+	
+	background: @canvascolor;
+	box-shadow: 0 -5px 5px darken(@canvascolor, 7%) inset;
+	border-bottom: solid 1px darken(@canvascolor, 20%);
+	
+	color: #fff;
+	
+	h1, h2, h3, h4, h5, h6 {
+		border-bottom: none;
+		text-shadow:  -1px -1px 0px lighten(@canvascolor, 5%);
+		font-size: 2.2em;
+		color: darken(@canvascolor, 45%);
+	}
+}
+
+footer {
+	margin-top: (@footerheight * -1) - 20px;
+	padding: 10px 20px;
+	height: @footerheight - 1;
+	clear: both;
+	
+	background: @canvascolor;
+	
+	color: #fff;
+	text-align: center;
+	line-height: @footerheight;
+	
+	-webkit-box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
+	-moz-box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
+	box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
+	
+	border-top: solid 1px darken(@canvascolor, 20%);
+}
+.spacer {
+	clear: both;
+}
+
+p {
+	margin: 1em 0;
+}
+
+hr {
+	height: 1px;
+	width: 75%;
+	
+/* 	background: @basecolor; */
+	border: none;
+}
+
+ul {
+	padding-left: 20px;
+	
+	li {
+		list-style-image: url(../images/bakplaat/bullet-star.png);
+	}
+}
+
+
+
+/**************************************/
+/* icons
+/**************************************/
+
+
+img.icon {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	
+	&.bullet-star {
+		background:url(../images/bakplaat/bullet-star.png);
+	}
+	&.cog {
+		background:url(../images/bakplaat/cog.png);
+	}
+	&.message {
+		background:url(../images/bakplaat/message.png);
+	}
+	&.pencil {
+		background:url(../images/bakplaat/pencil.png);
+	}
+	&.save {
+		background:url(../images/bakplaat/save.png);
+	}
+	&.star {
+		background:url(../images/bakplaat/star.png);
+	}
+}

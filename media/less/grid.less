@@ -1,0 +1,63 @@
+/**************************************/
+/* the grid
+/**************************************/
+div#container, div.container { 
+	position: relative; 
+	margin: 0 auto; 
+	padding: 0 20px; 
+}
+
+
+.row { 
+	width: 100%;
+	max-width: 1140px;
+	min-width: 755px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.column, 
+.columns {
+	float: left; 
+	display: inline; 
+	margin: 0 3.8% 0 0;
+	min-height: 1px;
+	
+	&.last {
+		margin-right: 0;
+	}
+	img {
+		max-width: 100%;
+	}
+	
+	&.one { width: 4.85%;}
+	&.two { width: 13.45%;}	
+	&.three {width: 22.05%}	
+	&.four {width: 30.75%}	
+	&.five {width: 39.45%}	
+	&.six {width: 48%}	
+	&.seven {width: 56.75%}	
+	&.eight {width: 65.4%}	
+	&.nine {width: 74.05%}	
+	&.ten {width: 82.7%}	
+	&.eleven {width: 91.35%}	
+	&.twelve {width: 100%; float: left;}
+	
+	&.prefix-one { margin-left: 8.65%;}
+	&.prefix-two { margin-left: 17.255%;}	
+	&.prefix-three {margin-left: 25.85%}	
+	&.prefix-four {margin-left: 34.55%}	
+	&.prefix-five {margin-left: 43.25%}	
+	&.prefix-six {margin-left: 51.8%}	
+	&.prefix-seven {margin-left: 60.55%}	
+	&.prefix-eight {margin-left: 69.2%}	
+	&.prefix-nine {margin-left: 77.85%}	
+	&.prefix-ten {margin-left: 86.5%}	
+	&.prefix-eleven {margin-left: 95.15%}	
+}
+
+/* Clear the columns automagically, thanks @kneath */
+.column-row:after, .row:after, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+* html .column-row, * html .row, * html .clearfix { height: 1%; }
+.column-row, .row, .clearfix { display: inline-block; }
+.column-row, .row, .clearfix { display: block; }

@@ -1,0 +1,79 @@
+<project default="main" name="minify JS and CSS" basedir=".">
+	
+	<property name="base" location="."/>
+	<property name="css" location="${base}/css/"/>
+	<property name="less" location="${base}/less/"/>
+	<property name="js" location="${base}/js"/>
+	<property name="yui" location="/usr/local/bin/yuicompressor-2.4.6.jar"/>
+	
+	<fileset id="html" dir="." includes="*.html"/>
+	
+	<target description="Delete all generated files" name="clean">
+		<delete includes="*.min.css" dir="${css}"/>
+		<delete includes="*.min.js" dir="${js}"/>
+	</target>
+	
+	<target description="minifying JS" name="js.minify">
+		<apply executable="java" parallel="false">
+			<fileset includes="*.js" dir="${js}"/>
+			<arg line="-jar"/>
+			<arg path="${yui}"/>
+			<arg line="-v --charset UTF-8"/>
+			<srcfile/>
+			<arg line="-o"/>
+			<mapper to="${js}/*.min.js" type="glob" from="*.js"/>
+			<targetfile/>
+		</apply>        
+	</target>
+	
+	<target description="minifying CSS" name="css.minify">
+		<apply executable="java" parallel="false">
+			<fileset includes="*.css" excludes="*.nosprite.css" dir="${css}"/>
+			<arg line="-jar"/>
+			<arg path="${yui}"/>
+			<srcfile/>
+			<arg line="-o"/>
+			<mapper to="${css}/*.min.css" type="glob" from="*.css"/>
+			<targetfile/>
+		</apply>
+	</target>
+	
+	<target description="build sprites" name="css.sprite">
+<!-- 		<echo file="${base}/less/killergrid.nosprite.less" append="true"></echo> -->
+<!-- 		<sleep seconds="2"/> -->
+		<exec executable="spritemapper">
+			<arg line="${css}/bakplaat.nosprite.css"/>
+			<arg line="-c ${less}/spritemapper.ini"/>
+			<arg line="--padding 10"/>
+		</exec>	
+	</target>	
+		
+	<target description="delete temporary files" name="cleanup">
+		<delete>
+			<fileset dir="${css}" includes="*.css" excludes="*.min.css"/>
+			<fileset dir="${css}" includes="*nosprite*"/>
+		</delete>
+	</target>
+	
+	<target description="set version in files" name="version">
+		<tstamp>
+			<format pattern="dd-MM-yyyy HH:mm:ss" property="builtat" timezone="Europe/Amsterdam"/>
+		</tstamp>
+		
+		<replaceregexp file="${base}/index.html" match="bakplaat.([a-z]*).css" replace="bakplaat.min.css"/>
+		<replaceregexp file="${base}/index.html" match="&lt;time&gt;([0-9]*)-([0-9]*)-([0-9]*) ([0-9]*):([0-9]*):([0-9]*)&lt;" replace="&lt;time&gt;${builtat}&lt;"/>
+		<echo message="version set in html file"/>
+
+	<!--
+	<replaceregexp byline="true" match="images/sprites.png" replace="images/sprites.${builtat}.png">
+			<fileset dir="${css}">
+				<include name="*.css"/>
+			</fileset>
+		</replaceregexp>
+		<echo message="css set to sprites.${builtat}.png"/>
+-->
+		
+	</target>
+	
+	<target name="main" depends="clean,css.sprite,css.minify,version" />
+</project>

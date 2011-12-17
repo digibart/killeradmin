@@ -1,0 +1,58 @@
+/* @basecolor: #00A6FC; //foundation blauw */
+/* @basecolor: #3D70B0; //maximedia blauw */
+/* @basecolor: #468ACC; //light blauw */
+/* @basecolor: #f00; */
+/* @basecolor: #F0AD1D; */
+/* @basecolor: #B3D929; // groen  */
+@basecolor: #33A9D7; // ik blauw
+
+
+@lighter1: lighten(spin(@basecolor, 10), 20%);
+@lighter2: lighten(spin(@basecolor, 20), 40%);
+@darker1: darken(spin(@basecolor, -5), 10%);
+@darker2: darken(spin(@basecolor, -10), 20%);
+
+@borderradius: 5px;
+@footerheight: 30px;
+
+#bundle {
+	.animate() {
+		 -webkit-transition: all 100ms ease-in-out;
+		 -moz-transition: all 100ms ease-in-out;
+	     -o-transition: all 100ms ease-in-out;
+	}
+	
+	.borderradius() {
+		-webkit-border-radius: @borderradius;
+		-moz-border-radius:@borderradius;
+		border-radius: @borderradius;
+	}
+
+	.boxshadow(@color, @distance : 1px, @size: 0, @pos: inset) {
+		-webkit-box-shadow: @distance @distance @size @color @pos;
+		-moz-box-shadow: @distance @distance @size @color @pos;
+		box-shadow: @distance @distance @size @color @pos;
+	}
+
+	.gradient (@from, @to) {
+		background: @regularcolor;
+		background: -moz-linear-gradient(top,  @from 0%, @to 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@from), color-stop(100%,@to));
+		background: -webkit-linear-gradient(top,  @from 0%, @to 100%);
+		background: -o-linear-gradient(top,  @from 0%,@to 100%);
+		background: -ms-linear-gradient(top,  @from 0%,@to 100%);
+		background: linear-gradient(top,  @from 0%,@to 100%);
+		filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr="@from~", endColorstr="@to~",GradientType=0 )";
+	}
+}
+
+/* colors */
+
+div.basecolor {border-bottom: solid 1px @basecolor;}
+
+@import 'reset.less';
+@import 'elements.less';
+@import 'typography.less';
+@import 'grid.less';
+@import 'buttons.less';
+@import 'forms.less';

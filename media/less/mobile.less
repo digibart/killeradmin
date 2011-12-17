@@ -1,0 +1,21 @@
+/**************************************/
+/* mobile display
+/**************************************/
+
+@media handheld, only screen and (max-width: 767px) {
+	div#container, div.container, .row, { 
+		max-width: 100%;
+		min-width: 0;
+	}
+	.columns {
+		&.one, &.two, &.three, &.four, &.five, &.six, &.seven, &.eight, &.nine, &.ten, &.eleven, &.twel {
+			width: auto;
+			float: none;
+			display: block;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+}

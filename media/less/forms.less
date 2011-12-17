@@ -1,0 +1,111 @@
+@gray: #bbb;
+
+form {
+	p {
+		border-bottom: dashed 1px @gray;
+		
+		padding-bottom: 0.5em;
+		margin-bottom: 2em;	
+	}
+}
+
+fieldset {
+	border:1px solid @lighter2;
+	margin:0 0 1.5em;
+	padding:1.4em;
+	
+	&.rounded {
+		#bundle > .borderradius;
+	}
+	
+	legend {
+		color: @darker2;
+		font-weight: bold;
+		font-size: 1.1em;
+		
+		padding: 0 1em;
+	}
+}
+
+label {
+	font-weight: bold;
+	text-align: right;
+	
+	display:block;
+	float:left;
+	width: 50%;
+	
+	padding-right: 1em;
+	
+	&.error {
+		padding-left: 1em;
+		
+		margin-bottom: 1.5em;
+		
+		width: 36%;
+		
+		text-align: left;
+		font-weight: normal;
+		line-height: 1.5em;
+		
+		color: #ffffff;
+		
+		background: #ff0000;
+	}
+
+	span {
+		display:block;
+		margin-bottom: 1em;
+		
+		color: @gray;
+		font-size: 0.85em;
+		font-weight:normal;
+		text-align:right;
+		width: 100%;
+	}
+}
+
+textarea, input[type='text'], input[type='password'],select { 
+	border: 1px solid @gray;
+	background:url(../images/bakplaat/input-bg.png) top left no-repeat;
+	
+	padding: 0.6em 0.3em 0.3em 0.6em;
+	
+	#bundle > .borderradius;
+	
+	&:hover {
+		border-color: darken(@gray, 20%);
+	}
+	&:focus {
+		border-color: red; 
+		outline: 2px solid @basecolor; 
+	}
+	
+}
+
+input[type='text'],input[type='radio'],input[type='checkbox'],input[type='password'], textarea, select {
+	margin-bottom: 1.5em;
+	width: 40%;
+	float: left;
+	
+	&.error {
+		border: solid 1px #ff0000;
+		margin-bottom: 0;
+	}
+	&.error:focus {
+		outline: 2px solid #ff0000; 
+	}
+}
+
+input, select {
+	cursor: pointer;
+}
+input[type='text'], input[type='password'] { 
+	cursor: text; 
+}
+
+.button.bar {
+	width: 100%;
+	text-align: center;	
+	clear: both;
+}

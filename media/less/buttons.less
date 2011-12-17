@@ -1,0 +1,165 @@
+@regularcolor: #E9E9E9;
+@primarycolor: @basecolor;
+@primarytextcolor: #333;//lighten(@basecolor, 50%);
+
+@rlighter1: lighten(spin(@regularcolor, 5), 5%);
+@rlighter2: lighten(spin(@regularcolor, 10), 10%);
+@rdarker1: darken(spin(@regularcolor, -5), 5%);
+@rdarker2: darken(spin(@regularcolor, -10), 10%);
+
+@plighter1: lighten(spin(@primarycolor, 7), 15%);
+@plighter2: lighten(spin(@primarycolor, 15), 30%);
+@pdarker1: darken(spin(@primarycolor, -2), 5%);
+@pdarker2: darken(spin(@primarycolor, -5), 10%);
+ 
+
+.rcolor1 { background: @rlighter1;}
+.rcolor2 { background: @rlighter2;}
+.rbase { background: @regularcolor;}
+.rcolor3 { background: @rdarker1;}
+.rcolor4 { background: @rdarker2;}
+
+.pcolor1 { background: @plighter1;}
+.pcolor2 { background: @plighter2;}
+.pbase { background: @primarycolor;}
+.pcolor3 { background: @pdarker1;}
+.pcolor4 { background: @pdarker2;}
+
+/**************************************/
+/* buttons
+/**************************************/
+
+a.button, button, input[type='submit'], input[type='reset'] {
+
+	display: inline-block;
+
+	margin:0 0.583em 0.667em 0;
+	padding:5px 10px 5px 7px;   /*** Links ***/
+	border:1px solid @rdarker1;
+	background-color: @regularcolor;
+
+	font-size: 1em;
+	line-height: 16px;
+	text-decoration:none;
+	font-weight:bold;
+	color: darken(@rdarker2, 50%);
+	cursor:pointer;
+	
+	img {
+		width: 16px;
+		height: 16px;
+		
+		padding: 0 0.4em 0 0;
+		
+		vertical-align: top;
+	}
+		
+	&:hover, &.active:hover {		
+		background: @rdarker1;
+		border-color: @rdarker2;
+	}
+	
+	&:active, &.active {
+		background: @rdarker2;
+		border-color: darken(@rdarker2, 10%);		
+	}
+	&.disabled, &.disabled:hover {
+		background: @rlighter1;
+		border-color: @regularcolor;		
+		color: @rdarker2;		
+		cursor: default;
+	}
+
+	&.nice {			
+		text-shadow: 1px 1px 0 @rlighter1;
+		
+
+		border-color: @rdarker2;
+		
+		#bundle > .borderradius;
+		#bundle > .boxshadow(@rlighter2);
+		#bundle > .gradient(@rlighter2, @rdarker2);		
+		
+		&:hover, &.active:hover {			
+			text-shadow: 0px 0px 0 @rlighter2;
+			border-color: darken(@rdarker2, 10%);
+			#bundle > .boxshadow(@rdarker2, 2px, 1px);		
+		}
+		
+		&:active, &.active {
+			text-shadow: 0px 0px 0 @rlighter2;
+			border-color: darken(@rdarker2, 10%);
+			#bundle > .boxshadow(@rdarker2, 2px, 1px);		
+			#bundle > .gradient(@rdarker1, @regularcolor);
+		}
+		&.disabled, &.disabled:hover {
+			color: darken(@rdarker2, 15%);
+			text-shadow: 1px 1px 0 @rlighter1;
+			
+			border-color: @rdarker2;
+			#bundle > .boxshadow(@rlighter2);
+			#bundle > .gradient(@rlighter2, @rdarker2);
+		}
+
+		
+	}
+	
+	&.primary {
+
+		background: @primarycolor;
+		border-color: @pdarker1;
+		color: @primarytextcolor;
+					
+		&:hover, &.active:hover {
+			background: @pdarker1;
+			border-color: @pdarker2;
+		}
+		
+		&:active, &.active {
+			background: @pdarker2;
+			border-color: darken(@pdarker2, 5%);		
+		}
+		&.disabled, &.disabled:hover {
+			background: @plighter2;
+			border-color: @primarycolor;		
+			color: @pdarker2;
+		}
+
+
+		
+		&.nice {
+			text-shadow: 1px 1px 0 @plighter2;			
+			border-color: @primarycolor;
+			
+			#bundle > .gradient(@plighter2, @pdarker1);
+			#bundle > .boxshadow(lighten(@plighter2, 8%));
+						
+			&:hover {
+				text-shadow: none;				
+				#bundle > .boxshadow(@pdarker2, 2px, 1px);
+				#bundle > .gradient(@primarycolor, @pdarker2);
+			}
+			
+			&:active, &.active {
+				text-shadow: none;
+				border-color: @primarycolor;
+				
+				#bundle > .boxshadow(darken(@pdarker2, 10%), 2px, 1px);
+				#bundle > .gradient(@pdarker1, @pdarker2);
+			}
+			
+			&.disabled, &.disabled:hover {
+				text-shadow: 1px 1px 0 @plighter2;	
+				#bundle > .boxshadow(lighten(@plighter2, 8%));			
+				#bundle > .gradient(@plighter2, @pdarker1);
+			}
+				
+		}
+	}
+}
+
+
+button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
+button[type] { padding:4px 10px 4px 7px; line-height:17px; }
+*:first-child+html .container button[type] { padding:4px 10px 3px 7px; }
+
