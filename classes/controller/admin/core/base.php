@@ -99,9 +99,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 			$menuitems = array();
 			foreach ($this->menu as $url => $menuitem) {
-				$required_role = (isset($menuitem['secure_actions']['index'])) ? $menuitem['secure_actions']['index'] : $menuitem['secure_actions']['default'];
-				if (in_array($required_role, $roles)) {
-					$menuitems[$menuitem['name']] = $url;
+			
+				if (Arr::get($menuitem, 'hidden') !== true)
+				{
+					$required_role = (isset($menuitem['secure_actions']['index'])) ? $menuitem['secure_actions']['index'] : $menuitem['secure_actions']['default'];
+					if (in_array($required_role, $roles)) {
+						$menuitems[$menuitem['name']] = $url;
+					}
 				}
 			}
 
