@@ -57,17 +57,17 @@
 	<div id="wrap">
 		<header>
 			<div class="row">
-				<div class="six columns">
+				<div class="twelve columns">
 					<h1 class="fancy"><?php echo $title; ?></h1>
 				</div>
-				<div class="last six columns">
+				<div class="last twelve columns">
 					<?php echo $menu; ?>
 				</div>
 			</div>
 		</header>
 		<div class="container">
 			<div class="row">
-				<div class="twelve columns">			
+				<div class="twenty columns prefix-2">			
 					<?php				
 					$msg = Message::instance()->get();
 				

@@ -1,4 +1,4 @@
-<div class="four columns last">
+<div class="eight columns last">
 		<h2><?php echo ucfirst(__('updateinfo')); ?></h2>
 		<div><h5>Welcome</h5>
 			Welcome and have a nice day!

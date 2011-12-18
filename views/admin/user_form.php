@@ -1,4 +1,4 @@
-<div class="six columns prefix-three last">
+<div class="twelve columns prefix-three last">
 	<form method="post" class="validate" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'users', 'action' => 'save', 'id' =>  $user->id)));?>">
 		<label for="username"><?php echo ucfirst(__('username'));?> <span><?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?></span></label>
 		<input type="text" name="username" id="username" class="required" minlength="5" maxlength="8" value="<?php echo $user->username;?>"><br>

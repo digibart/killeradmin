@@ -1,4 +1,4 @@
-<div class="four columns">
+<div class="eight columns">
 		<h2><?php echo ucfirst(__('systeminfo')); ?></h2>
 		<strong>Kohana versie</strong>: <?php echo Kohana::CODENAME; ?> (<?php echo Kohana::VERSION;?>)<br />
 		<strong>PHP versie</strong>: <?php echo phpversion(); ?><br />
