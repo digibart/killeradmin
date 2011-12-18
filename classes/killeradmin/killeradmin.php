@@ -62,7 +62,8 @@ class Killeradmin_Killeradmin
 	 */
 	public static function filterField($column, $filtervals)
 	{
-		return Form::input("filter[$column]", Arr::get($filtervals, $column), array('style' => 'width:100%'));
+		$filtervals = array_merge(array('placeholder' => __($column)), $filtervals);
+		return Form::input("filter[$column]", Arr::get($filtervals, $column), $filtervals);
 	}
 
 	/**
