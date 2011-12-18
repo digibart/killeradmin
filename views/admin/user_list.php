@@ -1,37 +1,35 @@
 <a name="list"></a>
-<form method="get">
-	<table>
-		<tr>
-			<td><?php echo Killeradmin::filterField("username", $filter); ?></td>
-			<td><?php echo Killeradmin::filterField("email", $filter); ?></td>
-			<td colspan="3"><?php echo Killeradmin::filterButton(); ?></td>
-		</tr>
-		<tr>
-			<th class="span-5"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?></th>
-			<th class="span-3"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></th>
-			<th><?php echo ucfirst(__('rols')); ?>&nbsp;</th>
-			<th><?php echo ucfirst(__('last login')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('last_login');?></th>
-			<th>&nbsp;</th>
-		</tr>
-		<?php $i = 0; foreach ($objects as $object) :?>
-		<tr id="<?php echo $i++; ?>">
-			<td><?php echo $object->username; ?></td>	
-			<td><?php echo $object->email; ?></td>	
-			<td><?php foreach ($object->roles->find_all() as $role) :?>
-				<?php echo $role->name; ?>			
-			<?php endforeach; ?></td>
-			<td><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></td>	
-			<td nowrap="nowrap">
-				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('edit', __('edit') )); ?> 
-				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('delete', __('delete')), array('class' => 'delete')) : ""; ?>
-			</td>
-		</tr>
-		<?php endforeach; ?>
-	</table>
+<form method="get" class="table">
+	<div class="filter row">
+		<div class="three columns"><?php echo Killeradmin::filterField("username", $filter); ?></div>
+		<div class="three columns"><?php echo Killeradmin::filterField("email", $filter); ?></div>
+		<div class="five columns last"><?php echo Killeradmin::filterButton(); ?></div>
+	</div>
+	<div class="header row">
+		<div class="three columns"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?></div>
+		<div class="three columns"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></div>
+		<div class="two columns"><?php echo ucfirst(__('rols')); ?>&nbsp;</div>
+		<div class="three columns last"><?php echo ucfirst(__('last login')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('last_login');?></div>
+	</div>
+	<?php $i = 0; foreach ($objects as $object) :?>
+		<div class="row <?php echo Text::alternate('odd', 'even');?>" id="<?php echo $i++; ?>">
+			<div class="three columns"><?php echo $object->username; ?></div>	
+			<div class="three columns"><?php echo $object->email; ?></div>	
+			<div class="two columns">
+				<?php foreach ($object->roles->find_all() as $role) :?>
+					<?php echo $role->name; ?>
+				<?php endforeach; ?>
+			</div>
+			<div class="three columns nowrap"><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></div>	
+			<div class="one tools columns last">
+				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('pencil', __('edit') )); ?> 
+				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('bin', __('delete')), array('class' => 'delete')) : ""; ?>
+			</div>
+		</div>
+	<?php endforeach; ?>
 </form>
-<div class="span-8">
-	<?php echo Killeradmin::newButton('user'); ?>
-</div>
+
+<?php echo Killeradmin::newButton('user'); ?>
 
 <div class="span-26 last pagination">
 	<?php echo $pagination;?>
