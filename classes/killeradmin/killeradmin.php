@@ -97,9 +97,9 @@ class Killeradmin_Killeradmin
 	{
 		$request = Request::current();
 		$url = ($url) ? $url : $request->route()->uri(array('controller' => $request->controller(), 'action' => 'add'));
-		$title = ($title) ? $title : self::spriteImg('add') . __('add :object', array(':object' => __($name)));
+		$title = ($title) ? $title : self::spriteImg('plus') . __('add :object', array(':object' => __($name)));
 
-		return Html::anchor($url, $title, array('class' => 'button positive'));
+		return Html::anchor($url, $title, array('class' => 'nice primary button'));
 
 	}
 
