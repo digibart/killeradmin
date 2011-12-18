@@ -60,10 +60,10 @@ return array(
 	
 	'clear filter'			=> 'filter wissen',
 	
-	'kohana_env_1' 			=> 'Production',
-	'kohana_env_2' 			=> 'Staging',
-	'kohana_env_3' 			=> 'Testing',
-	'kohana_env_4' 			=> 'Development',
+	'kohana_env_10' 			=> 'Production',
+	'kohana_env_20' 			=> 'Staging',
+	'kohana_env_30' 			=> 'Testing',
+	'kohana_env_40' 			=> 'Development',
 
 	'new password for :company_name' => 'Nieuw wachtwoord voor :company_name',
 		
