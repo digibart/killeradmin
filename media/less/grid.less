@@ -4,7 +4,7 @@
 div#container, div.container { 
 	position: relative; 
 	margin: 0 auto; 
-	padding: 0 20px; 
+	padding: 20px; 
 }
 
 
@@ -16,7 +16,62 @@ div#container, div.container {
 	overflow: hidden;
 }
 
-.column, 
+.table {
+	margin: 2em 2px;
+	border: solid 1px #ddd;
+	
+	.row {
+		padding: 0.5em 0;
+		
+		.columns {
+			&.tools {
+				cursor: default;
+				white-space: nowrap;
+				img {
+					margin: 0 0.2em;
+				}
+			}
+			&:first-child {
+				margin-left: 1%;
+				margin-right: 2.8%;
+			}
+		}
+		
+		&.even, &:nth-child(even) {
+			background: #eee;
+		}
+		&.odd, &:nth-child(odd) {
+			background: #F9F9F9;
+		}
+		&:hover {
+			background: @lighter1;
+		}
+		
+		&.filter{
+			input {
+				width: 85%;
+				margin-bottom: 0;
+			}
+			&:hover {
+				background: #F9F9F9;
+			}
+		}
+		
+		&.header {
+			background: @darker1;
+		
+			font-weight: bold;
+			text-shadow: 1px 1px 0 @darker2;
+			color: #fff;
+			padding: 1em 0;
+			
+			border-bottom: solid 1px @darker1;
+			
+		}
+		
+	}
+}
+ 
 .columns {
 	float: left; 
 	display: inline; 
@@ -25,6 +80,9 @@ div#container, div.container {
 	
 	&.last {
 		margin-right: 0;
+	}
+	&.nowrap {
+		white-space: nowrap;
 	}
 	img {
 		max-width: 100%;
