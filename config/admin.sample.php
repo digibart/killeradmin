@@ -23,6 +23,7 @@ return array(
 		),
 		'admin/settings' => array(
 			'name' => ucfirst(__('settings')),
+			'hidden' => true, //don't show in menu
 			'secure_actions' => array(
 				'default' => 'login'
 			),
