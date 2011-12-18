@@ -116,7 +116,7 @@ class Killeradmin_KillerFile
 				}
 
 				//generate a uniq id
-				$id = str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
+				$id = time() . str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
 
 				//save cache so the browser can link to it
 				Cache::instance('KillerFile')->set($id, array('data' => $content, 'time' => time()), 5);
