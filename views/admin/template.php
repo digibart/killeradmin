@@ -24,15 +24,15 @@
 
      
     echo KillerFile::instance('js')->add_files(array(
-	    	$media->uri(array('file' => '/js/jquery-1.6.1.min.js')),
-	    	$media->uri(array('file' => '/js/jquery.validate.min.js')),
-	    	$media->uri(array('file' => '/js/jquery.confirm-1.3.js')),
-	    	$media->uri(array('file' => '/js/jquery.tooltip.min.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery-1.6.1.min.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery.validate.min.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery.confirm-1.3.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery.tooltip.min.js')),
 	    	$media->uri(array('file' => '/js/localization/messages_nl.js')),
 	    	$media->uri(array('file' => '/js/localization/methods_nl.js')),
-	    	$media->uri(array('file' => '/js/date.js',)),
-	    	$media->uri(array('file' => '/js/jquery.datePicker.js')),
-	    	$media->uri(array('file' => '/js/jquery.tooltip.min.js')),
+	    	$media->uri(array('file' => '/js/libs/date.js',)),
+	    	$media->uri(array('file' => '/js/libs/jquery.datePicker.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery.tooltip.min.js')),
 	    	$media->uri(array('file' => '/js/functions.js')),  	
     	))->get_tag();
 
