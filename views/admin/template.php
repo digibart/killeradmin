@@ -8,15 +8,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo Kohana::$config->load('admin.company_name'); ?>  &#9733; <?php echo $title; ?></title>
+    <title><?php echo Kohana::$config->load('admin.company_name'); ?> | <?php echo $title; ?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<?php
 	
 	$media = Route::get('admin/media');
     
     echo KillerFile::instance('css','screen')->add_files(array(
-	    	$media->uri(array('file' => '/css/bakplaat.nosprite.css')),
-    	))->get_tag(array('media' => 'screen'));
+	    	$media->uri(array('file' => '/css/reset.css')),
+	    	$media->uri(array('file' => '/css/killeradmin.css')),
+    	))->get_tag(array('media' => 'screen,handheld'));
     	
     echo KillerFile::instance('css','print')->add_files(array(
 	    	$media->uri(array('file' => '/css/print.css')),
@@ -84,8 +85,8 @@
 	</div>
 	<footer class="container">
 		<div class="row footer">
-			<div class="twelve columns last">
-		    	Designed, Developed and Created by <?php echo html::anchor('http://www.digibart.nl', 'Digibart'); ?>
+			<div class="twentyfour columns last">
+		    	Designed, Developed and Created by <?php echo html::anchor('http://pixelbakkerij.nl', 'Pixel Bakkerij'); ?>
 			</div>
 		</div>
 	</footer>		

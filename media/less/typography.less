@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-	color: @darker2;
+	color: @darker1;
 	font-size:1.7em;
 	margin: 1em 0 0.85em;
 	padding-bottom: 0.2em;
@@ -26,7 +26,7 @@ h2 {
 }
 
 h3 {
-	color: @darker2;
+	color: @darker1;
 	font-size:1.3em;
 	margin: 1em 0 0.75em 0;	
 }
@@ -46,5 +46,23 @@ h6 {
 }
 
 .fancy {
-	font-family: "Warnock Pro", "Goudy Old Style","Palatino","Book Antiqua", Georgia, serif;
+	font-family: Georgia, serif;
+	font-style: italic;
 }
+
+a {
+	color: @darker1;
+	text-decoration: none;
+		
+	&:hover {
+		color: @basecolor;
+		text-decoration: underline;
+
+	}
+}
+
+small {
+	font-size: 0.8em;
+	color: #999;
+}
+

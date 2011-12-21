@@ -1,20 +1,20 @@
 <a name="list"></a>
 <form method="get" class="table">
 	<div class="filter row">
-		<div class="four columns"><?php echo Killeradmin::filterField("username", $filter); ?></div>
-		<div class="seven columns"><?php echo Killeradmin::filterField("email", $filter); ?></div>
+		<div class="five columns"><?php echo Killeradmin::filterField("username", $filter); ?></div>
+		<div class="six columns"><?php echo Killeradmin::filterField("email", $filter); ?></div>
 		<div class="twelve columns last"><?php echo Killeradmin::filterButton(); ?></div>
 	</div>
 	<div class="header row">
-		<div class="four columns"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?></div>
-		<div class="seven columns"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></div>
+		<div class="five columns"><?php echo ucfirst(__('username')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('username'); ?></div>
+		<div class="six columns"><?php echo ucfirst(__('email')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('email'); ?></div>
 		<div class="four columns"><?php echo ucfirst(__('rols')); ?>&nbsp;</div>
 		<div class="six columns last"><?php echo ucfirst(__('last login')); ?>&nbsp;<?php echo Killeradmin::sortAnchor('last_login');?></div>
 	</div>
 	<?php $i = 0; foreach ($objects as $object) :?>
 		<div class="row <?php echo Text::alternate('odd', 'even');?>" id="<?php echo $i++; ?>">
-			<div class="four columns"><?php echo $object->username; ?></div>	
-			<div class="seven columns"><?php echo $object->email; ?></div>	
+			<div class="five columns"><?php echo $object->username; ?></div>	
+			<div class="six columns"><?php echo $object->email; ?></div>	
 			<div class="four columns">
 				<?php foreach ($object->roles->find_all() as $role) :?>
 					<?php echo $role->name; ?>

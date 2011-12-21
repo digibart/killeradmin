@@ -1,10 +1,6 @@
-/* @basecolor: #00A6FC; //foundation blauw */
-/* @basecolor: #3D70B0; //maximedia blauw */
-/* @basecolor: #468ACC; //light blauw */
-/* @basecolor: #f00; */
-/* @basecolor: #F0AD1D; */
-/* @basecolor: #B3D929; // groen  */
-@basecolor: #33A9D7; // ik blauw
+/**************************************/
+/* colors (bundle.less)
+/**************************************/
 
 
 @lighter1: lighten(spin(@basecolor, 10), 20%);
@@ -12,8 +8,7 @@
 @darker1: darken(spin(@basecolor, -5), 10%);
 @darker2: darken(spin(@basecolor, -10), 20%);
 
-@borderradius: 5px;
-@footerheight: 30px;
+
 
 #bundle {
 	.animate() {
@@ -22,16 +17,22 @@
 	     -o-transition: all 100ms ease-in-out;
 	}
 	
-	.borderradius() {
-		-webkit-border-radius: @borderradius;
-		-moz-border-radius:@borderradius;
-		border-radius: @borderradius;
+	.borderradius(@multiply: 1) {
+		-webkit-border-radius: @borderradius * @multiply;
+		-moz-border-radius:@borderradius * @multiply;
+		border-radius: @borderradius * @multiply;
 	}
 
 	.boxshadow(@color, @distance : 1px, @size: 0, @pos: inset) {
 		-webkit-box-shadow: @distance @distance @size @color @pos;
 		-moz-box-shadow: @distance @distance @size @color @pos;
 		box-shadow: @distance @distance @size @color @pos;
+	}
+	
+	.dropshadow(@color, @distance : 1px, @size: 0) {
+		-webkit-box-shadow: @distance @distance @size @color;
+		-moz-box-shadow: @distance @distance @size @color;
+		box-shadow: @distance @distance @size @color;
 	}
 
 	.gradient (@from, @to) {
@@ -45,14 +46,3 @@
 		filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr="@from~", endColorstr="@to~",GradientType=0 )";
 	}
 }
-
-/* colors */
-
-div.basecolor {border-bottom: solid 1px @basecolor;}
-
-@import 'reset.less';
-@import 'elements.less';
-@import 'typography.less';
-@import 'grid.less';
-@import 'buttons.less';
-@import 'forms.less';

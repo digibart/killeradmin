@@ -44,7 +44,13 @@ div#container, div.container {
 			background: #F9F9F9;
 		}
 		&:hover {
-			background: @lighter1;
+			background: @lighter2;
+			color: #000;
+			
+			#bundle > .animate;
+		}
+		&.odd, &.even {
+			#bundle > .animate;
 		}
 		
 		&.filter{
@@ -66,6 +72,15 @@ div#container, div.container {
 			padding: 1em 0;
 			
 			border-bottom: solid 1px @darker1;
+			
+			.arrow {
+				opacity: 0.3;
+				
+				#bundle > .animate;
+			}
+			a.active .arrow, .arrow:hover {
+				opacity: 1;
+			}
 			
 		}
 		

@@ -1,6 +1,6 @@
 @regularcolor: #E9E9E9;
 @primarycolor: @basecolor;
-@primarytextcolor: #333;//lighten(@basecolor, 50%);
+@primarytextcolor: #fff; //lighten(@basecolor, 50%);
 
 @rlighter1: lighten(spin(@regularcolor, 5), 5%);
 @rlighter2: lighten(spin(@regularcolor, 10), 10%);
@@ -128,11 +128,11 @@ a.button, button, input[type='submit'], input[type='reset'] {
 
 		
 		&.nice {
-			text-shadow: 1px 1px 0 @plighter2;			
+			text-shadow: 1px 1px 0 @pdarker2;			
 			border-color: @primarycolor;
 			
-			#bundle > .gradient(@plighter2, @pdarker1);
-			#bundle > .boxshadow(lighten(@plighter2, 8%));
+			#bundle > .gradient(@primarycolor, @pdarker2);
+			#bundle > .boxshadow(lighten(@plighter1, 3%));
 						
 			&:hover {
 				text-shadow: none;				
@@ -162,4 +162,28 @@ a.button, button, input[type='submit'], input[type='reset'] {
 button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
 button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 *:first-child+html .container button[type] { padding:4px 10px 3px 7px; }
+
+/**************************************/
+/* navigation bar
+/**************************************/
+
+nav {
+	.button, button {
+		background: #ccc;
+		
+		text-shadow: 1px 1px 0 #ddd;
+		
+		-webkit-border-radius: @borderradius @borderradius 0 0;
+		-moz-border-radius: @borderradius @borderradius 0 0;
+		border-radius: @borderradius @borderradius 0 0;
+		
+		&.primary, &.primary:hover {
+			background: #fff;
+			border-color: #fff;
+			
+			color: #555;
+		}
+	}
+	
+}
 

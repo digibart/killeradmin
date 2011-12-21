@@ -2,17 +2,18 @@
 /* elements
 /**************************************/
 
-@canvascolor: #ccc;
+@canvascolor: #222;
+@footerheight: 30px;
 
 html, body {
 	height: 100%;
 }
 
-/* sticky footerand header stuff */
+/* sticky footer and header stuff */
 #wrap {
 	min-height: 100%;
 	.container:last-child {
-		padding-bottom: @footerheight;
+		padding-bottom: @footerheight * 2;
 	}
 }
 
@@ -24,16 +25,49 @@ header {
 	padding: 0 20px;
 	
 	background: @canvascolor;
-	box-shadow: 0 -5px 5px darken(@canvascolor, 7%) inset;
-	border-bottom: solid 1px darken(@canvascolor, 20%);
+	-webkit-box-shadow: 0 -5px 5px darken(@canvascolor, 10%) inset;
+	-moz-box-shadow:0 -5px 5px darken(@canvascolor, 10%) inset;
+	box-shadow: 0 -5px 5px darken(@canvascolor, 10%) inset;
+	
+	
+	border-bottom: solid 1px darken(@canvascolor, 13%);
 	
 	color: #fff;
 	
 	h1, h2, h3, h4, h5, h6 {
 		border-bottom: none;
-		text-shadow:  -1px -1px 0px lighten(@canvascolor, 5%);
+		text-shadow: 1px 1px 2px @basecolor;
 		font-size: 2.2em;
-		color: darken(@canvascolor, 45%);
+		color: #fff;
+	}
+	
+	nav {
+		position: relative;
+		height: 75px;
+		
+		top: 48px;
+		
+		.button {
+			border-color: darken(@canvascolor, 13%);
+		}		
+	}
+	.tools {
+		position: relative;
+		top: -65px;
+
+		text-align: right;
+		display: block;
+		
+		.background {
+			display: inline;
+			padding: 20px 10px 5px 10px;
+			
+			background: #fff;
+			border: solid 1px #000;
+			
+			#bundle > .borderradius;
+			#bundle > .dropshadow(#000, 5px, 10px);
+		}
 	}
 }
 
@@ -49,11 +83,11 @@ footer {
 	text-align: center;
 	line-height: @footerheight;
 	
-	-webkit-box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
-	-moz-box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
-	box-shadow: 0 10px 10px darken(@canvascolor, 7%) inset;
+	-webkit-box-shadow: 0 10px 10px darken(@canvascolor, 10%) inset;
+	-moz-box-shadow: 0 10px 10px darken(@canvascolor, 10%) inset;
+	box-shadow: 0 10px 10px darken(@canvascolor, 10%) inset;
 	
-	border-top: solid 1px darken(@canvascolor, 20%);
+	border-top: solid 1px darken(@canvascolor, 13%);
 }
 .spacer {
 	clear: both;
@@ -64,18 +98,57 @@ p {
 }
 
 hr {
-	height: 1px;
-	width: 75%;
+	height: 20px;
+	width: 100%;
 	
-/* 	background: @basecolor; */
+	background: none;
 	border: none;
+	border-bottom: dashed 1px @basecolor;
 }
 
 ul {
 	padding-left: 20px;
 	
 	li {
-		list-style-image: url(../images/bakplaat/bullet-star.png);
+		list-style-image: url(../images/killeradmin/bullet-star.png);
+	}
+}
+
+/**************************************/
+/* tooltip
+/**************************************/
+
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	background-color: #eee;
+	border: solid 1px darken(#eee, 10%);
+	padding: 0.3em 0.8em;
+
+	#bundle > .dropshadow(rgba(0,0,0,0.1), 3px, 6px);
+	
+	text-shadow: 1px 1px 0 #ffffff;
+	
+	h3 { 
+		margin: 0;
+		color: #555555;
+		font-size: 1em;	
+	}
+	
+	&.confirm {
+		span {
+			display: block;
+		}
+	}
+}
+
+/**************************************/
+/* pagination
+/**************************************/
+
+.pagination {
+	a {
+		padding: 0 0.1em;
 	}
 }
 
@@ -89,24 +162,46 @@ ul {
 img.icon {
 	width: 16px;
 	height: 16px;
-	background-repeat: no-repeat;
 	
+	&.arrow.up {
+		background:url(../images/killeradmin/arrow-up.png);
+	}
+	&.arrow.down {
+		background:url(../images/killeradmin/arrow-down.png);
+	}
+	&.bin {
+		background:url(../images/killeradmin/bin.png);
+	}
 	&.bullet-star {
-		background:url(../images/bakplaat/bullet-star.png);
+		background:url(../images/killeradmin/bullet-star.png);
 	}
 	&.cog {
-		background:url(../images/bakplaat/cog.png);
+		background:url(../images/killeradmin/cog.png);
+	}
+	&.funnel {
+		background:url(../images/killeradmin/funnel.png);
+	}
+	&.info {
+		background:url(../images/killeradmin/info.png);
 	}
 	&.message {
-		background:url(../images/bakplaat/message.png);
+		background:url(../images/killeradmin/message.png);
+	}
+	&.open-door {
+		background:url(../images/killeradmin/open-door.png);
 	}
 	&.pencil {
-		background:url(../images/bakplaat/pencil.png);
+		background:url(../images/killeradmin/pencil.png);
+	}
+	&.plus {
+		background:url(../images/killeradmin/plus.png);
 	}
 	&.save {
-		background:url(../images/bakplaat/save.png);
+		background:url(../images/killeradmin/save.png);
 	}
 	&.star {
-		background:url(../images/bakplaat/star.png);
+		background:url(../images/killeradmin/star.png);
 	}
+	
+	background-repeat: no-repeat;
 }

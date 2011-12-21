@@ -7,6 +7,19 @@ form {
 		padding-bottom: 0.5em;
 		margin-bottom: 2em;	
 	}
+	
+	small {
+		display: block;
+		margin: -1.45em 0 1.5em 50%;
+		padding-left: 1em;
+		width: 40%;
+		color: #555;
+	}
+	span.info {
+		display: block;
+		margin: 0 0 1.5em 50%;
+		padding-left: 1em;
+	}
 }
 
 fieldset {
@@ -35,27 +48,28 @@ label {
 	float:left;
 	width: 50%;
 	
+	min-height: 3em;
+	
 	padding-right: 1em;
 	
 	&.error {
-		padding-left: 1em;
-		
-		margin-bottom: 1.5em;
-		
+		padding: 0 1em;		
+		margin: 0 0 1.5em 53%;
+		float: none;		
 		width: 36%;
 		
 		text-align: left;
 		font-weight: normal;
-		line-height: 1.5em;
+		min-height: 1.5em;
 		
 		color: #ffffff;
 		
 		background: #ff0000;
 	}
 
-	span {
+	span, small {
 		display:block;
-		margin-bottom: 1em;
+		margin: 0 0 1em -1em;
 		
 		color: @gray;
 		font-size: 0.85em;
@@ -67,7 +81,7 @@ label {
 
 textarea, input[type='text'], input[type='password'],select { 
 	border: 1px solid @gray;
-	background:url(../images/bakplaat/input-bg.png) top left no-repeat;
+	background:url(../images/killeradmin/input-bg.png) top left no-repeat;
 	
 	padding: 0.6em 0.3em 0.3em 0.6em;
 	
@@ -77,16 +91,15 @@ textarea, input[type='text'], input[type='password'],select {
 		border-color: darken(@gray, 20%);
 	}
 	&:focus {
-		border-color: red; 
-		outline: 2px solid @basecolor; 
+		border-color: spin(@basecolor, 180); 
+		outline: 2px solid spin(@basecolor, 180); 
 	}
 	
 }
 
-input[type='text'],input[type='radio'],input[type='checkbox'],input[type='password'], textarea, select {
+input[type='text'],input[type='password'], textarea, select {
 	margin-bottom: 1.5em;
 	width: 40%;
-	float: left;
 	
 	&.error {
 		border: solid 1px #ff0000;
@@ -94,6 +107,14 @@ input[type='text'],input[type='radio'],input[type='checkbox'],input[type='passwo
 	}
 	&.error:focus {
 		outline: 2px solid #ff0000; 
+	}
+}
+
+input[type='checkbox'] {
+	clear: right;
+	margin-right: 1em;
+	&.last {
+		margin-bottom: 1.5em;	
 	}
 }
 

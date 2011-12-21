@@ -30,7 +30,7 @@ class Killeradmin_Killeradmin
 		foreach ($orders as $order)
 		{
 			$class = "";
-			$anchor_string = ($order == 'asc') ? "&and;" : "&or;";
+			$anchor_string = ($order == 'asc') ? self::SpriteImg('arrow up') : self::SpriteImg('arrow down') ;
 
 			if ($reverse)
 			{
@@ -78,7 +78,7 @@ class Killeradmin_Killeradmin
 	{
 		$title = ($title) ? $title : __('clear filter');
 		$button = Form::button('submitfilter', self::spriteImg('funnel') . "&nbsp;" . __('filter') , array('type' => 'submit'));
-		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , __('clear filter')) : "";
+		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , str_replace(' ', '&nbsp;',__('clear filter'))) : "";
 
 		return $button . $link;
 	}

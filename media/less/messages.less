@@ -1,0 +1,66 @@
+/**************************************/
+/* status messages
+/**************************************/
+
+@error: #ff0000;
+@notice: #EFDA52;
+@success: #A2CF00;
+
+p.error, p.notice, p.success {
+	#bundle > .borderradius;
+	
+	
+	margin-bottom:1.6em;
+	padding: 0.8em;
+	
+	a {
+		background: none;
+		margin:0;
+		padding:0;
+		
+		font-weight: bold;
+	}
+
+} 
+
+p.error {
+	background: @error;
+	border: 1px solid darken(@error, 7%);
+	color: #ffffff;
+	
+	margin: 10px;
+	
+	#bundle > .dropshadow(lighten(@error, 30%), 3px, 6px);
+	
+	a {
+		color: darken(@error, 50%);
+	}
+}
+
+p.notice {
+	background: @notice;
+	border: 1px solid darken(@notice, 2%);
+	color: darken(@notice, 40%);
+	
+	margin: 10px;
+	
+	#bundle > .dropshadow(lighten(@notice, 10%), 3px, 6px);
+	
+	a {
+		color: darken(@notice, 50%);
+	}
+}
+
+p.success {
+	background: @success;
+	border: 1px solid darken(@success, 4%);
+	color: darken(@success, 30%);
+	
+	margin: 10px;
+	
+	#bundle > .dropshadow(desaturate(lighten(@success, 20%), 50%), 3px, 6px);
+	
+	a {
+		color: darken(@success, 50%);
+	}
+}

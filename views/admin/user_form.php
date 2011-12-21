@@ -1,4 +1,4 @@
-<div class="twelve columns prefix-three last">
+<div class="last twelve columns prefix-6">
 	<form method="post" class="validate" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'users', 'action' => 'save', 'id' =>  $user->id)));?>">
 		<label for="username"><?php echo ucfirst(__('username'));?> <span><?php echo __(':min-:max characters', array(':min' => 5, ':max' => 8)); ?></span></label>
 		<input type="text" name="username" id="username" class="required" minlength="5" maxlength="8" value="<?php echo $user->username;?>"><br>
@@ -25,9 +25,8 @@
         <input type="password" name="password_confirm" value="" minlength="8" maxlength="100">
 		
 	   	<div class="button bar">
-	       		<?php echo html::anchor($referrer, __('go back'), array('class' => 'button')); ?>
-	       		<button type="submit" class="button primary"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
-	   		
+	       		<?php echo html::anchor($referrer, __('go back'), array('class' => 'nice button')); ?>
+	       		<button type="submit" class="nice primary button"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>	   		
 	   	</div>
 	</form>
 </div>
