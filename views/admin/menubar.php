@@ -1,4 +1,4 @@
-<nav>
+<nav class="tabs">
 <?php
 
 foreach ($items as $title => $url) {

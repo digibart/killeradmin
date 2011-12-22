@@ -14,8 +14,8 @@
         <input type="password" name="password_confirm" minlength="5" maxlength="100" value="">
 		
 		<div class="button bar">
-       		<?php echo html::anchor($referrer, __('go back'), array('class' => 'button')); ?>
-			<button type="submit" class="button primary"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
+       		<?php echo html::anchor($referrer, __('go back'), array('class' => 'nice button')); ?>
+			<button type="submit" class="nice primary button"><?php echo KillerAdmin::spriteImg('save');?><?php echo __('save'); ?></button>
 		</div>
 	</form>
 </div>

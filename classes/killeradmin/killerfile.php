@@ -116,7 +116,7 @@ class Killeradmin_KillerFile
 				}
 
 				//generate a uniq id
-				$id = time() . str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
+				$id = str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
 
 				//save cache so the browser can link to it
 				Cache::instance('KillerFile')->set($id, array('data' => $content, 'time' => time()), 5);
@@ -124,11 +124,11 @@ class Killeradmin_KillerFile
 				// generate the html tags
 				if ($this->_type == "js")
 				{
-					$html .= html::script(Route::get('admin/mini')->uri(array('dir' => 'js', 'file' => $id)), $attr);
+					$html .= html::script(Route::get('admin/mini')->uri(array('dir' => 'js', 'file' => $id . "?" . time())), $attr);
 				}
 				elseif ($this->_type == "css")
 				{
-					$html .= html::style(Route::get('admin/mini')->uri(array('dir' => 'css', 'file' => $id)), $attr);
+					$html .= html::style(Route::get('admin/mini')->uri(array('dir' => 'css', 'file' => $id . "?" . time())), $attr);
 				}
 			}
 			return $html;
@@ -245,7 +245,7 @@ class Killeradmin_KillerFile
 			$contents = str_ireplace("%" . $key . "%", Route::url($key), $contents);
 		}
 
-		return $contents;
+		return  "/*" . date("Y-m-d H:i:s") . "*/"  . $contents;
 	}
 
 	protected function _compile_lessc($file)

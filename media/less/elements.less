@@ -12,7 +12,7 @@ html, body {
 /* sticky footer and header stuff */
 #wrap {
 	min-height: 100%;
-	.container:last-child {
+	.container {
 		padding-bottom: @footerheight * 2;
 	}
 }
@@ -162,7 +162,20 @@ ul {
 img.icon {
 	width: 16px;
 	height: 16px;
+	background-repeat: no-repeat;
 	
+	&.soft.arrow.up {
+		background:url(../images/killeradmin/arrow-up-soft.png);
+		&:hover {
+			background:url(../images/killeradmin/arrow-up.png);
+		}
+	}
+	&.soft.arrow.down {
+		background:url(../images/killeradmin/arrow-down-soft.png);
+		&:hover {
+			background:url(../images/killeradmin/arrow-down.png);
+		}
+	}
 	&.arrow.up {
 		background:url(../images/killeradmin/arrow-up.png);
 	}
@@ -202,6 +215,4 @@ img.icon {
 	&.star {
 		background:url(../images/killeradmin/star.png);
 	}
-	
-	background-repeat: no-repeat;
 }

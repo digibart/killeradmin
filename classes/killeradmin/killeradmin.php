@@ -30,18 +30,24 @@ class Killeradmin_Killeradmin
 		foreach ($orders as $order)
 		{
 			$class = "";
-			$anchor_string = ($order == 'asc') ? self::SpriteImg('arrow up') : self::SpriteImg('arrow down') ;
-
+			
 			if ($reverse)
 			{
 				$order = ($order == 'asc') ? 'desc' : 'asc';
 			}
 
+
 			if (Arr::get($_GET, 'sort') == $col && Arr::get($_GET, 'order') == $order)
 			{
-				$class = "active";
+				// current
+				$anchor_string = ($order == 'asc') ? self::SpriteImg('arrow up') : self::SpriteImg('arrow down') ;
 			}
-
+			else
+			{
+				// all other
+				$anchor_string = ($order == 'asc') ? self::SpriteImg('soft arrow up') : self::SpriteImg('soft arrow down') ;
+			}
+			
 			$query = URL::query(array('sort' => $col, 'order' => $order));
 
 

@@ -13,7 +13,7 @@ html, body {
 #wrap {
   min-height: 100%;
 }
-#wrap .container:last-child {
+#wrap .container {
   padding-bottom: 60px;
 }
 header {
@@ -133,44 +133,56 @@ img.icon {
   height: 16px;
   background-repeat: no-repeat;
 }
+img.icon.soft.arrow.up {
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -312px 0;
+}
+img.icon.soft.arrow.up:hover {
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -52px 0;
+}
+img.icon.soft.arrow.down {
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -208px 0;
+}
+img.icon.soft.arrow.down:hover {
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -338px 0;
+}
 img.icon.arrow.up {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -130px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -52px 0;
 }
 img.icon.arrow.down {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -208px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -338px 0;
 }
 img.icon.bin {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -26px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -182px 0;
 }
 img.icon.bullet-star {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -156px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -156px 0;
 }
 img.icon.cog {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat 0 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -130px 0;
 }
 img.icon.funnel {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -312px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat 0 0;
 }
 img.icon.info {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -260px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -286px 0;
 }
 img.icon.message {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -182px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -104px 0;
 }
 img.icon.open-door {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -234px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -234px 0;
 }
 img.icon.pencil {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -286px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -260px 0;
 }
 img.icon.plus {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -52px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -26px 0;
 }
 img.icon.save {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -78px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -364px 0;
 }
 img.icon.star {
-  background: url('../images/killeradmin.png?cache=234143') no-repeat -104px 0;
+  background: url('../images/killeradmin.png?cache=225440') no-repeat -78px 0;
 }
 /**************************************/
 /* typography
@@ -290,15 +302,6 @@ div#container, div.container {
   color: #fff;
   padding: 1em 0;
   border-bottom: solid 1px #cc1400;
-}
-.table .row.header .arrow {
-  opacity: 0.3;
-  -webkit-transition: all 100ms ease-in-out;
-  -moz-transition: all 100ms ease-in-out;
-  -o-transition: all 100ms ease-in-out;
-}
-.table .row.header a.active .arrow, .table .row.header .arrow:hover {
-  opacity: 1;
 }
 .columns {
   float: left;
@@ -507,6 +510,12 @@ div#container, div.container {
 /**************************************/
 /* buttons
 /**************************************/
+.columns a.button img,
+.columns button img,
+.columns input[type='submit'] img,
+.columns input[type='reset'] img {
+  max-width: 16px;
+}
 a.button,
 button,
 input[type='submit'],
@@ -524,6 +533,7 @@ input[type='reset'] {
   font-weight: bold;
   color: #505050;
   cursor: pointer;
+  white-space: nowrap;
 }
 a.button img,
 button img,
@@ -531,6 +541,7 @@ input[type='submit'] img,
 input[type='reset'] img {
   width: 16px;
   height: 16px;
+  max-width: 16px;
   padding: 0 0.4em 0 0;
   vertical-align: top;
 }
@@ -552,9 +563,14 @@ input[type='reset']:active,
 a.button.active,
 button.active,
 input[type='submit'].active,
-input[type='reset'].active {
+input[type='reset'].active,
+a.button:focus,
+button:focus,
+input[type='submit']:focus,
+input[type='reset']:focus {
   background: #d0d0d0;
   border-color: #b6b6b6;
+  outline: none;
 }
 a.button.disabled,
 button.disabled,
@@ -603,6 +619,14 @@ input[type='reset'].nice.active:hover {
   -webkit-box-shadow: 2px 2px 1px #d0d0d0 inset;
   -moz-box-shadow: 2px 2px 1px #d0d0d0 inset;
   box-shadow: 2px 2px 1px #d0d0d0 inset;
+  background: #e9e9e9;
+  background: -moz-linear-gradient(top, #dcdcdc 0%, #d0d0d0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dcdcdc), color-stop(100%, #d0d0d0));
+  background: -webkit-linear-gradient(top, #dcdcdc 0%, #d0d0d0 100%);
+  background: -o-linear-gradient(top, #dcdcdc 0%, #d0d0d0 100%);
+  background: -ms-linear-gradient(top, #dcdcdc 0%, #d0d0d0 100%);
+  background: linear-gradient(top, #dcdcdc 0%, #d0d0d0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= #dcdcdc , endColorstr= #d0d0d0 ,GradientType=0 );
 }
 a.button.nice:active,
 button.nice:active,
@@ -696,7 +720,7 @@ button.primary.nice,
 input[type='submit'].primary.nice,
 input[type='reset'].primary.nice {
   text-shadow: 1px 1px 0 #cc1400;
-  border-color: #ff2e00;
+  border: solid 1px #ff2e00;
   background: #e9e9e9;
   background: -moz-linear-gradient(top, #ff2e00 0%, #cc1400 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff2e00), color-stop(100%, #cc1400));
@@ -718,13 +742,13 @@ input[type='reset'].primary.nice:hover {
   -moz-box-shadow: 2px 2px 1px #cc1400 inset;
   box-shadow: 2px 2px 1px #cc1400 inset;
   background: #e9e9e9;
-  background: -moz-linear-gradient(top, #ff2e00 0%, #cc1400 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff2e00), color-stop(100%, #cc1400));
-  background: -webkit-linear-gradient(top, #ff2e00 0%, #cc1400 100%);
-  background: -o-linear-gradient(top, #ff2e00 0%, #cc1400 100%);
-  background: -ms-linear-gradient(top, #ff2e00 0%, #cc1400 100%);
-  background: linear-gradient(top, #ff2e00 0%, #cc1400 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= #ff2e00 , endColorstr= #cc1400 ,GradientType=0 );
+  background: -moz-linear-gradient(top, #e62200 0%, #cc1400 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e62200), color-stop(100%, #cc1400));
+  background: -webkit-linear-gradient(top, #e62200 0%, #cc1400 100%);
+  background: -o-linear-gradient(top, #e62200 0%, #cc1400 100%);
+  background: -ms-linear-gradient(top, #e62200 0%, #cc1400 100%);
+  background: linear-gradient(top, #e62200 0%, #cc1400 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= #e62200 , endColorstr= #cc1400 ,GradientType=0 );
 }
 a.button.primary.nice:active,
 button.primary.nice:active,
@@ -784,17 +808,28 @@ button[type] {
 /**************************************/
 /* navigation bar
 /**************************************/
-nav .button, nav button {
+nav .button,
+nav.tabs .button,
+nav button,
+nav.tabs button {
   background: #ccc;
   text-shadow: 1px 1px 0 #ddd;
   -webkit-border-radius: 5px 5px 0 0;
   -moz-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
 }
+nav .button:hover,
+nav.tabs .button:hover,
+nav button:hover,
+nav.tabs button:hover,
 nav .button.primary,
+nav.tabs .button.primary,
 nav button.primary,
+nav.tabs button.primary,
 nav .button.primary:hover,
-nav button.primary:hover {
+nav.tabs .button.primary:hover,
+nav button.primary:hover,
+nav.tabs button.primary:hover {
   background: #fff;
   border-color: #fff;
   color: #555;
@@ -867,7 +902,7 @@ input[type='password'],
 select {
   border: 1px solid #bbbbbb;
   background: url(../images/killeradmin/input-bg.png) top left no-repeat;
-  padding: 0.6em 0.3em 0.3em 0.6em;
+  padding: 6px 6px 6px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -883,7 +918,8 @@ input[type='text']:focus,
 input[type='password']:focus,
 select:focus {
   border-color: #00d1ff;
-  outline: 2px solid #00d1ff;
+  background-color: #efefef;
+  outline: none;
 }
 input[type='text'],
 input[type='password'],

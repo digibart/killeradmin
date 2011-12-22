@@ -1,15 +1,11 @@
-<?php
-
-/* Message::instance()->succeed(ucfirst(__('access granted'))); */
-/* Message::instance()->info(ucfirst(__('access granted')) . "<a href='#'>ga teruf</a>"); */
-/* Message::instance()->error(ucfirst(__('access granted'))); */
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?php echo Kohana::$config->load('admin.company_name'); ?> | <?php echo $title; ?></title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
 	<?php
 	
 	$media = Route::get('admin/media');
@@ -38,6 +34,10 @@
     	))->get_tag();
 
     ?>
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
 
 	<script type="text/javascript">
 		var del_confirm = '<?php echo __('confirm.msg'); ?>';

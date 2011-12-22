@@ -29,6 +29,14 @@
 /* buttons
 /**************************************/
 
+.columns {
+	a.button, button, input[type='submit'], input[type='reset'] {
+		img {
+			max-width: 16px;
+		}
+	}
+}
+
 a.button, button, input[type='submit'], input[type='reset'] {
 
 	display: inline-block;
@@ -45,9 +53,12 @@ a.button, button, input[type='submit'], input[type='reset'] {
 	color: darken(@rdarker2, 50%);
 	cursor:pointer;
 	
+	white-space: nowrap;
+	
 	img {
 		width: 16px;
 		height: 16px;
+		max-width: 16px;
 		
 		padding: 0 0.4em 0 0;
 		
@@ -59,9 +70,10 @@ a.button, button, input[type='submit'], input[type='reset'] {
 		border-color: @rdarker2;
 	}
 	
-	&:active, &.active {
+	&:active, &.active, &:focus {
 		background: @rdarker2;
 		border-color: darken(@rdarker2, 10%);		
+		outline: none;
 	}
 	&.disabled, &.disabled:hover {
 		background: @rlighter1;
@@ -72,8 +84,6 @@ a.button, button, input[type='submit'], input[type='reset'] {
 
 	&.nice {			
 		text-shadow: 1px 1px 0 @rlighter1;
-		
-
 		border-color: @rdarker2;
 		
 		#bundle > .borderradius;
@@ -84,6 +94,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 			text-shadow: 0px 0px 0 @rlighter2;
 			border-color: darken(@rdarker2, 10%);
 			#bundle > .boxshadow(@rdarker2, 2px, 1px);		
+			#bundle > .gradient(@rdarker1, @rdarker2);		
 		}
 		
 		&:active, &.active {
@@ -129,7 +140,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 		
 		&.nice {
 			text-shadow: 1px 1px 0 @pdarker2;			
-			border-color: @primarycolor;
+			border: solid 1px @primarycolor;
 			
 			#bundle > .gradient(@primarycolor, @pdarker2);
 			#bundle > .boxshadow(lighten(@plighter1, 3%));
@@ -137,7 +148,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 			&:hover {
 				text-shadow: none;				
 				#bundle > .boxshadow(@pdarker2, 2px, 1px);
-				#bundle > .gradient(@primarycolor, @pdarker2);
+				#bundle > .gradient(@pdarker1, @pdarker2);
 			}
 			
 			&:active, &.active {
@@ -167,7 +178,7 @@ button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 /* navigation bar
 /**************************************/
 
-nav {
+nav, nav.tabs {
 	.button, button {
 		background: #ccc;
 		
@@ -177,7 +188,7 @@ nav {
 		-moz-border-radius: @borderradius @borderradius 0 0;
 		border-radius: @borderradius @borderradius 0 0;
 		
-		&.primary, &.primary:hover {
+		&:hover, &.primary, &.primary:hover {
 			background: #fff;
 			border-color: #fff;
 			
