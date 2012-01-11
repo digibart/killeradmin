@@ -1,0 +1,260 @@
+/**************************************/
+/* colors (bundle.less)
+/**************************************/
+/**************************************/
+/* the grid
+/**************************************/
+div#container, div.container {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+}
+.row {
+  width: 100%;
+  max-width: 1140px;
+  min-width: 755px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.table {
+  margin: 2em 2px;
+  border: solid 1px #ddd;
+}
+.table .row {
+  padding: 0.5em 0;
+}
+.table .row .columns.tools {
+  cursor: default;
+  white-space: nowrap;
+}
+.table .row .columns.tools img {
+  margin: 0 0.2em;
+}
+.table .row .columns:first-child {
+  margin-left: 1%;
+  margin-right: 2.8%;
+}
+.table .row.even, .table .row:nth-child(even) {
+  background: #eee;
+}
+.table .row.odd, .table .row:nth-child(odd) {
+  background: #F9F9F9;
+}
+.table .row:hover {
+  background: #ffffff;
+  color: #000;
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+}
+.table .row.odd, .table .row.even {
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+}
+.table .row.filter input {
+  width: 85%;
+  margin-bottom: 0;
+}
+.table .row.filter:hover {
+  background: #F9F9F9;
+}
+.table .row.header {
+  background: #b3b3b3;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #999999;
+  color: #fff;
+  padding: 1em 0;
+  border-bottom: solid 1px #b3b3b3;
+}
+.columns {
+  float: left;
+  display: inline;
+  margin: 0 2% 0 0;
+  min-height: 1px;
+}
+.columns.last {
+  margin-right: 0;
+}
+.columns.nowrap {
+  white-space: nowrap;
+}
+.columns img {
+  max-width: 100%;
+}
+.columns.one {
+  width: 2.167%;
+}
+.columns.two {
+  width: 6.333%;
+}
+.columns.three {
+  width: 10.5%;
+}
+.columns.four {
+  width: 14.667%;
+}
+.columns.five {
+  width: 18.833%;
+}
+.columns.six {
+  width: 23.0%;
+}
+.columns.seven {
+  width: 27.167%;
+}
+.columns.eight {
+  width: 31.333%;
+}
+.columns.nine {
+  width: 35.5%;
+}
+.columns.ten {
+  width: 39.667%;
+}
+.columns.eleven {
+  width: 43.833%;
+}
+.columns.twelve {
+  width: 48.0%;
+}
+.columns.thirteen {
+  width: 52.167%;
+}
+.columns.fourteen {
+  width: 56.333%;
+}
+.columns.fiveteen {
+  width: 60.5%;
+}
+.columns.sixteen {
+  width: 64.667%;
+}
+.columns.seventeen {
+  width: 68.833%;
+}
+.columns.eighteen {
+  width: 73.0%;
+}
+.columns.nineteen {
+  width: 77.167%;
+}
+.columns.twenty {
+  width: 81.333%;
+}
+.columns.twentyone {
+  width: 85.5%;
+}
+.columns.twentytwo {
+  width: 89.667%;
+}
+.columns.twentythree {
+  width: 93.833%;
+}
+.columns.twentyfour {
+  width: 98.0%;
+  float: left;
+}
+.columns.prefix-1 {
+  margin-left: 4.167%;
+}
+.columns.prefix-2 {
+  margin-left: 8.333%;
+}
+.columns.prefix-3 {
+  margin-left: 12.5%;
+}
+.columns.prefix-4 {
+  margin-left: 16.667%;
+}
+.columns.prefix-5 {
+  margin-left: 20.833%;
+}
+.columns.prefix-6 {
+  margin-left: 25.0%;
+}
+.columns.prefix-7 {
+  margin-left: 29.167%;
+}
+.columns.prefix-8 {
+  margin-left: 33.333%;
+}
+.columns.prefix-9 {
+  margin-left: 37.5%;
+}
+.columns.prefix-10 {
+  margin-left: 41.667%;
+}
+.columns.prefix-11 {
+  margin-left: 45.833%;
+}
+.columns.prefix-12 {
+  margin-left: 50.0%;
+}
+.columns.prefix-13 {
+  margin-left: 54.167%;
+}
+.columns.prefix-14 {
+  margin-left: 58.333%;
+}
+.columns.prefix-15 {
+  margin-left: 62.5%;
+}
+.columns.prefix-16 {
+  margin-left: 66.667%;
+}
+.columns.prefix-17 {
+  margin-left: 70.833%;
+}
+.columns.prefix-18 {
+  margin-left: 75.0%;
+}
+.columns.prefix-19 {
+  margin-left: 79.167%;
+}
+.columns.prefix-20 {
+  margin-left: 83.333%;
+}
+.columns.prefix-21 {
+  margin-left: 87.5%;
+}
+.columns.prefix-22 {
+  margin-left: 91.667%;
+}
+.columns.prefix-23 {
+  margin-left: 95.833%;
+}
+/* Clear the columns automagically, thanks @kneath */
+.column-row:after, .row:after, .clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html .column-row, * html .row, * html .clearfix {
+  height: 1%;
+}
+.column-row, .row, .clearfix {
+  display: inline-block;
+}
+.column-row, .row, .clearfix {
+  display: block;
+}
+body {
+  font-family: Georgia, serif;
+  background: none;
+  color: black;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+header h1 {
+  margin: 0;
+}
+form.table {
+  margin: 0;
+}
+footer, nav, .filter.row {
+  display: none;
+}
