@@ -241,8 +241,14 @@ class Killeradmin_KillerFile
 
 		// replace all %route_key% to correct uri
 		foreach (Route::all() as $key => $value)
-		{
-			$contents = str_ireplace("%" . $key . "%", Route::url($key), $contents);
+		{		
+			try {
+				$contents = str_ireplace("%" . $key . "%", Route::url($key), $contents);
+			} 
+			catch (Exception $e) {
+				Kohana::$log->add(Log::INFO, "Killerfile > error generating url from route '" . $key . "': " . $e->getMessage());
+			}
+
 		}
 
 		return $contents;
