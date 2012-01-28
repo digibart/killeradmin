@@ -6,7 +6,8 @@
 /**************************************/
 /* elements
 /**************************************/
-html, body {
+html,
+body {
   height: 100%;
 }
 /* sticky footer and header stuff */
@@ -41,7 +42,7 @@ header h6 {
 header nav {
   position: relative;
   height: 75px;
-  top: 48px;
+  top: 46px;
 }
 header nav .button {
   border-color: #010101;
@@ -134,55 +135,55 @@ img.icon {
   background-repeat: no-repeat;
 }
 img.icon.soft.arrow.up {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -312px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -338px 0;
 }
 img.icon.soft.arrow.up:hover {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -52px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -260px 0;
 }
 img.icon.soft.arrow.down {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -208px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -130px 0;
 }
 img.icon.soft.arrow.down:hover {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -338px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -26px 0;
 }
 img.icon.arrow.up {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -52px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -260px 0;
 }
 img.icon.arrow.down {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -338px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -26px 0;
 }
 img.icon.bin {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -182px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -156px 0;
 }
 img.icon.bullet-star {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -156px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -234px 0;
 }
 img.icon.cog {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -130px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -286px 0;
 }
 img.icon.funnel {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat 0 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -52px 0;
 }
 img.icon.info {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -286px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -364px 0;
 }
 img.icon.message {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -104px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -78px 0;
 }
 img.icon.open-door {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -234px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -208px 0;
 }
 img.icon.pencil {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -260px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -104px 0;
 }
 img.icon.plus {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -26px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat 0 0;
 }
 img.icon.save {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -364px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -312px 0;
 }
 img.icon.star {
-  background: url('../images/killeradmin.png?cache=225440') no-repeat -78px 0;
+  background: url('../images/killeradmin.png?cache=160638') no-repeat -182px 0;
 }
 /**************************************/
 /* typography
@@ -199,6 +200,9 @@ h1 {
   padding-bottom: 0.4em;
   border-bottom: dashed 1px #ff9b66;
 }
+h1.fancy {
+  font-size: 2.2em;
+}
 h2 {
   color: #cc1400;
   font-size: 1.7em;
@@ -206,14 +210,23 @@ h2 {
   padding-bottom: 0.2em;
   border-bottom: dashed 1px #ff9b66;
 }
+h2.fancy {
+  font-size: 1.9em;
+}
 h3 {
   color: #cc1400;
   font-size: 1.3em;
   margin: 1em 0 0.75em 0;
 }
+h3.fancy {
+  font-size: 1.5em;
+}
 h4 {
   font-size: 1em;
   margin: 1em 0 0.65em 0;
+}
+h4.fancy {
+  font-size: 1.2em;
 }
 h5 {
   font-size: 1em;
@@ -240,7 +253,8 @@ small {
 /**************************************/
 /* the grid
 /**************************************/
-div#container, div.container {
+div#container,
+div.container {
   position: relative;
   margin: 0 auto;
   padding: 20px;
@@ -270,10 +284,12 @@ div#container, div.container {
   margin-left: 1%;
   margin-right: 2.8%;
 }
-.table .row.even, .table .row:nth-child(even) {
+.table .row.even,
+.table .row:nth-child(even) {
   background: #eee;
 }
-.table .row.odd, .table .row:nth-child(odd) {
+.table .row.odd,
+.table .row:nth-child(odd) {
   background: #F9F9F9;
 }
 .table .row:hover {
@@ -283,7 +299,8 @@ div#container, div.container {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
 }
-.table .row.odd, .table .row.even {
+.table .row.odd,
+.table .row.even {
   -webkit-transition: all 100ms ease-in-out;
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
@@ -461,20 +478,28 @@ div#container, div.container {
   margin-left: 95.833%;
 }
 /* Clear the columns automagically, thanks @kneath */
-.column-row:after, .row:after, .clearfix:after {
+.column-row:after,
+.row:after,
+.clearfix:after {
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
-* html .column-row, * html .row, * html .clearfix {
+* html .column-row,
+* html .row,
+* html .clearfix {
   height: 1%;
 }
-.column-row, .row, .clearfix {
+.column-row,
+.row,
+.clearfix {
   display: inline-block;
 }
-.column-row, .row, .clearfix {
+.column-row,
+.row,
+.clearfix {
   display: block;
 }
 .rcolor1 {
@@ -522,7 +547,7 @@ input[type='submit'],
 input[type='reset'] {
   display: inline-block;
   margin: 0 0.583em 0.667em 0;
-  padding: 5px 10px 5px 7px;
+  padding: 5px 13px 5px 12px;
   /*** Links ***/
 
   border: 1px solid #dcdcdc;
@@ -542,7 +567,7 @@ input[type='reset'] img {
   width: 16px;
   height: 16px;
   max-width: 16px;
-  padding: 0 0.4em 0 0;
+  margin: 1px 5px 0 2px;
   vertical-align: top;
 }
 a.button:hover,
@@ -554,7 +579,7 @@ button.active:hover,
 input[type='submit'].active:hover,
 input[type='reset'].active:hover {
   background: #dcdcdc;
-  border-color: #d0d0d0;
+  border: solid 1px #d0d0d0;
 }
 a.button:active,
 button:active,
@@ -569,7 +594,7 @@ button:focus,
 input[type='submit']:focus,
 input[type='reset']:focus {
   background: #d0d0d0;
-  border-color: #b6b6b6;
+  border: solid 1px #b6b6b6;
   outline: none;
 }
 a.button.disabled,
@@ -581,7 +606,7 @@ button.disabled:hover,
 input[type='submit'].disabled:hover,
 input[type='reset'].disabled:hover {
   background: #f6f6f6;
-  border-color: #e9e9e9;
+  border: solid 1px #e9e9e9;
   color: #d0d0d0;
   cursor: default;
 }
@@ -590,7 +615,7 @@ button.nice,
 input[type='submit'].nice,
 input[type='reset'].nice {
   text-shadow: 1px 1px 0 #f6f6f6;
-  border-color: #d0d0d0;
+  border: solid 1px #d0d0d0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -615,7 +640,7 @@ button.nice.active:hover,
 input[type='submit'].nice.active:hover,
 input[type='reset'].nice.active:hover {
   text-shadow: 0px 0px 0 #ffffff;
-  border-color: #b6b6b6;
+  border: solid 1px #b6b6b6;
   -webkit-box-shadow: 2px 2px 1px #d0d0d0 inset;
   -moz-box-shadow: 2px 2px 1px #d0d0d0 inset;
   box-shadow: 2px 2px 1px #d0d0d0 inset;
@@ -637,7 +662,7 @@ button.nice.active,
 input[type='submit'].nice.active,
 input[type='reset'].nice.active {
   text-shadow: 0px 0px 0 #ffffff;
-  border-color: #b6b6b6;
+  border: solid 1px #b6b6b6;
   -webkit-box-shadow: 2px 2px 1px #d0d0d0 inset;
   -moz-box-shadow: 2px 2px 1px #d0d0d0 inset;
   box-shadow: 2px 2px 1px #d0d0d0 inset;
@@ -660,7 +685,7 @@ input[type='submit'].nice.disabled:hover,
 input[type='reset'].nice.disabled:hover {
   color: #a9a9a9;
   text-shadow: 1px 1px 0 #f6f6f6;
-  border-color: #d0d0d0;
+  border: solid 1px #d0d0d0;
   -webkit-box-shadow: 1px 1px 0 #ffffff inset;
   -moz-box-shadow: 1px 1px 0 #ffffff inset;
   box-shadow: 1px 1px 0 #ffffff inset;
@@ -678,7 +703,7 @@ button.primary,
 input[type='submit'].primary,
 input[type='reset'].primary {
   background: #ff2e00;
-  border-color: #e62200;
+  border: solid 1px #e62200;
   color: #ffffff;
 }
 a.button.primary:hover,
@@ -690,7 +715,7 @@ button.primary.active:hover,
 input[type='submit'].primary.active:hover,
 input[type='reset'].primary.active:hover {
   background: #e62200;
-  border-color: #cc1400;
+  border: solid 1px #cc1400;
 }
 a.button.primary:active,
 button.primary:active,
@@ -701,7 +726,7 @@ button.primary.active,
 input[type='submit'].primary.active,
 input[type='reset'].primary.active {
   background: #cc1400;
-  border-color: #b31100;
+  border: solid 1px #b31100;
 }
 a.button.primary.disabled,
 button.primary.disabled,
@@ -712,7 +737,7 @@ button.primary.disabled:hover,
 input[type='submit'].primary.disabled:hover,
 input[type='reset'].primary.disabled:hover {
   background: #ffc599;
-  border-color: #ff2e00;
+  border: solid 1px #ff2e00;
   color: #cc1400;
 }
 a.button.primary.nice,
@@ -759,7 +784,7 @@ button.primary.nice.active,
 input[type='submit'].primary.nice.active,
 input[type='reset'].primary.nice.active {
   text-shadow: none;
-  border-color: #ff2e00;
+  border: solid 1px #ff2e00;
   -webkit-box-shadow: 2px 2px 1px #990f00 inset;
   -moz-box-shadow: 2px 2px 1px #990f00 inset;
   box-shadow: 2px 2px 1px #990f00 inset;
@@ -796,10 +821,10 @@ input[type='reset'].primary.nice.disabled:hover {
 button {
   width: auto;
   overflow: visible;
-  padding: 4px 10px 3px 7px;
+  padding: 4px 15px 3px 12px;
 }
 button[type] {
-  padding: 4px 10px 4px 7px;
+  padding: 4px 15px 4px 12px;
   line-height: 17px;
 }
 *:first-child + html .container button[type] {
@@ -814,6 +839,8 @@ nav button,
 nav.tabs button {
   background: #ccc;
   text-shadow: 1px 1px 0 #ddd;
+  padding: 7px 13px 5px 12px;
+  margin-right: 10px;
   -webkit-border-radius: 5px 5px 0 0;
   -moz-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
@@ -831,7 +858,7 @@ nav.tabs .button.primary:hover,
 nav button.primary:hover,
 nav.tabs button.primary:hover {
   background: #fff;
-  border-color: #fff;
+  border: solid 1px #fff;
   color: #555;
 }
 form p {
@@ -887,7 +914,8 @@ label.error {
   color: #ffffff;
   background: #ff0000;
 }
-label span, label small {
+label span,
+label small {
   display: block;
   margin: 0 0 1em -1em;
   color: #bbbbbb;
@@ -948,10 +976,12 @@ input[type='checkbox'] {
 input[type='checkbox'].last {
   margin-bottom: 1.5em;
 }
-input, select {
+input,
+select {
   cursor: pointer;
 }
-input[type='text'], input[type='password'] {
+input[type='text'],
+input[type='password'] {
   cursor: text;
 }
 .button.bar {
@@ -962,14 +992,18 @@ input[type='text'], input[type='password'] {
 /**************************************/
 /* status messages
 /**************************************/
-p.error, p.notice, p.success {
+p.error,
+p.notice,
+p.success {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   margin-bottom: 1.6em;
   padding: 0.8em;
 }
-p.error a, p.notice a, p.success a {
+p.error a,
+p.notice a,
+p.success a {
   background: none;
   margin: 0;
   padding: 0;

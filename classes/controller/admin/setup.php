@@ -28,8 +28,8 @@ class Controller_Admin_Setup extends Controller_Template {
 
 		if (Kohana::$environment != KOHANA::DEVELOPMENT || $user_count !== 0)
 		{			
-			Kohana::$log->add(Log::ERROR, 'Access to setup denied; :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
-			Message::instance()->error(ucfirst(__('access denied')));
+			Kohana::$log->add(Log::ERROR, 'Access to Killeradmin setup denied: ~ :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
+			Message::instance()->error(ucfirst(__('access denied. More info in logs')));
 			$this->request->redirect(Route::get('admin/base_url')->uri());
 		}
 	}

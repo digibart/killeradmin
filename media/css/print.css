@@ -4,7 +4,8 @@
 /**************************************/
 /* the grid
 /**************************************/
-div#container, div.container {
+div#container,
+div.container {
   position: relative;
   margin: 0 auto;
   padding: 20px;
@@ -34,10 +35,12 @@ div#container, div.container {
   margin-left: 1%;
   margin-right: 2.8%;
 }
-.table .row.even, .table .row:nth-child(even) {
+.table .row.even,
+.table .row:nth-child(even) {
   background: #eee;
 }
-.table .row.odd, .table .row:nth-child(odd) {
+.table .row.odd,
+.table .row:nth-child(odd) {
   background: #F9F9F9;
 }
 .table .row:hover {
@@ -47,7 +50,8 @@ div#container, div.container {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
 }
-.table .row.odd, .table .row.even {
+.table .row.odd,
+.table .row.even {
   -webkit-transition: all 100ms ease-in-out;
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
@@ -225,20 +229,28 @@ div#container, div.container {
   margin-left: 95.833%;
 }
 /* Clear the columns automagically, thanks @kneath */
-.column-row:after, .row:after, .clearfix:after {
+.column-row:after,
+.row:after,
+.clearfix:after {
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
-* html .column-row, * html .row, * html .clearfix {
+* html .column-row,
+* html .row,
+* html .clearfix {
   height: 1%;
 }
-.column-row, .row, .clearfix {
+.column-row,
+.row,
+.clearfix {
   display: inline-block;
 }
-.column-row, .row, .clearfix {
+.column-row,
+.row,
+.clearfix {
   display: block;
 }
 body {
@@ -255,6 +267,8 @@ header h1 {
 form.table {
   margin: 0;
 }
-footer, nav, .filter.row {
+footer,
+nav,
+.filter.row {
   display: none;
 }

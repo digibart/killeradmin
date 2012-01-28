@@ -1,5 +1,7 @@
-/* @basecolor: #468ACC; //blue */
-/* @basecolor: #B3D929; //green  */
+/* choose a base color below. From this color all other colors get calculated */
+/* @basecolor: #468ACC; *//* blue color */
+/* @basecolor: #B3D929; *//* green color */
+/* red color */
 /**************************************/
 /* colors (bundle.less)
 /**************************************/
@@ -161,6 +163,9 @@ img.icon.bullet-star {
 img.icon.cog {
   background: url(../images/killeradmin/cog.png);
 }
+img.icon.cross {
+  background: url(../images/killeradmin/cross.png);
+}
 img.icon.funnel {
   background: url(../images/killeradmin/funnel.png);
 }
@@ -178,6 +183,9 @@ img.icon.pencil {
 }
 img.icon.plus {
   background: url(../images/killeradmin/plus.png);
+}
+img.icon.tick {
+  background: url(../images/killeradmin/tick.png);
 }
 img.icon.save {
   background: url(../images/killeradmin/save.png);
