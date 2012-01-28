@@ -155,7 +155,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 	public function action_index()
 	{
 
-		$this->template->title = "Dashboard";
+		$this->template->title = null;
 		$this->template->content = View::factory('admin/dashboard');
 
 	}

@@ -42,7 +42,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 	display: inline-block;
 
 	margin:0 0.583em 0.667em 0;
-	padding:5px 10px 5px 7px;   /*** Links ***/
+	padding:5px 13px 5px 12px;   /*** Links ***/
 	border:1px solid @rdarker1;
 	background-color: @regularcolor;
 
@@ -60,31 +60,31 @@ a.button, button, input[type='submit'], input[type='reset'] {
 		height: 16px;
 		max-width: 16px;
 		
-		padding: 0 0.4em 0 0;
+		margin: 1px 5px 0 2px;
 		
 		vertical-align: top;
 	}
 		
 	&:hover, &.active:hover {		
 		background: @rdarker1;
-		border-color: @rdarker2;
+		border: solid 1px @rdarker2;
 	}
 	
 	&:active, &.active, &:focus {
 		background: @rdarker2;
-		border-color: darken(@rdarker2, 10%);		
+		border: solid 1px darken(@rdarker2, 10%);		
 		outline: none;
 	}
 	&.disabled, &.disabled:hover {
 		background: @rlighter1;
-		border-color: @regularcolor;		
+		border: solid 1px @regularcolor;		
 		color: @rdarker2;		
 		cursor: default;
 	}
 
 	&.nice {			
 		text-shadow: 1px 1px 0 @rlighter1;
-		border-color: @rdarker2;
+		border: solid 1px @rdarker2;
 		
 		#bundle > .borderradius;
 		#bundle > .boxshadow(@rlighter2);
@@ -92,14 +92,14 @@ a.button, button, input[type='submit'], input[type='reset'] {
 		
 		&:hover, &.active:hover {			
 			text-shadow: 0px 0px 0 @rlighter2;
-			border-color: darken(@rdarker2, 10%);
+			border: solid 1px darken(@rdarker2, 10%);
 			#bundle > .boxshadow(@rdarker2, 2px, 1px);		
 			#bundle > .gradient(@rdarker1, @rdarker2);		
 		}
 		
 		&:active, &.active {
 			text-shadow: 0px 0px 0 @rlighter2;
-			border-color: darken(@rdarker2, 10%);
+			border: solid 1px darken(@rdarker2, 10%);
 			#bundle > .boxshadow(@rdarker2, 2px, 1px);		
 			#bundle > .gradient(@rdarker1, @regularcolor);
 		}
@@ -107,7 +107,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 			color: darken(@rdarker2, 15%);
 			text-shadow: 1px 1px 0 @rlighter1;
 			
-			border-color: @rdarker2;
+			border: solid 1px @rdarker2;
 			#bundle > .boxshadow(@rlighter2);
 			#bundle > .gradient(@rlighter2, @rdarker2);
 		}
@@ -118,21 +118,21 @@ a.button, button, input[type='submit'], input[type='reset'] {
 	&.primary {
 
 		background: @primarycolor;
-		border-color: @pdarker1;
+		border: solid 1px @pdarker1;
 		color: @primarytextcolor;
 					
 		&:hover, &.active:hover {
 			background: @pdarker1;
-			border-color: @pdarker2;
+			border: solid 1px @pdarker2;
 		}
 		
 		&:active, &.active {
 			background: @pdarker2;
-			border-color: darken(@pdarker2, 5%);		
+			border: solid 1px darken(@pdarker2, 5%);		
 		}
 		&.disabled, &.disabled:hover {
 			background: @plighter2;
-			border-color: @primarycolor;		
+			border: solid 1px @primarycolor;		
 			color: @pdarker2;
 		}
 
@@ -153,7 +153,7 @@ a.button, button, input[type='submit'], input[type='reset'] {
 			
 			&:active, &.active {
 				text-shadow: none;
-				border-color: @primarycolor;
+				border: solid 1px @primarycolor;
 				
 				#bundle > .boxshadow(darken(@pdarker2, 10%), 2px, 1px);
 				#bundle > .gradient(@pdarker1, @pdarker2);
@@ -170,8 +170,8 @@ a.button, button, input[type='submit'], input[type='reset'] {
 }
 
 
-button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
-button[type] { padding:4px 10px 4px 7px; line-height:17px; }
+button { width:auto; overflow:visible; padding:4px 15px 3px 12px; }
+button[type] { padding:4px 15px 4px 12px; line-height:17px; }
 *:first-child+html .container button[type] { padding:4px 10px 3px 7px; }
 
 /**************************************/
@@ -184,13 +184,17 @@ nav, nav.tabs {
 		
 		text-shadow: 1px 1px 0 #ddd;
 		
+		padding: 7px 13px 5px 12px;
+		margin-right: 10px;
+		
+		
 		-webkit-border-radius: @borderradius @borderradius 0 0;
 		-moz-border-radius: @borderradius @borderradius 0 0;
 		border-radius: @borderradius @borderradius 0 0;
 		
 		&:hover, &.primary, &.primary:hover {
 			background: #fff;
-			border-color: #fff;
+			border: solid 1px #fff;
 			
 			color: #555;
 		}

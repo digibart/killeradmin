@@ -59,7 +59,7 @@
 		<header>
 			<div class="row">
 				<div class="twelve columns">
-					<h1 class="fancy"><?php echo $title; ?></h1>
+					<h1 class="fancy"><?php echo Kohana::$config->load('admin.company_name'); ?></h1>
 				</div>
 				<div class="last twelve columns">
 					<?php echo $menu; ?>
@@ -78,6 +78,7 @@
 					?>
 				</div>	
 				<div class="row">
+					<?php if ($title) : ?><h2 class="fancy"><?php echo $title; ?></h2><?php endif; ?>
 					<?php echo $content; ?>			
 				</div>
 			</div>
