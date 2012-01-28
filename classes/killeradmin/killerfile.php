@@ -240,12 +240,10 @@ class Killeradmin_KillerFile
 		}
 
 		// replace all %route_key% to correct uri
-		foreach (Route::all() as $key => $value)
-		{
-			$contents = str_ireplace("%" . $key . "%", Route::url($key), $contents);
-		}
+		$contents = str_ireplace("%admin/media%", Route::url('admin/media'), $contents);
+		
+		return $contents;
 
-		return  "/*" . date("Y-m-d H:i:s") . "*/"  . $contents;
 	}
 
 	protected function _compile_lessc($file)
