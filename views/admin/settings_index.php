@@ -1,5 +1,5 @@
 <div class="twelve columns prefix-6">
-	<form method="post" class="validate" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller'=>'settings','action'=>'save')));?>">
+	<form method="post" autocomplete="off" class="validate" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller'=>'settings','action'=>'save')));?>">
         <label><?php echo ucfirst(__('username'));?></label>
 		<span class="info"><?php echo $user->username;?></span>
 
