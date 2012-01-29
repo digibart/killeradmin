@@ -285,7 +285,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		} catch (ORM_Validation_Exception $e) {
 			$errorstring = "";
-			$errors = $e->errors('register');
+			$errors = $e->errors('');
 
 			foreach ($errors as $key => $msg) {
 				$errorstring .= $msg . "<br />";
