@@ -18,10 +18,6 @@ Functions
 * add multiple files, and get them combined in a single minified file
 * send this single file in gzip
 * set http_headers `content-type`, `cache-control`, `expires`, and `last-modified`
-* parses routes. Just put `%` before and after the name of the route, like
-~~~
-body { background: url(%admin/media%/images/background.jpg);}
-~~~
 
 How-to
 ----------------------
