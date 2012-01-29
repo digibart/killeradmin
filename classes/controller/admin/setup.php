@@ -85,7 +85,7 @@ class Controller_Admin_Setup extends Controller_Template {
 		}
 
 		// and if killeradmin config is set
-		if (count(Kohana::find_file('config', 'admin')) == 1)
+		if (!Kohana::$config->load('admin'))
 		{
 			$config['admin'] = KillerAdmin::spriteImg('cross') . Kohana::message('admin', 'copy config');
 		}
