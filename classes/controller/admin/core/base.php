@@ -187,15 +187,25 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			$objects->order_by(Arr::get($_GET, 'sort'), $order);
 		}
 		$objects = $objects->find_all();
-
-
-		$view = View::factory('admin/'.$this->orm_name.'_list')
-		->bind('objects', $objects)
-		->bind('auth_user', $this->user)
-		->bind('filter', $filter)
-		->bind('count', $count)
-		->bind('controller_url', $this->controller_url)
-		->bind('pagination', $pagination);
+		
+		
+		//get the view
+		if (is_object($this->template->content) && get_class($this->template->content) == "View")
+		{
+			$view = $this->template->content;
+		}
+		else 
+		{
+			$view = View::factory('admin/'.$this->orm_name.'_list');
+		}
+	
+		$view
+			->bind('objects', $objects)
+			->bind('auth_user', $this->user)
+			->bind('filter', $filter)
+			->bind('count', $count)
+			->bind('controller_url', $this->controller_url)
+			->bind('pagination', $pagination);
 
 
 		$this->template->content = $view;
@@ -240,11 +250,21 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
 		$object->where($object->object_name() . '.id', '=', (int) $id)->find();
 
-		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')
-		->set('referrer', $this->session->get('requested_url'))
-		->set('controller_url', $this->controller_url)
-		->set('auth_user', $this->user)
-		->bind($this->orm_name, $object);
+		//get the view
+		if (is_object($this->template->content) && get_class($this->template->content) == "View")
+		{
+			$view = $this->template->content;
+		}
+		else 
+		{
+			$view = View::factory('admin/'.$this->orm_name.'_form');
+		}
+	
+		$this->template->content = $view
+			->set('referrer', $this->session->get('requested_url'))
+			->set('controller_url', $this->controller_url)
+			->set('auth_user', $this->user)
+			->bind($this->orm_name, $object);
 
 		if (!$object->loaded()) {
 			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
