@@ -23,6 +23,9 @@ div.container {
 }
 .table .row {
   padding: 0.5em 0;
+  width: auto;
+  min-width: inherit;
+  max-width: inherit;
 }
 .table .row .columns.tools {
   cursor: default;
@@ -56,9 +59,16 @@ div.container {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
 }
-.table .row.filter input {
+.table .row.filter input[type='text'] {
   width: 85%;
   margin-bottom: 0;
+}
+.table .row.filter label {
+  display: inline;
+  text-align: left;
+  float: none;
+  width: auto;
+  min-height: 1em;
 }
 .table .row.filter:hover {
   background: #F9F9F9;

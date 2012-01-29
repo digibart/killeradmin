@@ -23,6 +23,10 @@ div#container, div.container {
 	.row {
 		padding: 0.5em 0;
 		
+		width: auto;
+		min-width: inherit;
+		max-width: inherit;
+		
 		.columns {
 			&.tools {
 				cursor: default;
@@ -54,9 +58,16 @@ div#container, div.container {
 		}
 		
 		&.filter{
-			input {
+			input[type='text'] {
 				width: 85%;
 				margin-bottom: 0;
+			}
+			label {
+				display: inline;
+				text-align: left;
+				float: none;
+				width: auto;
+				min-height: 1em;
 			}
 			&:hover {
 				background: #F9F9F9;
