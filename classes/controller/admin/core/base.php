@@ -236,9 +236,9 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$id = $this->request->param('id');
 		
 		$this->template->title = ucfirst(__('edit :object', array(':object' => __($this->orm_name))));
-
+	
 		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
-		$object->where('id', '=', (int) $id)->find();
+		$object->where($object->object_name() . '.id', '=', (int) $id)->find();
 
 		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')
 		->set('referrer', $this->session->get('requested_url'))
@@ -267,7 +267,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$post = $_POST;
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->where('id', '=', (int) $id)->find();
+		$object->where($this->base_object->object_name() . '.id', '=', (int) $id)->find();
 		$object->values($post);
 
 		// add current user if object does not belongs to a user
