@@ -1,5 +1,7 @@
-/* @basecolor: #468ACC; //blue */
-/* @basecolor: #B3D929; //green  */
+/* choose a base color below. From this color all other colors get calculated */
+/* @basecolor: #468ACC; *//* blue color */
+/* @basecolor: #B3D929; *//* green color */
+/* red color */
 /**************************************/
 /* colors (bundle.less)
 /**************************************/
@@ -135,55 +137,61 @@ img.icon {
   background-repeat: no-repeat;
 }
 img.icon.soft.arrow.up {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -338px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -312px 0;
 }
 img.icon.soft.arrow.up:hover {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -260px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat 0 0;
 }
 img.icon.soft.arrow.down {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -130px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -416px 0;
 }
 img.icon.soft.arrow.down:hover {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -26px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -208px 0;
 }
 img.icon.arrow.up {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -260px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat 0 0;
 }
 img.icon.arrow.down {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -26px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -208px 0;
 }
 img.icon.bin {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -156px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -52px 0;
 }
 img.icon.bullet-star {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -234px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -234px 0;
 }
 img.icon.cog {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -286px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -78px 0;
+}
+img.icon.cross {
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -104px 0;
 }
 img.icon.funnel {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -52px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -286px 0;
 }
 img.icon.info {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -364px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -338px 0;
 }
 img.icon.message {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -78px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -26px 0;
 }
 img.icon.open-door {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -208px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -364px 0;
 }
 img.icon.pencil {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -104px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -156px 0;
 }
 img.icon.plus {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat 0 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -390px 0;
+}
+img.icon.tick {
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -260px 0;
 }
 img.icon.save {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -312px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -130px 0;
 }
 img.icon.star {
-  background: url('../images/killeradmin.png?cache=160638') no-repeat -182px 0;
+  background: url('../images/killeradmin.png?cache=163947') no-repeat -182px 0;
 }
 /**************************************/
 /* typography
@@ -272,6 +280,9 @@ div.container {
 }
 .table .row {
   padding: 0.5em 0;
+  width: auto;
+  min-width: inherit;
+  max-width: inherit;
 }
 .table .row .columns.tools {
   cursor: default;
@@ -305,9 +316,16 @@ div.container {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
 }
-.table .row.filter input {
+.table .row.filter input[type='text'] {
   width: 85%;
   margin-bottom: 0;
+}
+.table .row.filter label {
+  display: inline;
+  text-align: left;
+  float: none;
+  width: auto;
+  min-height: 1em;
 }
 .table .row.filter:hover {
   background: #F9F9F9;
