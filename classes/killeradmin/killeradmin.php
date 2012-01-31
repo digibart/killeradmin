@@ -9,8 +9,8 @@
 class Killeradmin_Killeradmin
 {
 	// version and codename
-	const VERSION = "1.2.2";
-	const CODENAME = "Troljegeren";
+	const VERSION = "1.3";
+	const CODENAME = "Hornkiller";
 
 
 	/**
