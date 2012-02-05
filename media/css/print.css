@@ -271,7 +271,6 @@ form p {
 }
 form small {
   display: block;
-  margin: -1.45em 0 1.5em 0;
   color: #555;
 }
 form dt {
