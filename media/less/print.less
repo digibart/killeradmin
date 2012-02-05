@@ -1,7 +1,9 @@
-@basecolor: #ccc; //red
+@basecolor: #ccc;
+@borderradius: 0;
 
 @import 'bundle.less';
 @import 'grid.less';
+@import 'forms.less';
 
 body {
         font-family: Georgia, serif;
@@ -22,6 +24,37 @@ form.table {
 	margin: 0;
 }
 
+.table .row.header {
+	color: black;
+	text-shadow: none;
+}
+
+.columns {
+	
+	&.prefix-1, 
+	&.prefix-2, 
+	&.prefix-3, 
+	&.prefix-4, 
+	&.prefix-5, 
+	&.prefix-6, 
+	&.prefix-7, 
+	&.prefix-8, 
+	&.prefix-9, 
+	&.prefix-10, 
+	&.prefix-11, 
+	&.prefix-12, 
+	&.prefix-13, 
+	&.prefix-14, 
+	&.prefix-15, 
+	&.prefix-16, 
+	&.prefix-17, 
+	&.prefix-18, 
+	&.prefix-19, 
+	&.prefix-20, 
+	&.prefix-21, 
+	&.prefix-22,
+	 &.prefix-23 {margin-left: auto;}
+}
 
 footer, nav, .filter.row {
 	display: none;

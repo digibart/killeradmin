@@ -264,6 +264,123 @@ div.container {
 .clearfix {
   display: block;
 }
+form p {
+  border-bottom: dashed 1px #bbbbbb;
+  padding-bottom: 0.5em;
+  margin-bottom: 2em;
+}
+form small {
+  display: block;
+  margin: -1.45em 0 1.5em 0;
+  color: #555;
+}
+form dt {
+  text-align: right;
+  clear: left;
+}
+form dd.columns {
+  margin-bottom: 1.5em;
+}
+fieldset {
+  border: 1px solid #ffffff;
+  margin: 0 0 1.5em;
+  padding: 1.4em;
+}
+fieldset.rounded {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+fieldset legend {
+  color: #999999;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0 1em;
+}
+label {
+  display: block;
+  font-weight: bold;
+  text-align: right;
+}
+label.error {
+  padding: 5px 1em;
+  float: none;
+  display: inline;
+  position: absolute;
+  text-align: left;
+  font-weight: normal;
+  color: #ffffff;
+  background: #ff0000;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+label span,
+label small {
+  display: block;
+  color: #bbbbbb;
+  font-size: 0.85em;
+  font-weight: normal;
+  text-align: right;
+  width: 100%;
+}
+textarea,
+input[type='text'],
+input[type='password'],
+select {
+  border: 1px solid #bbbbbb;
+  background: url(../images/killeradmin/input-bg.png) top left no-repeat;
+  padding: 6px 6px 6px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+textarea:hover,
+input[type='text']:hover,
+input[type='password']:hover,
+select:hover {
+  border-color: #888888;
+}
+textarea:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+select:focus {
+  border-color: #cccccc;
+  background-color: #efefef;
+  outline: none;
+}
+input[type='text'].error,
+input[type='password'].error,
+textarea.error,
+select.error {
+  border: solid 1px #ff0000;
+}
+input[type='text'].error:focus,
+input[type='password'].error:focus,
+textarea.error:focus,
+select.error:focus {
+  outline: 2px solid #ff0000;
+}
+input[type='checkbox'] {
+  clear: right;
+  margin-right: 1em;
+}
+input[type='checkbox'].last {
+  margin-bottom: 1.5em;
+}
+input,
+select {
+  cursor: pointer;
+}
+input[type='text'],
+input[type='password'] {
+  cursor: text;
+}
+.button.bar {
+  width: 100%;
+  text-align: center;
+  clear: both;
+}
 body {
   font-family: Georgia, serif;
   background: none;
@@ -277,6 +394,35 @@ header h1 {
 }
 form.table {
   margin: 0;
+}
+.table .row.header {
+  color: black;
+  text-shadow: none;
+}
+.columns.prefix-1,
+.columns.prefix-2,
+.columns.prefix-3,
+.columns.prefix-4,
+.columns.prefix-5,
+.columns.prefix-6,
+.columns.prefix-7,
+.columns.prefix-8,
+.columns.prefix-9,
+.columns.prefix-10,
+.columns.prefix-11,
+.columns.prefix-12,
+.columns.prefix-13,
+.columns.prefix-14,
+.columns.prefix-15,
+.columns.prefix-16,
+.columns.prefix-17,
+.columns.prefix-18,
+.columns.prefix-19,
+.columns.prefix-20,
+.columns.prefix-21,
+.columns.prefix-22,
+.columns.prefix-23 {
+  margin-left: auto;
 }
 footer,
 nav,
