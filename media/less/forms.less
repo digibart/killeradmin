@@ -10,15 +10,17 @@ form {
 	
 	small {
 		display: block;
-		margin: -1.45em 0 1.5em 50%;
-		padding-left: 1em;
-		width: 40%;
+		margin: -1.45em 0 1.5em 0;
 		color: #555;
 	}
-	span.info {
-		display: block;
-		margin: 0 0 1.5em 50%;
-		padding-left: 1em;
+	
+	dt {
+		text-align: right;
+		clear: left;
+	}
+	
+	dd.columns {
+		margin-bottom: 1.5em;
 	}
 }
 
@@ -41,36 +43,31 @@ fieldset {
 }
 
 label {
+	display: block;
+
 	font-weight: bold;
 	text-align: right;
-	
-	display:block;
-	float:left;
-	width: 50%;
-	
-	min-height: 3em;
-	
-	padding-right: 1em;
+
 	
 	&.error {
-		padding: 0 1em;		
-		margin: 0 0 1.5em 53%;
-		float: none;		
-		width: 36%;
+		padding: 5px 1em;
+		float: none;
+		display: inline;
+		position: absolute;
 		
 		text-align: left;
 		font-weight: normal;
-		min-height: 1.5em;
 		
 		color: #ffffff;
 		
 		background: #ff0000;
+		
+		#bundle > .borderradius;
 	}
 
 	span, small {
 		display:block;
-		margin: 0 0 1em -1em;
-		
+				
 		color: @gray;
 		font-size: 0.85em;
 		font-weight:normal;
@@ -99,13 +96,9 @@ textarea, input[type='text'], input[type='password'],select {
 	
 }
 
-input[type='text'],input[type='password'], textarea, select {
-	margin-bottom: 1.5em;
-	width: 40%;
-	
+input[type='text'],input[type='password'], textarea, select {	
 	&.error {
 		border: solid 1px #ff0000;
-		margin-bottom: 0;
 	}
 	&.error:focus {
 		outline: 2px solid #ff0000; 

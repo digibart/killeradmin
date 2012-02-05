@@ -89,6 +89,7 @@ div.container {
 }
 .columns.last {
   margin-right: 0;
+  clear: right;
 }
 .columns.nowrap {
   white-space: nowrap;
