@@ -7,14 +7,12 @@ Hence I created: KillerFile, it's a file killer, combines and minifies:
 
 * Javasccript
 * Stylesheets
-* [Lesscss](http://lesscss.org/)
 
 It only minifies when `Kohana::$environment >= KOHANA::TESTING`, otherwise it will pass the files one by one in a html-tag.
 
 Functions
 -------------
 
-* compile lesscss files
 * add multiple files, and get them combined in a single minified file
 * send this single file in gzip
 * set http_headers `content-type`, `cache-control`, `expires`, and `last-modified`
@@ -100,4 +98,3 @@ This Helper is helped by:
 
 * [cssmin](http://code.google.com/p/cssmin/), the css minifier
 * [jsmin](https://github.com/rgrove/jsmin-php/), the js minifier
-* [lessc](http://leafo.net/lessphp/), the lesscss compiler

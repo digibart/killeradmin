@@ -10,7 +10,6 @@
 
 require_once Kohana::find_file('vendor', 'jsmin', 'php');
 require_once Kohana::find_file('vendor', 'cssmin', 'php');
-require_once Kohana::find_file('vendor', 'lessc', 'php');
 
 class Killeradmin_KillerFile
 {
@@ -31,7 +30,6 @@ class Killeradmin_KillerFile
 	function __construct($type)
 	{
 		$this->_type = $type;
-		$this->_lessc = new lessc();
 
 		// check if cache module exists
 		if (!class_exists("Cache", true))
