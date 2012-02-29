@@ -97,36 +97,19 @@ class Killeradmin_KillerFile
 	public function get_tag($attr = array())
 	{
 		// if we're in development-mode, don't minify/ combine
-		// but we still need to parse the files to replace %route% keys..
 		if (Kohana::$environment >= KOHANA::TESTING)
 		{
 			$html = "";
 			foreach ($this->_files as $file)
 			{
-				$content = $this->_get_file_contents($file);
-				$pathinfo = pathinfo($file);
-
-				//if its a less file, compile it
-				if ($pathinfo['extension'] == "less")
-				{
-					$content = $this->_lessc->parse($content);
-					$pathinfo['extension'] = "css";
-				}
-
-				//generate a uniq id
-				$id = str_replace(".", "-", $pathinfo['filename']) . '_' . substr(md5($file), 0, 6) . "." . $pathinfo['extension'];
-
-				//save cache so the browser can link to it
-				Cache::instance('KillerFile')->set($id, array('data' => $content, 'time' => time()), 5);
-
 				// generate the html tags
 				if ($this->_type == "js")
 				{
-					$html .= html::script(Route::get('admin/mini')->uri(array('dir' => 'js', 'file' => $id . "?" . time())), $attr);
+					$html .= html::script($file, $attr);
 				}
 				elseif ($this->_type == "css")
 				{
-					$html .= html::style(Route::get('admin/mini')->uri(array('dir' => 'css', 'file' => $id . "?" . time())), $attr);
+					$html .= html::style($file, $attr) . "\n";
 				}
 			}
 			return $html;
