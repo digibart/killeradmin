@@ -81,6 +81,7 @@ return array(
 	':field must be a valid url' => ':field moet een geldige url zijn',
 	':field is not a valid date' => ':field is geen geldige datum',
 	':field must contain only alpha or numbers' => ':field mag alleen letter en getallen bevatten',
+	':field must be unique' => ':field is niet uniek',
 	'register.username.username_available'	=> 'Gebruikersnaam is niet uniek',
 	'register.email.email_available' => 'Emailadres is niet uniek',
 	'signin.username.invalid' => 'Gebruikersnaam is niet gevonden',
