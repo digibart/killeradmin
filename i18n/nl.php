@@ -32,7 +32,7 @@ return array(
 	'userinfo'				=> 'Gebruikers informatie',
 	'systeminfo'			=> 'Systeem informatie',
 	'updateinfo'			=> 'Update informatie',
-	'last login'			=> 'Laaste login',
+	'last login'			=> 'Laatste login',
 	'rols'					=> 'Rollen',
 	
 	'edit'					=> 'bewerk',
