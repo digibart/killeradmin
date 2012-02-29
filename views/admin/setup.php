@@ -21,16 +21,19 @@
 <h3>Step 3: Create user</h3>
 <div class="eight columns last">
 	<form method="post" class="validate" action="<?php echo url::site(Route::get('admin/base_url')->uri(array('controller' => 'setup', 'action' => 'create_user'))); ?>">
-		<label for="username"><?php echo ucfirst(__('username'));?></label>
-		<input type="text" name="username" id="username" class="required" minlength="5">
+		<dl>
+			<dt class="twelve columns"><label for="username"><?php echo ucfirst(__('username'));?></label></dt>
+			<dd><input type="text" name="username" id="username" class="required" minlength="5"></dd>
 		
-		<label for="email"><?php echo  ucfirst(__('email'));?></label>
-		<input type="text" name="email" class="required email">
-
+			<dt class="twelve columns"><label for="email"><?php echo  ucfirst(__('email'));?></label></dt>
+			<dd><input type="text" name="email" class="required email"></dd>
+		</dl>
+		<br />
+		
 		<div class="button bar">
 			
 			<?php if ($errors == 0) : ?>
-				<input type="submit" class="primary button" value="Create user">
+				<input type="submit" class="nice primary button" value="Create user">
 			<?php else: ?>
 				<p class="notice">Fix the errors first before you can continue</p>
 			<?php endif; ?>
