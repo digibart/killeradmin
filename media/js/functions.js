@@ -27,8 +27,4 @@ $(document).ready(function() {
     });
 
     Date.format = 'dd-mm-yyyy';
-    $('.date-pick').datePicker({
-        clickInput: true
-    })
-
 });
