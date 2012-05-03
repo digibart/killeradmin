@@ -12,6 +12,7 @@
     
     echo KillerFile::instance('css','screen')->add_files(array(
 	    	$media->uri(array('file' => '/css/reset.css')),
+	    	$media->uri(array('file' => '/css/libs/tipsy.css')),
 	    	$media->uri(array('file' => '/css/killeradmin.css')),
     	))->get_tag(array('media' => 'screen,handheld'));
     	
@@ -82,7 +83,7 @@
 	    	$media->uri(array('file' => '/js/libs/jquery-1.7.1.js')),
 	    	$media->uri(array('file' => '/js/libs/jquery.validate.js')),
 	    	$media->uri(array('file' => '/js/libs/jquery.confirm-1.3.js')),
-	    	$media->uri(array('file' => '/js/libs/jquery.tooltip.js')),
+	    	$media->uri(array('file' => '/js/libs/jquery.tipsy.js')),
 	    	$media->uri(array('file' => '/js/localization/messages_nl.js')),
 	    	$media->uri(array('file' => '/js/localization/methods_nl.js')),
 	    	$media->uri(array('file' => '/js/libs/date.js',)),

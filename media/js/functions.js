@@ -8,7 +8,7 @@ $(document).ready(function() {
         timeout: 40000,
         msg: del_confirm,
         dialogShow: 'fadeIn',
-        wrapper: '<div id="tooltip" class="confirm"><\/div>',
+        wrapper: '<div class="confirm"><\/div>',
         buttons: {
             wrapper: '<button><\/button>',
             separator: '',
@@ -17,14 +17,14 @@ $(document).ready(function() {
             cancel: del_cancel
         }
     });
-
-    $('.tooltip,img').tooltip({
-        track: false,
-        delay: 500,
-        showURL: false,
-        showBody: " - ",
-        fade: 250
-    });
-
+    
+    //init tooltips
+    var tipsy_default = {};
+    
+	$('.tooltip.topwards').tipsy($.extend(tipsy_default, {gravity: 'n'}));
+    $('.tooltip.rightwards').tipsy($.extend(tipsy_default, {gravity: 'w'}));
+    $('.tooltip.downwards').tipsy($.extend(tipsy_default, {gravity: 'n'}));
+	$('.tooltip.leftwards').tipsy($.extend(tipsy_default, {gravity: 'e'}));
+	
     Date.format = 'dd-mm-yyyy';
 });
