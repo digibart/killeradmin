@@ -8,7 +8,7 @@ $(document).ready(function() {
         timeout: 40000,
         msg: del_confirm,
         dialogShow: 'fadeIn',
-        wrapper: '<div id="tooltip" class="confirm"><\/div>',
+        wrapper: '<div class="confirm"><\/div>',
         buttons: {
             wrapper: '<button><\/button>',
             separator: '',

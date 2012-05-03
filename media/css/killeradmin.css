@@ -103,7 +103,7 @@ ul li {
 /**************************************/
 /* tooltip
 /**************************************/
-#tooltip {
+.confirm {
   position: absolute;
   z-index: 3000;
   background-color: #eee;
@@ -114,12 +114,12 @@ ul li {
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
   text-shadow: 1px 1px 0 #ffffff;
 }
-#tooltip h3 {
+.confirm h3 {
   margin: 0;
   color: #555555;
   font-size: 1em;
 }
-#tooltip.confirm span {
+.confirm span {
   display: block;
 }
 /**************************************/
