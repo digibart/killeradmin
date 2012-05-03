@@ -14,7 +14,7 @@ foreach ($items as $title => $url) {
 
 <div class="tools">
 	<div class="background">
-	<?php echo html::anchor(Route::get('admin/base_url')->uri(array('controller' => 'settings', 'action' => 'index')), KillerAdmin::SpriteImg('cog') , array('title' => __('settings'), 'class' => 'tooltip')); ?>
-	<?php echo html::anchor(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'logout')), KillerAdmin::SpriteImg('open-door'), array('title' => __('logout'), 'class' => 'tooltip')); ?>
+	<?php echo html::anchor(Route::get('admin/base_url')->uri(array('controller' => 'settings', 'action' => 'index')), KillerAdmin::SpriteImg('cog') , array('title' => __('settings'), 'class' => 'tooltip downwards')); ?>
+	<?php echo html::anchor(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'logout')), KillerAdmin::SpriteImg('open-door'), array('title' => __('logout'), 'class' => 'tooltip downwards')); ?>
 	</div>
 </div>

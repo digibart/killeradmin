@@ -22,8 +22,8 @@
 			</div>
 			<div class="six columns nowrap"><?php echo ($object->last_login ? strftime("%R %a %e %b %G", $object->last_login) : '-'); ?></div>	
 			<div class="one tools columns last">
-				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('pencil', __('edit') )); ?> 
-				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('bin', __('delete')), array('class' => 'delete')) : ""; ?>
+				<?php echo html::anchor( $controller_url . '/edit/' . $object->id, KillerAdmin::spriteImg('pencil tooltip leftwards', __('edit'))); ?> 
+				<?php echo ($object->id != $auth_user->id) ? html::anchor($controller_url . '/delete/' . $object->id, KillerAdmin::spriteImg('bin tooltip rightwards', __('delete')), array('class' => 'delete')) : ""; ?>
 			</div>
 		</div>
 	<?php endforeach; ?>
