@@ -291,7 +291,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$post = $_POST;
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->where($this->base_object->object_name() . '.id', '=', (int) $id)->find();
+		$object->where($object->object_name() . '.id', '=', (int) $id)->find();
 		$object->values($post);
 
 		// add current user if object does not belongs to a user
