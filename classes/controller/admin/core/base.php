@@ -333,7 +333,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$id = $this->request->param('id');	
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->where('id', '=', (int) $id)->find();
+		$object->where('id', '=', $id)->find();
 
 		if ($object->loaded()) {
 			$object->delete();
