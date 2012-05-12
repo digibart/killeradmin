@@ -252,7 +252,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->template->title = ucfirst(__('edit :object', array(':object' => __($this->orm_name))));
 	
 		$object = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
-		$object->where($object->object_name() . '.id', '=', (int) $id)->find();
+		$object->where($object->object_name() . '.id', '=', $id)->find();
 
 		//get the view
 		if (is_object($this->template->content) && get_class($this->template->content) == "View")
