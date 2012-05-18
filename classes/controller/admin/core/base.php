@@ -337,7 +337,15 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
 		$object->where($this->base_object->object_name() . '.id', '=', (int) $id)->find();
-		$object->values($post);
+		
+		if (isset($object->save_columns) && is_array($object->save_columns))
+		{
+			$object->values(Arr::extract($post, $object->save_columns));
+		}
+		else
+		{
+			$object->values($post);
+		}
 
 		// add current user if object does not belongs to a user
 		if (array_key_exists('user_id', $object->list_columns()) && $object->user_id == null)
