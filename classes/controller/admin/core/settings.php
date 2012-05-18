@@ -35,21 +35,19 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 	{
 		$user = ORM::factory('user', $this->user->id);
 
-		if (!Arr::get($_POST, 'password'))
+		if ($this->request->post('password'))
 		{
-			unset($_POST['password']);
-			unset($_POST['password_confirm']);
+			$this->request->post('password', null);
+			$this->request->post('password_confirm', null);
 		}
 
-		$_POST['username'] = $user->username;
-
-		$user->values($_POST);
+		$user->values($this->request->post());
 
 		try
 		{
-			$extra_rules = $user->get_password_validation($_POST);
+			$extra_rules = $user->get_password_validation($this->request->post());
 
-			if (Arr::get($_POST, 'password'))
+			if ($this->request->post('password'))
 			{
 				$extra_rules->rule('password_confirm', 'matches', array(':validation', ':field', 'password'));
 			}
@@ -78,7 +76,7 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 				}
 			}
 
-			Session::instance()->set('post_data_user', $_POST);
+			Session::instance()->set('post_data_user', $this->request->post());
 			Message::instance()->error($errorstring);
 			$this->request->redirect($this->request->referrer());
 		}

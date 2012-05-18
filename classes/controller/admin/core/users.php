@@ -30,27 +30,26 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 		$id = $this->request->param('id');
 		$user = ORM::factory('user', (int) $id);
 
-		$post = $_POST;
-		if (!Arr::get($post, 'password'))
+		if (!$this->request->post('password'))
 		{
-			unset($post['password']);
-			unset($post['password_confirm']);
+			$this->request->post('password', null);
+			$this->request->post('password_confirm', null);
 		}
 
-		$user->values($post);
+		$user->values($this->request->post());
 
 		try
 		{
-			$extra_rules = $user->get_password_validation($post);
+			$extra_rules = $user->get_password_validation($this->request->post());
 
-			if (Arr::get($post, 'password'))
+			if ($this->request->post('password'))
 			{
 				$extra_rules->rule('password_confirm', 'matches', array(':validation', ':field', 'password'));
 			}
 
 			$user->save($extra_rules);
 
-			if (Arr::get($_POST, 'role'))
+			if ($this->request->post('role'))
 			{
 				//first, remove all roles
 				foreach ($user->roles->find_all() as $role)
@@ -59,7 +58,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 				}
 
 				//then add the new roles
-				foreach ($_POST['role'] as $role_name => $checked)
+				foreach ($this->request->post('role') as $role_name => $checked)
 				{
 					if (!$user->has('roles', ORM::factory('role')->where('name', '=', $role_name)->find()))
 					{
@@ -92,7 +91,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 					}
 				}
 			}
-			Session::instance()->set('post_data_user', $_POST);
+			Session::instance()->set('post_data_user', $this->request->post());
 			Message::instance()->error($errorstring);
 			$this->request->redirect(Request::current()->referrer());
 		}

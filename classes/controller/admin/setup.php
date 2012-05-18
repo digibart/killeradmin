@@ -124,8 +124,8 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user = ORM::factory('user');
 		$password = Text::random('distinct', 8);
 
-		$user->username = Arr::get($_POST, 'username');
-		$user->email = Arr::get($_POST, 'email');
+		$user->username = $this->request->post('username');
+		$user->email = $this->request->post('email');
 		$user->password = $password;
 
 
@@ -147,7 +147,7 @@ class Controller_Admin_Setup extends Controller_Template {
 			{
 				$errorstring .= $msg . "<br />";
 			}
-			Session::instance()->set('post_data', $_POST);
+			Session::instance()->set('post_data', $this->request->post());
 			Message::instance()->error($errorstring);
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'setup')));
 

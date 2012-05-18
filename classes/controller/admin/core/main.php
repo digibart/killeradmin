@@ -30,18 +30,18 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			$this->template->content->set('captcha', $captcha->render());
 		}
 
-		if ($_POST)
+		if ($this->request->post())
 		{
-			$post = new Validation($_POST);
+			$post = new Validation($this->request->post());
 			$post->rule('username', 'not_empty')
-			->rule('captcha', 'Captcha::valid', array(Arr::get($_POST, 'captcha')));
+				->rule('captcha', 'Captcha::valid', array($this->request->post('captcha')));
 
 
 			if ($post->check())
 			{
 				//Instantiate a new user
 				$user = ORM::factory('user');
-				$status = Auth::instance()->login(Arr::get($_POST, 'username'), Arr::get($_POST, 'password'), Arr::get($_POST, 'remember'));
+				$status = Auth::instance()->login($this->request->post('username'), $this->request->post('password'), $this->request->post('remember'));
 
 
 				//If user is logged then redirect
@@ -94,21 +94,21 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			$this->template->content->set('captcha', $captcha->render());
 		}
 
-		if ($_POST)
+		if ($this->request->post())
 		{
-			$post = new Validation($_POST);
+			$post = new Validation($this->request->post());
 			$post->rule('username', 'not_empty')
 			->rule('username', 'min_length', array('username', 5))
 			->rule('username', 'max_length', array('username', 42))
-			->rule('email', 'email', array(Arr::get($_POST, 'email')))
-			->rule('captcha', 'Captcha::valid', array(Arr::get($_POST, 'captcha')));
+			->rule('email', 'email', array($this->request->post('email')))
+			->rule('captcha', 'Captcha::valid', array($this->request->post('captcha')));
 
 
 			if ($post->check())
 			{
 				$user = ORM::factory('user')
-				->where('username', '=', (string) $_POST['username'])
-				->where('email', '=', (string) $_POST['email'])
+				->where('username', '=', $this->request->post('username'))
+				->where('email', '=', $this->request->post('email'))
 				->find();
 
 				if ($user->loaded())
