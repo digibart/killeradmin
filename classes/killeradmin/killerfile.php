@@ -161,12 +161,6 @@ class Killeradmin_KillerFile
 				{
 					$output .=  ltrim(CSSMin::minify($this->_get_file_contents($file))) . "\n";
 				}
-				elseif ($pathinfo['extension'] == 'less')
-				{
-					// it's a less-file, so we need to compile it to css first
-					$compiled = $this->_compile_lessc($file);
-					$output .= ltrim(CSSMin::minify($compiled)). "\n";
-				}
 			}
 			Cache::instance('KillerFile')->set($this->_filename, array('data' => trim($output), 'time' => time()));
 		}
@@ -224,24 +218,8 @@ class Killeradmin_KillerFile
 		$contents = str_ireplace("%admin/media%", Route::url('admin/media'), $contents);
 
 		return $contents;
-
 	}
 
-	protected function _compile_lessc($file)
-	{
-		try
-		{
-			$compiled = $this->_lessc->parse($this->_get_file_contents($file));
-		}
-		catch (exception $e)
-		{
-			throw new Kohana_Exception("could not parse :file > :error", array(
-					':file' => $file,
-					':error' => $e->getMessage()
-				));
-		}
-		return $compiled;
-	}
 
 	/**
 	 * generate a nice uniq filename based on current added files
