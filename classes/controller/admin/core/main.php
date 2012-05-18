@@ -47,7 +47,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				//If user is logged in then redirect
 				if ($status)
 				{
-					Message::instance()->succeed(ucfirst(__('access granted')));
+					Killerflash::instance()->succeed(ucfirst(__('access granted')));
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), 0 , 300);
 					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main')));
 				}
@@ -56,7 +56,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 					//save the login failure
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), $failures + 1, 300);
 
-					Message::instance()->error(__('username or password incorrect'));
+					Killerflash::instance()->error(__('username or password incorrect'));
 				}
 
 			}
@@ -67,7 +67,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				{
 					$errorstring .= $error . "<br>";
 				}
-				Message::instance()->error($errorstring);
+				Killerflash::instance()->error($errorstring);
 			}
 
 
@@ -120,7 +120,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				 else
 				{
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), $failures + 1, 300);
-					Message::instance()->error(__(':object not found', array(':object' => __('user'))));
+					Killerflash::instance()->error(__(':object not found', array(':object' => __('user'))));
 				}
 
 			} else
@@ -130,7 +130,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				{
 					$errorstring .= $error . "<br>";
 				}
-				Message::instance()->error($errorstring);
+				Killerflash::instance()->error($errorstring);
 			}
 		}
 	}
@@ -144,7 +144,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 	public function action_logout()
 	{
 		Auth::instance()->logout();
-		Message::instance()->info(ucfirst(__('access terminated')));
+		Killerflash::instance()->info(ucfirst(__('access terminated')));
 		Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 	}
 

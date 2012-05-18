@@ -57,7 +57,7 @@
 			<div class="row">
 				<div class="twenty columns prefix-2">			
 					<?php				
-					$msg = Message::instance()->get();
+					$msg = Killerflash::instance()->get();
 				
 					if (!empty($msg)) {
 						echo $msg;

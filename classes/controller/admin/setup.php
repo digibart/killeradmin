@@ -29,7 +29,7 @@ class Controller_Admin_Setup extends Controller_Template {
 		if (Kohana::$environment != KOHANA::DEVELOPMENT || $user_count !== 0)
 		{
 			Kohana::$log->add(Log::ERROR, 'Access to Killeradmin setup denied: ~ :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
-			Message::instance()->error(ucfirst(__('access denied. More info in logs')));
+			Killerflash::instance()->error(ucfirst(__('access denied. More info in logs')));
 			$this->request->redirect(Route::get('admin/base_url')->uri());
 		}
 	}
@@ -101,7 +101,7 @@ class Controller_Admin_Setup extends Controller_Template {
 
 		if ($errors > 0)
 		{
-			Message::instance()->error(__('fix the errors first'));
+			Killerflash::instance()->error(__('fix the errors first'));
 		}
 
 		$this->template->content = View::factory('admin/setup')
@@ -135,7 +135,7 @@ class Controller_Admin_Setup extends Controller_Template {
 			$user->add('roles', ORM::factory('role', array('name' => 'login')));
 			$user->add('roles', ORM::factory('role', array('name' => 'admin')));
 
-			Message::instance()->succeed('user created. Password: <b>' . $password . '</b>');
+			Killerflash::instance()->succeed('user created. Password: <b>' . $password . '</b>');
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 		}
 		catch (ORM_Validation_Exception $e)
@@ -148,7 +148,7 @@ class Controller_Admin_Setup extends Controller_Template {
 				$errorstring .= $msg . "<br />";
 			}
 			Session::instance()->set('post_data', $this->request->post());
-			Message::instance()->error($errorstring);
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'setup')));
 
 		}

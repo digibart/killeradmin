@@ -38,11 +38,11 @@ class Model_User extends Model_Auth_User {
 
 		if (Killeradmin::email($to, $from, $subject, $message))
 		{
-			Message::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
+			Killerflash::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
 		}
 		else
 		{
-			Message::instance()->error(__('could not send email to :email', array(':email' => $this->email)));
+			Killerflash::instance()->error(__('could not send email to :email', array(':email' => $this->email)));
 		}
 	}
 }

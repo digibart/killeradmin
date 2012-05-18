@@ -76,7 +76,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			{
 				if (Auth::instance()->logged_in())
 				{
-					Message::instance()->error(ucfirst(__('access denied')));
+					Killerflash::instance()->error(ucfirst(__('access denied')));
 					$referrer = ($this->request->referrer()) ? $this->request->referrer() : Route::get('admin/base_url')->uri();
 					$this->request->redirect($referrer);
 				} else
@@ -108,7 +108,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		{
 			if (count($this->menu) == 0)
 			{
-				Message::instance()->info(Kohana::message('admin', 'menu not found'));
+				Killerflash::instance()->info(Kohana::message('admin', 'menu not found'));
 				$this->menu = array();
 			}
 
@@ -189,7 +189,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				$query = Url::query(array('filter' => null));
 				$msg .= "&nbsp;" . html::anchor($this->_controller_url . $query, __('clear filter'));
 			}
-			Message::instance()->info($msg);
+			Killerflash::instance()->info($msg);
 		}
 
 
@@ -316,7 +316,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		if (!$object->loaded())
 		{
-			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
+			Killerflash::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
 			$this->request->redirect($this->_session->get_once('requested_url'));
 		}
 	}
@@ -356,10 +356,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		try {
 			if ($object->save())
 			{
-				Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
+				Killerflash::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
 			} else
 			{
-				Message::instance()->error(__(':object not saved'),  array(':object' => __($this->orm_name)));
+				Killerflash::instance()->error(__(':object not saved'),  array(':object' => __($this->orm_name)));
 			}
 			$this->request->redirect($this->_session->get_once('requested_url'));
 
@@ -373,7 +373,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				$errorstring .= $msg . "<br />";
 			}
 			$this->_session->set('post_data_' . $this->orm_name, $post);
-			Message::instance()->error($errorstring);
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect($this->request->referrer());
 		}
 
@@ -396,10 +396,10 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		if ($object->loaded())
 		{
 			$object->delete();
-			Message::instance()->succeed(__(':object removed'),  array(':object' => __($this->orm_name)));
+			Killerflash::instance()->succeed(__(':object removed'),  array(':object' => __($this->orm_name)));
 		} else
 		{
-			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
+			Killerflash::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
 		}
 
 		$this->request->redirect($this->_session->get_once('requested_url'));

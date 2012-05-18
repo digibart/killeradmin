@@ -77,7 +77,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
 			}
 
-			Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
+			Killerflash::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
 
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'users')));
 
@@ -100,7 +100,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 				}
 			}
 			Session::instance()->set('post_data_user', $this->request->post());
-			Message::instance()->error($errorstring);
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect(Request::current()->referrer());
 		}
 

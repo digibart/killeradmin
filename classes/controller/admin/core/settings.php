@@ -73,7 +73,7 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 
 			$user->save($extra_rules);
 
-			Message::instance()->succeed(__(':object saved'),  array(':object' => __('settings')));
+			Killerflash::instance()->succeed(__(':object saved'),  array(':object' => __('settings')));
 
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'settings')));
 		}
@@ -96,7 +96,7 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 			}
 
 			Session::instance()->set('post_data_user', $this->request->post());
-			Message::instance()->error($errorstring);
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect($this->request->referrer());
 		}
 	}
