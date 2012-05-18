@@ -336,7 +336,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$post = $this->request->post();
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->where($object->object_name() . '.id', '=', (int) $id)->find();
+		$object->where($object->object_name() . '.id', '=', $id)->find();
 		
 		if (isset($object->save_columns) && is_array($object->save_columns))
 		{
