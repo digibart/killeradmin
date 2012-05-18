@@ -24,7 +24,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		$this->template->title = ucfirst(__('login'));
 		$this->template->content = View::factory('admin/form_login');
 
-		// if visitor got the wrong username/password 3 times, then validate visitor with a captcha
+		// if visitor got the wrong username/password 3 times in 5 minutes, then validate visitor with a captcha
 		if ($failures > 3)
 		{
 			$this->template->content->set('captcha', $captcha->render());
@@ -44,7 +44,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				$status = Auth::instance()->login($this->request->post('username'), $this->request->post('password'), $this->request->post('remember'));
 
 
-				//If user is logged then redirect
+				//If user is logged in then redirect
 				if ($status)
 				{
 					Message::instance()->succeed(ucfirst(__('access granted')));
@@ -89,6 +89,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		$this->template->title = ucfirst(__('forgot password'));
 		$this->template->content = View::factory('admin/form_password');
 
+		// if visitor got the wrong username/password 3 times in 5 minutes, then validate visitor with a captcha
 		if ($failures > 3)
 		{
 			$this->template->content->set('captcha', $captcha->render());
@@ -115,7 +116,8 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				{
 					$user->resetPassword();
 					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
-				} else
+				}
+				 else
 				{
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), $failures + 1, 300);
 					Message::instance()->error(__(':object not found', array(':object' => __('user'))));
