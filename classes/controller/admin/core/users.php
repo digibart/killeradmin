@@ -14,7 +14,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 	{
 		parent::before();
 
-		$this->template->title = __('users');
+		$this->template->title = ucfirst(__('users'));
 	}
 
 
@@ -30,33 +30,46 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 		$id = $this->request->param('id');
 		$user = ORM::factory('user', (int) $id);
 
-		$post = $_POST;
-		if (!Arr::get($post, 'password')) {
-			unset($post['password']);
-			unset($post['password_confirm']);
+		if (!$this->request->post('password'))
+		{
+			$this->request->post('password', null);
+			$this->request->post('password_confirm', null);
 		}
 
-		$user->values($post);
+		//set the values
+		if (isset($user->save_columns) && is_array($user->save_columns))
+		{
+			$user->values(Arr::extract($this->request->post(), $user->save_columns));
+		}
+		else
+		{
+			$user->values($this->request->post());
+		}
 
 		try
 		{
-			$extra_rules = $user->get_password_validation($post);
+			$extra_rules = $user->get_password_validation($this->request->post());
 
-			if (Arr::get($post, 'password')) {
+			if ($this->request->post('password'))
+			{
 				$extra_rules->rule('password_confirm', 'matches', array(':validation', ':field', 'password'));
 			}
 
 			$user->save($extra_rules);
 
-			if (Arr::get($_POST, 'role')) {
+			if ($this->request->post('role'))
+			{
 				//first, remove all roles
-				foreach ($user->roles->find_all() as $role) {
+				foreach ($user->roles->find_all() as $role)
+				{
 					$user->remove('roles', $role);
 				}
 
 				//then add the new roles
-				foreach ($_POST['role'] as $role_name => $checked) {
-					if (!$user->has('roles', ORM::factory('role')->where('name', '=', $role_name)->find())) {
+				foreach ($this->request->post('role') as $role_name => $checked)
+				{
+					if (!$user->has('roles', ORM::factory('role')->where('name', '=', $role_name)->find()))
+					{
 						$login_role = new Model_Role(array('name' =>$role_name));
 						$user->add('roles', $login_role);
 					}
@@ -64,25 +77,30 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 
 			}
 
-			Message::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
+			Killerflash::instance()->succeed(__(':object saved'),  array(':object' => __($this->orm_name)));
 
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'users')));
 
 		}
-		catch (ORM_Validation_Exception $e) {
+		catch (ORM_Validation_Exception $e)
+		{
 			$errorstring = "";
 			$errors = $e->errors('admin');
-			foreach ($errors as $key => $msg) {
-				if (is_string($msg)) {
+			foreach ($errors as $key => $msg)
+			{
+				if (is_string($msg))
+				{
 					$errorstring .= $msg . "<br />";
-				} elseif (is_array($msg)) {
-					foreach ($msg as $key2 => $msg2) {
+				} elseif (is_array($msg))
+				{
+					foreach ($msg as $key2 => $msg2)
+					{
 						$errorstring .= $msg2 . "<br />";
 					}
 				}
 			}
-			Session::instance()->set('post_data_user', $_POST);
-			Message::instance()->error($errorstring);
+			Session::instance()->set('post_data_user', $this->request->post());
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect(Request::current()->referrer());
 		}
 

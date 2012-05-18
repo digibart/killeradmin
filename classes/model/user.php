@@ -23,14 +23,14 @@ class Model_User extends Model_Auth_User {
 
 		$this->password = $password;
 		$this->save();
-		
+
 		$company_name =  Kohana::$config->load('admin.company_name');
 
 		$to = array($this->email => $this->username);
 		$from = array($this->email => $company_name);
-		
+
 		$subject = __('new password for :company_name', array(':company_name' =>$company_name));
-		
+
 		$message = View::factory('admin/email_password')
 		->set('password', $password)
 		->set('user', $this)
@@ -38,11 +38,11 @@ class Model_User extends Model_Auth_User {
 
 		if (Killeradmin::email($to, $from, $subject, $message))
 		{
-			Message::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
+			Killerflash::instance()->succeed(__('password send to :email', array(':email' => $this->email)));
 		}
 		else
 		{
-			Message::instance()->error(__('could not send email to :email', array(':email' => $this->email)));
+			Killerflash::instance()->error(__('could not send email to :email', array(':email' => $this->email)));
 		}
 	}
 }

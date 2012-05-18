@@ -1,15 +1,13 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Flash message handler
+ * Flash message handler, based on Kohana_Message
  *
- * @package     Kohana
- * @category    Base
- * @author      Kyle Treubig
- * @copyright   (c) 2010 Kyle Treubig
- * @license     MIT
+ * @package Killer-admin
+ * @category Helper
  */
-abstract class Kohana_Message {
+abstract class Killeradmin_Killerflash
+{
 
 	/** Config */
 	private $_config;
@@ -20,33 +18,44 @@ abstract class Kohana_Message {
 	/** Cached error message */
 	private $error;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->_config = Kohana::$config->load('message');
 	}
 
-	public static function instance() {
+	public static function instance()
+	{
 		static $instance;
 		if ( ! isset($instance))
 		{
-			$instance = new Message;
+			$instance = new Killerflash;
 		}
 		return $instance;
 	}
 
-	public function info($msg, array $values=NULL, $lang='en-us') {
+	public function info($msg, array $values=NULL, $lang='en-us')
+	{
 		$session = Session::instance($this->_config['session_type']);
 		$session->set('flash_msg_info', __($msg, $values, $lang));
 	}
 
-	public function error($msg, array $values=NULL, $lang='en-us') {
+	public function succeed($msg, array $values=NULL, $lang='en-us')
+	{
+		$session = Session::instance($this->_config['session_type']);
+		$session->set('flash_msg_succeed', __($msg, $values, $lang));
+	}
+
+	public function error($msg, array $values=NULL, $lang='en-us')
+	{
 		$session = Session::instance($this->_config['session_type']);
 		$session->set('flash_msg_error', __($msg, $values, $lang));
 	}
 
-	public function get($type=NULL) {
+	public function get($type=NULL)
+	{
 		if ($type === NULL)
 		{
-			return $this->get('info').$this->get('error');
+			return $this->get('succeed').$this->get('info').$this->get('error');
 		}
 		else
 		{
@@ -68,6 +77,4 @@ abstract class Kohana_Message {
 			}
 		}
 	}
-
 }
-

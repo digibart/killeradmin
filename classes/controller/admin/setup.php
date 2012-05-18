@@ -2,7 +2,7 @@
 
 /**
  * Check modules and config, and create a first user
- * 
+ *
  * @extends Controller_Template
  * @package
  * @category
@@ -15,7 +15,7 @@ class Controller_Admin_Setup extends Controller_Template {
 	 * check if you're allowd to see this page
 	 *
 	 * Denie access if there are already users in the database, or $envirement != DEVELOPMENT
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -27,16 +27,16 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user_count = (int) ORM::factory('user')->count_all();
 
 		if (Kohana::$environment != KOHANA::DEVELOPMENT || $user_count !== 0)
-		{			
+		{
 			Kohana::$log->add(Log::ERROR, 'Access to Killeradmin setup denied: ~ :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
-			Message::instance()->error(ucfirst(__('access denied. More info in logs')));
+			Killerflash::instance()->error(ucfirst(__('access denied. More info in logs')));
 			$this->request->redirect(Route::get('admin/base_url')->uri());
 		}
 	}
 
 	/**
 	 * action_index function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -72,8 +72,8 @@ class Controller_Admin_Setup extends Controller_Template {
 		/**************************************/
 
 		$config = array();
-	
-		// check if auth hash_key is set	
+
+		// check if auth hash_key is set
 		if (strlen(Kohana::$config->load('auth.hash_key')) < 30)
 		{
 			$config['auth'] = KillerAdmin::spriteImg('cross') . Kohana::message('admin', 'no hash_key');
@@ -94,27 +94,27 @@ class Controller_Admin_Setup extends Controller_Template {
 			$config['admin'] = KillerAdmin::spriteImg('tick');
 		}
 
-		
+
 		/**************************************/
 		/* roundup
 		/**************************************/
 
 		if ($errors > 0)
 		{
-			Message::instance()->error(__('fix the errors first'));
+			Killerflash::instance()->error(__('fix the errors first'));
 		}
 
 		$this->template->content = View::factory('admin/setup')
-			->set('modules', $modules)
-			->set('config', $config)
-			->set('post_data', Session::instance()->get_once('post_data'))
-			->set('errors', $errors);
+		->set('modules', $modules)
+		->set('config', $config)
+		->set('post_data', Session::instance()->get_once('post_data'))
+		->set('errors', $errors);
 
 	}
 
 	/**
 	 * Create a user, and redirect to login page
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -124,8 +124,8 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user = ORM::factory('user');
 		$password = Text::random('distinct', 8);
 
-		$user->username = Arr::get($_POST, 'username');
-		$user->email = Arr::get($_POST, 'email');
+		$user->username = $this->request->post('username');
+		$user->email = $this->request->post('email');
 		$user->password = $password;
 
 
@@ -135,7 +135,7 @@ class Controller_Admin_Setup extends Controller_Template {
 			$user->add('roles', ORM::factory('role', array('name' => 'login')));
 			$user->add('roles', ORM::factory('role', array('name' => 'admin')));
 
-			Message::instance()->succeed('user created. Password: <b>' . $password . '</b>');
+			Killerflash::instance()->succeed('user created. Password: <b>' . $password . '</b>');
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 		}
 		catch (ORM_Validation_Exception $e)
@@ -147,8 +147,8 @@ class Controller_Admin_Setup extends Controller_Template {
 			{
 				$errorstring .= $msg . "<br />";
 			}
-			Session::instance()->set('post_data', $_POST);
-			Message::instance()->error($errorstring);
+			Session::instance()->set('post_data', $this->request->post());
+			Killerflash::instance()->error($errorstring);
 			$this->request->redirect(Route::get('admin/base_url')->uri(array('controller' => 'setup')));
 
 		}

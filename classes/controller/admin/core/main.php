@@ -24,39 +24,39 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		$this->template->title = ucfirst(__('login'));
 		$this->template->content = View::factory('admin/form_login');
 
-		// if visitor got the wrong username/password 3 times, then validate visitor with a captcha
+		// if visitor got the wrong username/password 3 times in 5 minutes, then validate visitor with a captcha
 		if ($failures > 3)
 		{
 			$this->template->content->set('captcha', $captcha->render());
 		}
 
-		if ($_POST)
+		if ($this->request->post())
 		{
-			$post = new Validation($_POST);
+			$post = new Validation($this->request->post());
 			$post->rule('username', 'not_empty')
-			->rule('captcha', 'Captcha::valid', array(Arr::get($_POST, 'captcha')));
+				->rule('captcha', 'Captcha::valid', array($this->request->post('captcha')));
 
 
 			if ($post->check())
 			{
 				//Instantiate a new user
 				$user = ORM::factory('user');
-				$status = Auth::instance()->login(Arr::get($_POST, 'username'), Arr::get($_POST, 'password'), Arr::get($_POST, 'remember'));
+				$status = Auth::instance()->login($this->request->post('username'), $this->request->post('password'), $this->request->post('remember'));
 
 
-				//If user is logged then redirect
+				//If user is logged in then redirect
 				if ($status)
 				{
-					Message::instance()->succeed(ucfirst(__('access granted')));
+					Killerflash::instance()->succeed(ucfirst(__('access granted')));
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), 0 , 300);
 					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main')));
-				} 
+				}
 				else
 				{
 					//save the login failure
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), $failures + 1, 300);
 
-					Message::instance()->error(__('username or password incorrect'));
+					Killerflash::instance()->error(__('username or password incorrect'));
 				}
 
 			}
@@ -67,7 +67,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				{
 					$errorstring .= $error . "<br>";
 				}
-				Message::instance()->error($errorstring);
+				Killerflash::instance()->error($errorstring);
 			}
 
 
@@ -89,36 +89,38 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 		$this->template->title = ucfirst(__('forgot password'));
 		$this->template->content = View::factory('admin/form_password');
 
+		// if visitor got the wrong username/password 3 times in 5 minutes, then validate visitor with a captcha
 		if ($failures > 3)
 		{
 			$this->template->content->set('captcha', $captcha->render());
 		}
 
-		if ($_POST)
+		if ($this->request->post())
 		{
-			$post = new Validation($_POST);
+			$post = new Validation($this->request->post());
 			$post->rule('username', 'not_empty')
 			->rule('username', 'min_length', array('username', 5))
 			->rule('username', 'max_length', array('username', 42))
-			->rule('email', 'email', array(Arr::get($_POST, 'email')))
-			->rule('captcha', 'Captcha::valid', array(Arr::get($_POST, 'captcha')));
+			->rule('email', 'email', array($this->request->post('email')))
+			->rule('captcha', 'Captcha::valid', array($this->request->post('captcha')));
 
 
 			if ($post->check())
 			{
 				$user = ORM::factory('user')
-				->where('username', '=', (string) $_POST['username'])
-				->where('email', '=', (string) $_POST['email'])
+				->where('username', '=', $this->request->post('username'))
+				->where('email', '=', $this->request->post('email'))
 				->find();
 
 				if ($user->loaded())
 				{
 					$user->resetPassword();
 					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
-				} else
+				}
+				 else
 				{
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), $failures + 1, 300);
-					Message::instance()->error(__(':object not found', array(':object' => __('user'))));
+					Killerflash::instance()->error(__(':object not found', array(':object' => __('user'))));
 				}
 
 			} else
@@ -128,7 +130,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 				{
 					$errorstring .= $error . "<br>";
 				}
-				Message::instance()->error($errorstring);
+				Killerflash::instance()->error($errorstring);
 			}
 		}
 	}
@@ -142,7 +144,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 	public function action_logout()
 	{
 		Auth::instance()->logout();
-		Message::instance()->info(ucfirst(__('access terminated')));
+		Killerflash::instance()->info(ucfirst(__('access terminated')));
 		Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'login')));
 	}
 
