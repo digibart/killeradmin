@@ -36,7 +36,15 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 			$this->request->post('password_confirm', null);
 		}
 
-		$user->values($this->request->post());
+		//set the values
+		if (isset($object->save_columns) && is_array($object->save_columns))
+		{
+			$object->values(Arr::extract($post, $object->save_columns));
+		}
+		else
+		{
+			$object->values($post);
+		}
 
 		try
 		{
