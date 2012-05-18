@@ -19,14 +19,24 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 
 	public function action_index()
 	{
-		$this->template->content = View::factory('admin/settings_index')
-		->set('user', $this->user)
-		->set('referrer', Session::instance()->get('requested_url'));
+		//get the view
+		if (is_object($this->template->content) && get_class($this->template->content) == "View")
+		{
+			$view = $this->template->content;
+		}
+		else
+		{
+			$view = View::factory('admin/settings_index');
+		}
+		
+		$this->template->content = $view
+			->set('user', $this->user)
+			->set('referrer', Session::instance()->get('requested_url'));
 	}
 
 
 	/**
-	 * save the user
+	 * save the settings
 	 *
 	 * @access public
 	 * @return void
@@ -41,8 +51,17 @@ class Controller_Admin_Core_Settings extends Controller_Admin_Base {
 			$this->request->post('password_confirm', null);
 		}
 
-		$user->values($this->request->post());
+		//set the values
+		if (isset($user->save_columns) && is_array($user->save_columns))
+		{
+			$user->values(Arr::extract($this->request->post(), $user->save_columns));
+		}
+		else
+		{
+			$user->values($this->request->post());
+		}
 
+		//try saving it
 		try
 		{
 			$extra_rules = $user->get_password_validation($this->request->post());
