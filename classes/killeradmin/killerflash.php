@@ -1,15 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Flash message handler
+ * Flash message handler, based on Kohana_Message
  *
- * @package     Kohana
- * @category    Base
- * @author      Kyle Treubig
- * @copyright   (c) 2010 Kyle Treubig
- * @license     MIT
+ * @package Killer-admin
+ * @category Helper
  */
-abstract class Kohana_Message
+abstract class Killeradmin_Killerflash
 {
 
 	/** Config */
@@ -31,7 +28,7 @@ abstract class Kohana_Message
 		static $instance;
 		if ( ! isset($instance))
 		{
-			$instance = new Message;
+			$instance = new Killerflash;
 		}
 		return $instance;
 	}
@@ -40,6 +37,12 @@ abstract class Kohana_Message
 	{
 		$session = Session::instance($this->_config['session_type']);
 		$session->set('flash_msg_info', __($msg, $values, $lang));
+	}
+
+	public function succeed($msg, array $values=NULL, $lang='en-us')
+	{
+		$session = Session::instance($this->_config['session_type']);
+		$session->set('flash_msg_succeed', __($msg, $values, $lang));
 	}
 
 	public function error($msg, array $values=NULL, $lang='en-us')
@@ -52,7 +55,7 @@ abstract class Kohana_Message
 	{
 		if ($type === NULL)
 		{
-			return $this->get('info').$this->get('error');
+			return $this->get('succeed').$this->get('info').$this->get('error');
 		}
 		else
 		{
@@ -74,5 +77,4 @@ abstract class Kohana_Message
 			}
 		}
 	}
-
 }
