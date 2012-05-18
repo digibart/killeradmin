@@ -9,18 +9,20 @@
  */
 class Controller_Admin_Core_Base extends Controller_Template {
 	public $template = "admin/template";
-	private $controller_url;
-	private $session;
 	public $request;
 	public $user;
 	public $menu;
+
+	protected $_controller_url;
+	protected $_session;
+
 
 	public function __construct($request, $response)
 	{
 		parent::__construct($request, $response);
 
 		$this->request = Request::current();
-		$this->session= Session::instance();
+		$this->_session = Session::instance();
 		$this->menu = Kohana::$config->load('admin.menu');
 	}
 
@@ -51,10 +53,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		if (isset($this->secure_actions[$action_name]))
 		{
 			$required_role = $this->secure_actions[$action_name];
-		} elseif (isset($this->secure_actions['default']))
+		}
+		elseif (isset($this->secure_actions['default']))
 		{
 			$required_role = $this->secure_actions['default'];
-		} else
+		}
+		else
 		{
 			$required_role = false;
 		}
@@ -90,11 +94,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 
 		//set the template values
-		$this->template->title = "Admin";
-		$this->template->content = "";
-		$this->template->scripts = array();
+		$this->template->set(array(
+			'title' => Kohana::$config->load('admin.company_name'),
+			'content' => '',
+			'scripts' => array()
+		));
 
-		$this->controller_url = Route::get('admin/base_url')->uri(array('controller'=> $this->request->controller()));
+		$this->_controller_url = Route::get('admin/base_url')->uri(array('controller'=> $this->request->controller()));
 
 
 		//show the menu
@@ -127,8 +133,9 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			}
 
 			$this->template->menu = View::factory('admin/menubar')
-			->set("items", $menuitems);
-		} else
+				->set("items", $menuitems);
+		}
+		else
 		{
 			$this->template->menu = "";
 		}
@@ -143,15 +150,15 @@ class Controller_Admin_Core_Base extends Controller_Template {
 	 */
 	public function action_index()
 	{
-		$get = $_GET;
-		$page =  (isset($get['page'])) ? (int) $get['page']: 1;
+
+		$page = Arr::get($_GET, 'page', 1);
 		$offset = (($page > 0 ) ? $page - 1 : 0) * 20;
 
 		//converts $_GET['filter'] in an array
 		$filter = array();
-		if (isset($get['filter']))
+		if (Arr::get($_GET, 'filter'))
 		{
-			foreach ($get['filter'] as $field => $value)
+			foreach (Arr::get($_GET, 'filter') as $field => $value)
 			{
 				if ($value)
 				{
@@ -159,8 +166,8 @@ class Controller_Admin_Core_Base extends Controller_Template {
 				}
 			}
 		}
-		$this->session->set('requested_url', $this->request->uri() . Url::query());
-		$this->session->delete('post_data_' . $this->orm_name);
+		$this->_session->set('requested_url', $this->request->uri() . Url::query());
+		$this->_session->delete('post_data_' . $this->orm_name);
 
 		//count total objects
 		$count = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
@@ -174,13 +181,13 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		//display message if no objects found
 		if ($count == 0)
 		{
-			$msg = strtolower(__('no :objects found',  array(':objects' => __($this->orm_name))) . ".");
+			$msg = strtolower(__('no :objects found',  array(':objects' => __($this->orm_name))) );
 
 			//display link 'clear filter'
-			if (isset($get['filter']))
+			if (isset($_GET['filter']))
 			{
 				$query = Url::query(array('filter' => null));
-				$msg .= "&nbsp;" . html::anchor($this->controller_url . $query, __('clear filter'));
+				$msg .= "&nbsp;" . html::anchor($this->_controller_url . $query, __('clear filter'));
 			}
 			Message::instance()->info($msg);
 		}
@@ -196,14 +203,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		if (!$pagination->valid_page($page) && $pagination->__get('total_pages') > 0)
 		{
 			$query = Url::query(array('page' =>  $pagination->__get('total_pages')));
-			$this->request->redirect($this->controller_url . $query);
+			$this->request->redirect($this->_controller_url . $query);
 		}
 
 		//collect the orm objects
 		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
-		$objects
-		->offset($offset)
-		->limit(20);
+		$objects->offset($offset)->limit(20);
 
 		// and apply filters
 		foreach ($filter as $field => $value)
@@ -231,12 +236,12 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		}
 
 		$view
-		->bind('objects', $objects)
-		->bind('auth_user', $this->user)
-		->bind('filter', $filter)
-		->bind('count', $count)
-		->bind('controller_url', $this->controller_url)
-		->bind('pagination', $pagination);
+			->set('objects', $objects)
+			->set('auth_user', $this->user)
+			->set('filter', $filter)
+			->set('count', $count)
+			->set('controller_url', $this->_controller_url)
+			->set('pagination', $pagination);
 
 
 		$this->template->content = $view;
@@ -256,13 +261,25 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$this->template->title = ucfirst(__('add :object', array(':object' => __($this->orm_name))));
 
 		$object = ORM::factory($this->orm_name);
-		$object->values($this->session->get_once('post_data_' . $this->orm_name, array()));
+		$object->values($this->_session->get_once('post_data_' . $this->orm_name, array()));
 
-		$this->template->content = View::factory('admin/'.$this->orm_name.'_form')
-		->set('referrer', $this->session->get('requested_url'))
-		->set('controller_url', $this->controller_url)
-		->set('auth_user', $this->user)
-		->bind($this->orm_name, $object);
+		//get the view
+		if (is_object($this->template->content) && get_class($this->template->content) == "View")
+		{
+			$view = $this->template->content;
+		}
+		else
+		{
+			$view = View::factory('admin/'.$this->orm_name.'_form');
+		}
+		
+		$view
+			->set('referrer', $this->_session->get('requested_url'))
+			->set('controller_url', $this->_controller_url)
+			->set('auth_user', $this->user)
+			->set($this->orm_name, $object);
+
+		$this->template->content = $view;
 
 	}
 
@@ -292,15 +309,15 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		}
 
 		$this->template->content = $view
-		->set('referrer', $this->session->get('requested_url'))
-		->set('controller_url', $this->controller_url)
-		->set('auth_user', $this->user)
-		->bind($this->orm_name, $object);
+			->set('referrer', $this->_session->get('requested_url'))
+			->set('controller_url', $this->_controller_url)
+			->set('auth_user', $this->user)
+			->set($this->orm_name, $object);
 
 		if (!$object->loaded())
 		{
 			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
-			$this->request->redirect($this->session->get_once('requested_url'));
+			$this->request->redirect($this->_session->get_once('requested_url'));
 		}
 	}
 
@@ -336,7 +353,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			{
 				Message::instance()->error(__(':object not saved'),  array(':object' => __($this->orm_name)));
 			}
-			$this->request->redirect($this->session->get_once('requested_url'));
+			$this->request->redirect($this->_session->get_once('requested_url'));
 
 		} catch (ORM_Validation_Exception $e)
 		{
@@ -347,7 +364,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			{
 				$errorstring .= $msg . "<br />";
 			}
-			$this->session->set('post_data_' . $this->orm_name, $post);
+			$this->_session->set('post_data_' . $this->orm_name, $post);
 			Message::instance()->error($errorstring);
 			$this->request->redirect($this->request->referrer());
 		}
@@ -377,7 +394,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 			Message::instance()->error(__(':object not found', array(':object' => __($this->orm_name))));
 		}
 
-		$this->request->redirect($this->session->get_once('requested_url'));
+		$this->request->redirect($this->_session->get_once('requested_url'));
 
 	}
 
