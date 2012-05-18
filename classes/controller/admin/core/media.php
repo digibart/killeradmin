@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Controller_Admin_Core_Media class.
+ * Controller for the javascript,css and images parser/minify
  *
  * @extends Controller
  * @package Killer-admin
@@ -11,7 +11,7 @@ class Controller_Admin_Core_Media extends Controller {
 
 
 	/**
-	 * route to media files  (js, css and images)
+	 * direct route to media files (js, css and images)
 	 *
 	 * @access public
 	 * @return void
@@ -30,24 +30,29 @@ class Controller_Admin_Core_Media extends Controller {
 		if ($file = Kohana::find_file('media', $file, $ext))
 		{
 			// Send the file content as the response
-			$this->request->body(file_get_contents($file));
+			$this->response->body(file_get_contents($file));
 
 			// Set the content type for this extension
-			header("Cache-Control: max-age");
-			header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
-			header("Last-Modified: ". gmdate('D, d M Y H:i:s \G\M\T', filemtime($file)));
-			header("Content-type: " . File::mime_by_ext($ext));
+			$this->response->headers("Cache-Control","max-age");
+			$this->response->headers("Expires", gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
+			$this->response->headers("Last-Modified", gmdate('D, d M Y H:i:s \G\M\T', filemtime($file)));
+			$this->response->headers("Content-type", File::mime_by_ext($ext));
+			
+			
 		}
 		else
 		{
 			// Return a 404 status
 			$this->request->status = 404;
 		}
-
-		echo $this->request->body();
-		exit;
 	}
 
+	/**
+	 * route to minified css and stylesheets
+	 * 
+	 * @throws Exception
+	 * @return void
+	 */
 	public function action_minify()
 	{
 
@@ -70,18 +75,19 @@ class Controller_Admin_Core_Media extends Controller {
 			}
 		}
 
-		header("Cache-Control: max-age");
-		header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
-		header("Last-Modified: ". gmdate('D, d M Y H:i:s \G\M\T', $content['time']));
-		header("Content-type: " . File::mime_by_ext($ext));
+		$this->response->headers("Cache-Control","max-age");
+		$this->response->headers("Expires",gmdate('D, d M Y H:i:s \G\M\T', time() + (86400 * 7)));
+		$this->response->headers("Last-Modified",gmdate('D, d M Y H:i:s \G\M\T', $content['time']));
+		$this->response->headers("Content-type",File::mime_by_ext($ext));
 
 		//enable compression
-		if
-		(!ob_start("ob_gzhandler")) ob_start();
+		if (!ob_start("ob_gzhandler")) 
+		{
+			ob_start();
+		}
 
-		echo $content['data'];
+		$this->response->body($content['data']);
 
-		die();
 	}
 }
 
