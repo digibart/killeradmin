@@ -14,7 +14,7 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 	{
 		parent::before();
 
-		$this->template->title = __('users');
+		$this->template->title = ucfirst(__('users'));
 	}
 
 

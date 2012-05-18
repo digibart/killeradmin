@@ -24,14 +24,14 @@
 		<dl>
 			<dt class="twelve columns"><label for="username"><?php echo ucfirst(__('username'));?></label></dt>
 			<dd><input type="text" name="username" id="username" class="required" minlength="5"></dd>
-		
+
 			<dt class="twelve columns"><label for="email"><?php echo  ucfirst(__('email'));?></label></dt>
 			<dd><input type="text" name="email" class="required email"></dd>
 		</dl>
 		<br />
-		
+
 		<div class="button bar">
-			
+
 			<?php if ($errors == 0) : ?>
 				<input type="submit" class="nice primary button" value="Create user">
 			<?php else: ?>
@@ -39,6 +39,6 @@
 			<?php endif; ?>
 		</div>
 
-		
+
 	</div>
 </form>
