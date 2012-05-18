@@ -37,13 +37,13 @@ class Controller_Admin_Core_Users extends Controller_Admin_Base {
 		}
 
 		//set the values
-		if (isset($object->save_columns) && is_array($object->save_columns))
+		if (isset($user->save_columns) && is_array($user->save_columns))
 		{
-			$object->values(Arr::extract($post, $object->save_columns));
+			$user->values(Arr::extract($this->request->post(), $user->save_columns));
 		}
 		else
 		{
-			$object->values($post);
+			$user->values($this->request->post());
 		}
 
 		try
