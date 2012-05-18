@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
 /**
  * Flash message handler
@@ -9,7 +9,8 @@
  * @copyright   (c) 2010 Kyle Treubig
  * @license     MIT
  */
-abstract class Kohana_Message {
+abstract class Kohana_Message
+{
 
 	/** Config */
 	private $_config;
@@ -20,11 +21,13 @@ abstract class Kohana_Message {
 	/** Cached error message */
 	private $error;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->_config = Kohana::$config->load('message');
 	}
 
-	public static function instance() {
+	public static function instance()
+	{
 		static $instance;
 		if ( ! isset($instance))
 		{
@@ -33,17 +36,20 @@ abstract class Kohana_Message {
 		return $instance;
 	}
 
-	public function info($msg, array $values=NULL, $lang='en-us') {
+	public function info($msg, array $values=NULL, $lang='en-us')
+	{
 		$session = Session::instance($this->_config['session_type']);
 		$session->set('flash_msg_info', __($msg, $values, $lang));
 	}
 
-	public function error($msg, array $values=NULL, $lang='en-us') {
+	public function error($msg, array $values=NULL, $lang='en-us')
+	{
 		$session = Session::instance($this->_config['session_type']);
 		$session->set('flash_msg_error', __($msg, $values, $lang));
 	}
 
-	public function get($type=NULL) {
+	public function get($type=NULL)
+	{
 		if ($type === NULL)
 		{
 			return $this->get('info').$this->get('error');
@@ -70,4 +76,3 @@ abstract class Kohana_Message {
 	}
 
 }
-

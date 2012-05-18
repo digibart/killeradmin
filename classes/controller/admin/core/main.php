@@ -50,7 +50,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 					Message::instance()->succeed(ucfirst(__('access granted')));
 					Cache::instance()->set(md5($_SERVER['REMOTE_ADDR']), 0 , 300);
 					Request::current()->redirect(Route::get('admin/base_url')->uri(array('controller' => 'main')));
-				} 
+				}
 				else
 				{
 					//save the login failure

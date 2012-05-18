@@ -2,7 +2,7 @@
 
 /**
  * Check modules and config, and create a first user
- * 
+ *
  * @extends Controller_Template
  * @package
  * @category
@@ -15,7 +15,7 @@ class Controller_Admin_Setup extends Controller_Template {
 	 * check if you're allowd to see this page
 	 *
 	 * Denie access if there are already users in the database, or $envirement != DEVELOPMENT
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ class Controller_Admin_Setup extends Controller_Template {
 		$user_count = (int) ORM::factory('user')->count_all();
 
 		if (Kohana::$environment != KOHANA::DEVELOPMENT || $user_count !== 0)
-		{			
+		{
 			Kohana::$log->add(Log::ERROR, 'Access to Killeradmin setup denied: ~ :reason', array(':reason' => 'Kohana::$environment != KOHANA::DEVELOPMENT or ORM::factory(\'user\')->count_all() !== 0'));
 			Message::instance()->error(ucfirst(__('access denied. More info in logs')));
 			$this->request->redirect(Route::get('admin/base_url')->uri());
@@ -36,7 +36,7 @@ class Controller_Admin_Setup extends Controller_Template {
 
 	/**
 	 * action_index function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -72,8 +72,8 @@ class Controller_Admin_Setup extends Controller_Template {
 		/**************************************/
 
 		$config = array();
-	
-		// check if auth hash_key is set	
+
+		// check if auth hash_key is set
 		if (strlen(Kohana::$config->load('auth.hash_key')) < 30)
 		{
 			$config['auth'] = KillerAdmin::spriteImg('cross') . Kohana::message('admin', 'no hash_key');
@@ -94,7 +94,7 @@ class Controller_Admin_Setup extends Controller_Template {
 			$config['admin'] = KillerAdmin::spriteImg('tick');
 		}
 
-		
+
 		/**************************************/
 		/* roundup
 		/**************************************/
@@ -105,16 +105,16 @@ class Controller_Admin_Setup extends Controller_Template {
 		}
 
 		$this->template->content = View::factory('admin/setup')
-			->set('modules', $modules)
-			->set('config', $config)
-			->set('post_data', Session::instance()->get_once('post_data'))
-			->set('errors', $errors);
+		->set('modules', $modules)
+		->set('config', $config)
+		->set('post_data', Session::instance()->get_once('post_data'))
+		->set('errors', $errors);
 
 	}
 
 	/**
 	 * Create a user, and redirect to login page
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */

@@ -222,7 +222,7 @@ class Killeradmin_KillerFile
 
 		// replace all %route_key% to correct uri
 		$contents = str_ireplace("%admin/media%", Route::url('admin/media'), $contents);
-		
+
 		return $contents;
 
 	}

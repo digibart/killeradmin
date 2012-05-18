@@ -1,5 +1,7 @@
-<?php 
+<?php
 
-class KillerFile extends Killeradmin_KillerFile {}
+class KillerFile extends Killeradmin_KillerFile {
+
+}
 
 ?>

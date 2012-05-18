@@ -30,7 +30,7 @@ class Killeradmin_Killeradmin
 		foreach ($orders as $order)
 		{
 			$class = "";
-			
+
 			if ($reverse)
 			{
 				$order = ($order == 'asc') ? 'desc' : 'asc';
@@ -47,7 +47,7 @@ class Killeradmin_Killeradmin
 				// all other
 				$anchor_string = ($order == 'asc') ? self::SpriteImg('soft arrow up') : self::SpriteImg('soft arrow down') ;
 			}
-			
+
 			$query = URL::query(array('sort' => $col, 'order' => $order));
 
 
@@ -84,7 +84,7 @@ class Killeradmin_Killeradmin
 	{
 		$title = ($title) ? $title : __('clear filter');
 		$button = Form::button('submitfilter', self::spriteImg('funnel') . "&nbsp;" . __('filter') , array('type' => 'submit'));
-		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , str_replace(' ', '&nbsp;',__('clear filter'))) : "";
+		$link = (Arr::get($_GET, 'filter')) ? html::anchor(Request::current()->uri() , str_replace(' ', '&nbsp;', __('clear filter'))) : "";
 
 		return $button . $link;
 	}
@@ -217,7 +217,7 @@ class Killeradmin_Killeradmin
 
 	/**
 	 * get the file path of this module
-	 * 
+	 *
 	 * @access public
 	 * @static
 	 * @return string
