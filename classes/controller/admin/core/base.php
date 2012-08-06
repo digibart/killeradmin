@@ -208,7 +208,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 
 		//collect the orm objects
 		$objects = (isset($this->base_object)) ? $this->base_object->reset(false) : ORM::factory($this->orm_name);
-		$objects->offset($offset)->limit(20);
+		$objects->offset($offset)->limit($page_config['items_per_page']);
 
 		// and apply filters
 		foreach ($filter as $field => $value)
