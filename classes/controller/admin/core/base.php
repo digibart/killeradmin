@@ -391,7 +391,7 @@ class Controller_Admin_Core_Base extends Controller_Template {
 		$id = $this->request->param('id');
 
 		$object = (isset($this->base_object)) ? $this->base_object : ORM::factory($this->orm_name);
-		$object->where('id', '=', $id)->find();
+		$object->where(Inflector::singular($object->table_name()) . '.' . $object->primary_key(), '=', $id)->find();
 
 		if ($object->loaded())
 		{
