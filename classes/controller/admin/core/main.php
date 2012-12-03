@@ -41,7 +41,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			{
 				//Instantiate a new user
 				$user = ORM::factory('user');
-				$status = Auth::instance()->login($this->request->post('username'), $this->request->post('password'), $this->request->post('remember'));
+				$status = Auth::instance()->login($this->request->post('username'), $this->request->post('password'), (bool) $this->request->post('remember'));
 
 
 				//If user is logged in then redirect
