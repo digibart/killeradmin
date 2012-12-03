@@ -10,6 +10,11 @@
 				<small><?php echo html::anchor(Route::get('admin/base_url')->uri(array('controller' => 'main', 'action' => 'forgot')), __('forgot password'));?></small>
 			</dd>
 
+			<dt class="eight columns"><label for="remember"><?php echo  ucfirst(__('remember me'));?></label></dt>
+			<dd class="sixteen columns">
+				<input type="checkbox" name="remember" id="remember">
+			</dd>
+
 			<?php if (isset($captcha) && $captcha) : ?>
 				<dt class="eight columns"><label for="captcha"><?php echo ucfirst(__('security question'));?></label></dt>
 				<dd class="sixteen columns last">
