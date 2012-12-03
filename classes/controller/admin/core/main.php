@@ -41,7 +41,7 @@ class Controller_Admin_Core_Main extends Controller_Admin_Base {
 			{
 				//Instantiate a new user
 				$user = ORM::factory('user');
-				$status = Auth::instance()->login(Arr::get($_POST, 'username'), Arr::get($_POST, 'password'), Arr::get($_POST, 'remember'));
+				$status = Auth::instance()->login(Arr::get($_POST, 'username'), Arr::get($_POST, 'password'), (bool) Arr::get($_POST, 'remember'));
 
 
 				//If user is logged then redirect
