@@ -17,3 +17,8 @@ Killer Admin requires the following Kohana modules:
 * [Database](http://github.com/kohana/database)
 * [Orm](http://github.com/kohana/orm)
 * [Pagination](http://github.com/digibart/pagination)
+
+
+License
+---------------
+This software is licensed under [MIT License](https://github.com/digibart/killeradmin/blob/3.2/develop/LICENSE)
